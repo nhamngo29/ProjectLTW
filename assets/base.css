@@ -1,0 +1,111 @@
+:root {
+    --white-color: #fff;
+    --black-color:#000;
+    --text-color:#333;
+    --header-height: 160px;
+    --hover-color:#ce3f3f;
+    --blue-color: blue;
+    --green-color: green;
+    --gray-color: gray;
+    --yellow-color:yellow;
+    --red-color: red;
+    --orange-color:orange;
+    --violet-color:violet;
+}
+* {
+    box-sizing: inherit;/*kế thừa*/
+}
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;/*bỏ dấu gạch chân của chữ*/
+    box-sizing: border-box;
+}
+.green {
+    background-color: green;
+}
+.white {
+    background-color: #fff;
+}
+.black {
+    background-color: #000;
+}
+.blue {
+    background-color: blue;
+}
+.gray {
+    background-color: gray;
+}
+.yellow {
+    background-color: yellow;
+}
+.red {
+    background-color: red;
+}
+.orange {
+    background-color: orange;
+}
+.violet {
+    background-color: violet;
+}
+.display {
+    display: block;
+    transition: 0.8s;
+}
+.undisplay {
+    display: none;
+    transition: 0.8s;
+}
+.white-color {
+    color: #fff !important;
+}
+.btn-buynow:hover > .fi-rs-arrow-right {
+    color: #000 !important;
+}
+body {
+    overflow-x: hidden;
+}
+.custom__name-product {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+    height: 3.6rem;
+    margin-bottom:  10px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: var(--black-color);
+}
+.title-news {
+    font-size: 18px;
+}
+.card {
+    border-radius: unset !important;
+}
+.img1 {
+    display: block;
+}
+.img2 {
+    display: none;
+}
+.card:hover .img2 {
+    display: block;
+}
+.card:hover .img1 {
+    display: none;
+}
+.product__new-item {
+    color: var(--black-color);
+}
+.product__new-item:hover {
+    text-decoration: none;
+    color: var(--black-color);
+}
+.card-title {
+    font-size: 18px;
+}
+.right {
+    float: right;
+}

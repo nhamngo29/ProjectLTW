@@ -1,0 +1,133 @@
+.product {
+    margin: 30px 0;
+}
+.product__filter-heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
+}
+.product__filter-ckeckbox {
+    padding: 0;
+    margin-left: 10px;
+    font-size: 16px;
+    list-style: none;
+}
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    padding-right: 10px;
+}
+.fi-rs-minus {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black-color);
+    cursor: pointer;
+}
+.fi-rs-plus {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black-color);
+    cursor: pointer;
+}
+.product__filter-item {
+    padding: 10px 0;
+}
+.product__filter-item span {
+    margin-left: 20px;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+.sort-wrap {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.coll-name {
+    font-size: 4em;
+    margin: 0;
+    margin-top: -10px;
+}
+.sortby {
+    display: flex;
+    float: right;
+}
+.sortby label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+
+.dropdown-toggle {
+    height: 30px;
+    font-size: 14px;
+    border-radius: unset;
+    background-color: unset;
+    color: var(--black-color);
+    border: 1px solid var(--black-color);
+}
+.dropdown-item {
+    font-size: 14px;
+}
+.row-product {
+    margin-bottom: 20px;
+}
+.loadmore {
+    text-align: center;
+    margin: 40px 0;
+}   
+.loadmore-btn {
+    padding: 10px 40px;
+    border: 2px solid var(--black-color);
+    color: var(--text-color);
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: 1s all ease;
+}
+.loadmore-btn::before{
+    background-color: var(--black-color);
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.6s ease;
+    width: 0;
+    height: 100%;
+}
+.loadmore-btn:hover::before {
+    width: 100%;
+}
+.loadmore-btn:hover {
+    text-decoration: none;
+    color: var(--white-color);
+}
+.filter-mobile {
+    padding: 15px 15px;
+    height: 100%;
+    overflow-y: auto;
+    width: 270px;
+    position: fixed;
+    background-color: #fff;
+    z-index: 999999 !important;
+    top: 0 !important;
+    right: 0 !important;
+    transition: transform 0.8s;
+    transform: translateX(270px);
+}
+.xyz{
+    transform: translateX(0);
+}
+.overlay2 {
+    background-color: rgba(0, 0, 0, 0.5);
+    position:  fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    cursor: pointer;
+}

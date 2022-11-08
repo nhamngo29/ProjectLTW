@@ -1,0 +1,143 @@
+.cart {
+    background-color: #f3f3f3;
+}
+.cart-body-left {
+    width: calc(100% - 384px);
+    background-color: var(--white-color);
+}
+.cart-body-right {
+    width: 360px;
+}
+.cart-heding {
+    border-bottom: 2px solid rgba(238, 238, 238, 0.5);
+    padding-left: 39px;
+    padding-right: 24px;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+.cart-row {
+    flex-wrap: wrap;
+}
+.form-cart {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.col-1 {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.col-1 a:hover {
+    text-decoration: none;
+}
+.col-11 {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 16px;
+}
+.cart-body {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.cart-body-row {
+    border-bottom: 1px solid #E1E3E8;
+    padding: 24px 0;
+    margin-right: -2px;
+    margin-left: unset !important;
+}
+.fi-rs-cross {
+    font-size:20px;
+    color: var(--black-color);
+}
+.cart-img {
+    width: 100%;
+}
+.cart-name {
+    color: var(--black-color);
+}
+.cart-name:hover {
+    text-decoration: none;
+    color: var(--black-color);
+}
+.cart-quantity {
+    display:flex;
+}
+.control {
+    border-radius: unset;
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+.text-input {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    border: unset;
+    border-radius: unset;
+    vertical-align: middle;
+    width: 80%;
+}
+.container {
+}
+.cart-footer-row {
+    border-radius: 1px solid #E1E3E8 !important;
+}
+.cart-wrap {
+    padding-top:50px;
+    padding-bottom: 46px;
+}
+.text-right {
+    text-align: right !important;
+}
+.continue a{
+    color: var(--black-color);
+    font-size: 20px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+.fi-rs-angle-left {
+    font-size: 16px !important;
+    font-weight: 600;
+}
+.continue a:hover {
+    text-decoration: none;
+}
+.cart-footer-row {
+    padding:  30px 0;
+}
+.cart-body-right {
+    background-color: var(--white-color);
+    padding: 40px 30px;
+}
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+.total__price {
+    color: #ce3f3f;
+}
+.cart-buttons {
+    padding: 20px 0;
+}
+.chekout {
+    padding: 20px;
+    width: 100%;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    font-size: 20px;
+    font-weight: 500;
+    position: relative;
+}
+.chekout:hover{
+   text-decoration: none;
+   color: #fff;
+}
+.fa-trash {
+    font-size: 18px;
+    color: var(--hover-color);
+}

@@ -1,0 +1,97 @@
+.heading {
+    /* margin: 10px 20px; */
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;    
+}
+.heading-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--black-color);
+    margin-right: 20px;
+}
+.heading-name_acc {
+    font-size:1.4rem;
+    font-weight:500;
+   
+}
+.menu-manager {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: var(--black-color);  
+    cursor: pointer;
+}
+.my-profile,
+.my-order,
+.my-password {
+    display: flex;
+    padding: 10px 0;
+}
+.my-profile-icon,
+.my-order-icon,
+.my-password-icon {
+    margin-right:  10px;
+}
+.detail__confirm-password,
+.detial__my-profile {
+}
+.item-manager.active {
+    color:var(--hover-color);
+}
+.item-detail {
+    display: none;
+}
+.item-detail.active {
+    color: #000 !important;
+    display: block;
+}
+
+.form-group-confirm-password,
+.form-group-new-password,
+.form-group-old-password {
+    position: relative;
+}
+.show-hide-two,
+.show-hide-three,
+.show-hide {
+    top: 10%;
+}
+.my-profile-title,
+.my-order-title,
+.my-password-title {
+    display: inline-flex;
+}
+.my-order-heading {
+    border-bottom: 2px solid #E1E3E8;
+    padding: 24px 0;
+    margin-right: -2px;
+    margin-left: unset !important;
+}
+.detail__my-order {
+    font-size: 14px;
+    text-align: center;
+}
+.my-order-body {
+
+}
+.my-order-heading {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding : 5px 0;
+}
+.btn-stt {
+    color: white;
+    border-radius: 2px;
+    padding: 2px;
+}
+.bd-bottom {
+    border-bottom: 1px solid #E1E3E8;
+    align-items: center;
+    padding: 10px 0;
+}
+.body-one {
+    flex-direction: column;
+    font-size: 16px;
+}

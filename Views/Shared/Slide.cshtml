@@ -1,0 +1,51 @@
+﻿<section class="awe-section-1">
+    <div class="mt-4 top-sliders col-md-12">
+        <div class="slideshow">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+                <ul class="carousel-indicators">
+
+                    @for (int i = 0; i < ViewBag.Slides.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            <li data-target="#demo" data-slide-to="@i" class="active"></li>
+                        }
+                        <li data-target="#demo" data-slide-to="@i"></li>
+                    }
+
+                </ul>
+                <div class="carousel-inner">
+                    @{
+                        int n = 0;
+                    }
+                    @foreach (var item in ViewBag.Slides)
+                    {
+                        if (n == 0)
+                        {
+                            n++;
+                            <div class="carousel-item active">
+                                <img src="~/assets/img/slideshow/@item.Image" alt="New York" width="1100" height="500">
+                                <div class="carousel-caption">
+                                    <a href="~/Product.html" class="click-slideshow">Xem chi tiết</a>
+                                </div>
+                            </div>
+
+                        }
+                        <div class="carousel-item">
+                            <img src="~/assets/img/slideshow/@item.Image" alt="New York" width="1100" height="500">
+                            <div class="carousel-caption">
+                                <a href="~/Product.html" class="click-slideshow">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

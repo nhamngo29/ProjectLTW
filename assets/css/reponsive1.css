@@ -1,0 +1,129 @@
+/* Mobile & tablet  */
+@media (max-width: 1023px) {
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+    
+}
+/* tablet */
+@media (min-width: 740px) and (max-width: 1023px) {
+    .header{
+        overflow: hidden;
+        background-color: var(--white-color);
+        height: var(--header-height);
+        border-bottom: 1px solid #eee;
+        position: unset;
+        z-index: 999;
+        box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    }
+    .header__first {
+        justify-content: center;
+    }
+    .header__second__logo {
+        display: none;
+    }
+    .header__second__search {
+        margin-left: unset;
+        margin-right: 90px;
+    }
+    .header__second__like{
+        margin-left: unset;
+        width: unset;
+    }
+    .header__second__search-history {
+        display: none;
+    }
+    .usb {
+        display:block;
+    }
+    .checkbtn {
+        display:block;
+    }
+    .hidden-sm {
+        display: none;
+    }
+    .col-100-h {
+        clear: both;
+        height: 80px;
+    }
+    .logo {
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        max-width: 150px;
+        top: 0;
+        text-align: center;
+    }
+    .logo a img{
+        max-height: 70px;
+    }
+    .mobile_cart {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        display: block;
+    }
+    .visible-sm{
+        display: block !important; 
+    }
+    #trigger-mobile {
+        display: block;
+    }
+    #trigger-mobile {
+        margin-top: 12px;
+    }
+    .mobile_cart {
+        margin-top: 10px;
+    }
+}
+/* mobile */
+@media (max-width: 739px) {
+    .checkdl1 {
+        display: block;
+    }
+    .hidden-xs {
+        display: none;
+    }
+    .col-100-h {
+        clear: both;
+        height: 66px;
+    }
+    .visible-xs{
+        display: block !important; 
+    }
+    .logo {
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        max-width: 150px;
+        top: 0;
+        text-align: center;
+    }
+    .logo a img{
+        max-height: 60px;
+    }
+    .mobile_cart {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        display: block;
+    }
+    .mt-16px {
+        margin-top: 16px !important;
+    }
+    .pdt15 {
+        padding-bottom: 15px;
+    }
+    #trigger-mobile {
+        display: block;
+    }
+    #trigger-mobile {
+        margin-top: 8px;
+    }
+    .mobile_cart {
+        margin-top: 4px;
+    }
+    
+}

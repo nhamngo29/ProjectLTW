@@ -1,0 +1,33 @@
+.loadmore {
+    text-align: center;
+    margin: 40px 0;
+}   
+.loadmore-btn {
+    padding: 10px 40px;
+    border: 2px solid var(--black-color);
+    color: var(--text-color);
+    font-size: 16px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: 1s all ease;
+}
+.loadmore-btn::before{
+    background-color: var(--black-color);
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.6s ease;
+    width: 0;
+    height: 100%;
+}
+.loadmore-btn:hover::before {
+    width: 100%;
+}
+.loadmore-btn:hover {
+    text-decoration: none;
+    color: var(--white-color);
+}
