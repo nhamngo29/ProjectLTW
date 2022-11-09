@@ -11,29 +11,31 @@ namespace Project.Models
         [Key]
         [Display(Name = "Mã sản phẩm")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductId { get; set; }//Mã sản phẩm
+        [Column(TypeName ="varchar")]
+        [StringLength(40)]
+        public string ProductId { get; set; }//Mã sản phẩm
         [Column(TypeName="nvarchar")]
         [Display(Name="Tên sản phẩm")]
         public string Name { get; set; }//Tên sản phẩm
         [Display(Name="Giá sản phẩm")]
-        [Column(TypeName ="float")]
-        public double Price { get; set; }//Giá sản phẩm
+        public Nullable<decimal> Price { get; set; }//Giá sản phẩm
         [Display(Name="Phần tram giảm")]
-        public float Promotion { get; set; }//Phần trăm giảm của sản phẩm
+        public Nullable<float> Promotion { get; set; }//Phần trăm giảm của sản phẩm
         [Display(Name="Bao gồm thuế")]
-        public bool IncludeVAT { get; set; }//Thuế
+        public Nullable<bool> IncludeVAT { get; set; }//Thuế
         [Display(Name="Số lượng")]
-        public int Quantity { get; set; }//Số lượng
+        public Nullable<int> Quantity { get; set; }//Số lượng
         [Column(TypeName ="nvarchar")]
         [Display(Name="Tình trạng")]
         public string Status { get; set; }//Tình trạng
-        public bool Favorite { get; set; }//Yêu thích
-
-        public int CategoryID { get; set; }
-        public int BrandID { get; set; }
-        [ForeignKey("CategoryID")]
-        public virtual Category Category { get; set; }
+        public Nullable<int> Evaluate { get; set; }//Đánh giá
+        public string ImgeMain { get; set; }//hình ảnh chính
+        public int ProductTypeID { get;set ; }
+        public Nullable<int> TotalSold { get; set; }//số sp đã bán
+        public Nullable<int> BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }
+        [ForeignKey("ProductTypeID")]
+        public virtual ProductType ProductType { get; set; }//Khóa ngoại của bảng ProductType
     }
 }

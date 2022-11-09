@@ -12,5 +12,10 @@ namespace Project.Models
         public int Id { get; set; }
         [Column(TypeName ="nvarchar")]
         public string Image { get; set; }
+        [Column(TypeName = "varchar")]
+        [StringLength(40)]
+        public string ProductId { get; set; }//Mã sản phẩm
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
     }
 }

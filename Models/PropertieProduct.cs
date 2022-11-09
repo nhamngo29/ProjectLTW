@@ -6,17 +6,21 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Project.Models
 {
-    //Chi tiết sản phảm
-    public class Detail
+    public class PropertieProduct
     {
-        [Key, Column(Order = 0), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int Id { get; set; }
-        [Key,Column(Order =1, TypeName = "varchar")]
+        [Column(TypeName = "varchar")]
         [StringLength(40)]
         public string ProductId { get; set; }//Mã sản phẩm
-        [Column(TypeName ="Nvarchar")] 
-        public string Text { get; set; }
+        [Index()]
+        public Nullable<int> Quantity { get; set; }
+        [Index(IsUnique = true)]
+        public Nullable<int> Size { get; set; }
+        [Index(IsUnique = true)]
+        public Nullable<int> Color { get; set; }
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
+        //
     }
 }

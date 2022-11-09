@@ -15,7 +15,8 @@ namespace Project.Controllers
             List<Slide> Slides=DB.Slides.ToList();
             ViewBag.Slides=Slides;
             ViewBag.Length=Slides.Count;
-            return View();
+            List<Product> Products=DB.Products.ToList();
+            return View(Products);
         }
     }
 }

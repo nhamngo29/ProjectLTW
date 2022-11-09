@@ -95,10 +95,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShopDB.mdf" />
-    <Content Include="App_Data\ShopDB_log.ldf">
-      <DependentUpon>ShopDB.mdf</DependentUpon>
-    </Content>
     <Content Include="assets\base.css" />
     <Content Include="assets\css\account.css" />
     <Content Include="assets\css\base.css" />
@@ -2122,6 +2118,16 @@
     <Content Include="assets\img\product\adirunner2.jpg" />
     <Content Include="assets\img\product\adirunner3.jpg" />
     <Content Include="assets\img\product\adirunner4.jpg" />
+    <Content Include="assets\img\product\ALID0007-01-01.png" />
+    <Content Include="assets\img\product\ALID0007-01-02.png" />
+    <Content Include="assets\img\product\ALID0007-01-03.png" />
+    <Content Include="assets\img\product\ALID0007-01-04.png" />
+    <Content Include="assets\img\product\ALID0007-01-05.png" />
+    <Content Include="assets\img\product\ALID0007-01-06.png" />
+    <Content Include="assets\img\product\ALID0007-01-07.png" />
+    <Content Include="assets\img\product\ALID0007-01-08.png" />
+    <Content Include="assets\img\product\ALID0007-01-09.png" />
+    <Content Include="assets\img\product\ALID0007-01-10.png" />
     <Content Include="assets\img\product\ambush1.jpg" />
     <Content Include="assets\img\product\ambush2.png" />
     <Content Include="assets\img\product\ambush3.png" />
@@ -2143,6 +2149,7 @@
     <Content Include="assets\img\product\ars2.jpg" />
     <Content Include="assets\img\product\ars3.jpg" />
     <Content Include="assets\img\product\ars4.jpg" />
+    <Content Include="assets\img\product\ATID0173-01-01.png" />
     <Content Include="assets\img\product\bangdeotay1.jpg" />
     <Content Include="assets\img\product\bangdeotay2.jpg" />
     <Content Include="assets\img\product\bangdeotay3.jpg" />
@@ -2377,6 +2384,8 @@
     <Compile Include="Models\Detail.cs" />
     <Compile Include="Models\ImgeProduct.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductType.cs" />
+    <Compile Include="Models\PropertieProduct.cs" />
     <Compile Include="Models\ShopDBContext.cs" />
     <Compile Include="Models\Slide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2474,6 +2483,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Shared\Slide.cshtml" />
+    <Content Include="Views\Shared\Product.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2481,7 +2491,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

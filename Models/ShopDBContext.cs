@@ -6,7 +6,7 @@ using System.Data.Entity;
 using Project.Models;
 namespace Project.Models
 {
-    public class ShopDBContext:DbContext
+    public class ShopDBContext : DbContext
     {
         public ShopDBContext() : base("MyConnectionString") { }
         public DbSet<Brand> Brands { get; set; }
@@ -15,5 +15,7 @@ namespace Project.Models
         public DbSet<ImgeProduct> Imges { get; set; }
         public DbSet<Detail> Details { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<PropertieProduct> Properties { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
     }
 }
