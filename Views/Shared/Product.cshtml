@@ -1,15 +1,14 @@
-﻿
-<div class="col-lg-3 col-md-6 col-sm-12 mb-20">
+﻿<div class="col-lg-3 col-md-6 col-sm-12 mb-20">
     <a href="~/ProductDetail.html" class="product__new-item">
         <div class="card" style="max-width:100%;max-height:99%">
             <div>
-                <img class="card-img-top" src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="Card image cap">
+                <img class="card-img-top" src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="@ViewBag.item.ProductId">
                 <form action="" class="hover-icon hidden-sm hidden-xs">
                     <input type="hidden">
                     <a href="~/pay.html" class="btn-add-to-cart" title="Mua ngay">
                         <i class="fas fa-cart-plus"></i>
                     </a>
-                    <a data-toggle="modal" x`="#myModal" class="quickview" title="Xem nhanh">
+                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct">
                         <i class="fas fa-search"></i>
                     </a>
                 </form>
@@ -61,135 +60,6 @@
             </div>
         </div>
     </a>
+    <!-- end modal -->
+
 </div>
-<div class="modal" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content ">
-
-            <!-- Modal Header -->
-            <!-- <div class="modal-header">
-              <h4 class="modal-title">Giày ADIDAS</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div> -->
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="mb-2 main-img-2">
-                            <img src="./assets/img/product/ars1.jpg" alt="" id="img-main" xoriginal="./assets/img/product/ars1.jpg">
-                        </div>
-                        <ul class="all-img-2">
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars1.jpg" alt="" onclick="changeImg('one')" id="one">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars2.jpg" alt="" onclick="changeImg('two')" id="two">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars3.jpg" alt="" onclick="changeImg('three')" id="three">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars4.jpg" alt="" onclick="changeImg('four')" id="four">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6">
-                        <div class="info-product">
-                            <h3 class="product-name">
-                                <a href="" title="">Giày ADIDAS</a>
-                            </h3>
-                            <div class="status-product">
-                                Trạng thái: <b>Còn hàng</b>
-                            </div>
-                            <div class="infor-oder">
-                                Loại sản phẩm: <b>Giày dép</b>
-                            </div>
-                            <div class="price-product">
-                                <div class="special-price">
-                                    <span>540.000đ</span>
-                                </div>
-                                <div class="price-old">
-                                    Giá gốc:
-                                    <del>650.000đ</del>
-                                    <span class="discount">(-20%)</span>
-                                </div>
-                            </div>
-                            <div class="product-description">
-                                Đầu tháng /2021, Nike chính thức trình
-                                làng thế hệ tiếp theo của dòng giày đá bóng huyền thoại
-                                thuộc nhà Swoosh là Tiempo Legend 9. Được mệnh danh là
-                                thế hệ nhẹ nhất từ trước đến nay của dòng giày đá bóng Tiempo,
-                                Legend 9 đã có những thay đổi đáng kể
-                                về mặt thiết kế lẫn công nghệ nhằm giúp người chơi có thể tự
-                                tin và phát huy tối đa khả năng khi chơi bóng.
-                            </div>
-
-                            <div class="product__color d-flex" style="align-items: center;">
-                                <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                    Màu:
-                                </div>
-                                <div class="select-swap d-flex">
-
-                                    <div class="circlecheck">
-                                        <input type="radio" id="f-option" class="circle-1" name="selector" checked>
-                                        <label for="f-option"></label>
-                                        <div class="outer-circle"></div>
-                                    </div>
-                                    <div class="circlecheck">
-                                        <input type="radio" id="g-option" class="circle-2" name="selector">
-                                        <label for="g-option"></label>
-                                        <div class="outer-circle"></div>
-                                    </div>
-                                    <div class="circlecheck">
-                                        <input type="radio" id="h-option" class="circle-3" name="selector">
-                                        <label for="h-option"></label>
-                                        <div class="outer-circle"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product__size d-flex" style="align-items: center;">
-                                <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                    Kích thước:
-                                </div>
-                                <div class="select-swap">
-                                    <div class="swatch-element" data-value="38">
-                                        <input type="radio" class="variant-1" id="swatch-1-38" name="mau" value="trung" onclick="check()">
-                                        <label for="swatch-1-38" class="sd"><span>38</span></label>
-                                    </div>
-                                    <div class="swatch-element" data-value="39">
-                                        <input type="radio" class="variant-1" id="swatch-1-39" name="mau" value="thanh" onclick="check()">
-                                        <label for="swatch-1-39" class="sd"><span>39</span></label>
-                                    </div>
-                                    <div class="swatch-element" data-value="40">
-                                        <input type="radio" class="variant-1" id="swatch-1-40" name="mau" value="hieu" onclick="check()">
-                                        <label for="swatch-1-40" class="sd"><span>40</span></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product__wrap">
-                                <div class="product__amount">
-                                    <label for="">Số lượng: </label>
-                                    <input type="button" value="-" class="control" onclick="tru(1)">
-                                    <input type="text" value="1" class="text-input" id="text_so_luong-1" onkeypress='validate(event)'>
-                                    <input type="button" value="+" class="control" onclick="cong(1)">
-                                </div>
-                            </div>
-                            <div class="product__shopnow">
-                                <button class="shopnow2">Mua ngay</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="btn-default btn-close" data-dismiss="modal">
-                <i class="fas fa-times-circle"></i>
-            </button>
-            <!-- Modal footer -->
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div> -->
-
-        </div>
-    </div>
-</div>
-<!-- end modal -->

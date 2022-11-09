@@ -6,18 +6,13 @@ using System.Web.Mvc;
 using Project.Models;
 namespace Project.Controllers
 {
-    public class HomeController : Controller
+    public class ProductsController : Controller
     {
-        // GET: Home
         ShopDBContext DB=new ShopDBContext();
+        // GET: Products
         public ActionResult Index()
         {
-            List<Slide> Slides=DB.Slides.ToList();
-            ViewBag.Slides=Slides;
-            List<ImgeProduct> imges=DB.Imges.ToList();
             List<Product> Products=DB.Products.ToList();
-            List<Detail> Details=DB.Details.ToList();
-            ViewBag.Detail=Details;
             return View(Products);
         }
     }

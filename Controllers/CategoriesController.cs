@@ -13,7 +13,7 @@ namespace Project.Controllers
         public ActionResult Index()
         {
             List<Category> categories=DB.Categories.ToList();
-            return View(categories);
+            return View();
         }
     }
 }

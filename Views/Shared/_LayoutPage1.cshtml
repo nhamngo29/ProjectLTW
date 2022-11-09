@@ -15,6 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- link font chữ -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <!-- link icon -->
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css'>
@@ -26,6 +28,9 @@
     <link rel="stylesheet" href="~/assets/css/productdetail.css">
     <link rel="stylesheet" href="~/assets/css/reponsive1.css">
     <link rel="icon" href="~/assets/img/logo/main.png" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"></script>
 </head>
 <style>
     form.example input[type=text] {
@@ -83,6 +88,7 @@
             display: none;
         }
     }
+
 </style>
 <body>
     <div class="overlay hidden"></div>
@@ -134,10 +140,10 @@
                 </div>
                 <ul class="la-nav-list-items">
                     <li class="ng-scope">
-                        <a href="">Trang chủ</a>
+                        @Html.ActionLink("Trang chủ", "Index", new {Controller="Home"})
                     </li>
                     <li class="ng-scope">
-                        <a href="~/intro.html">Giới thiệu</a>
+                        @Html.ActionLink("Giới thiệu", "intro", new {Controller="About"})
                     </li>
                     <li class="ng-scope ng-has-child1">
                         <a href="~/Product.html">Sản phẩm <i class="fas fa-plus cong"></i> <i class="fas fa-minus tru hidden"></i></a>
@@ -172,57 +178,60 @@
                             </li>
                             <li class="ng-scope ng-has-child2">
                                 <a href="~/Product.html">
-                                    Quần áo <i class="fas fa-plus cong2" onclick="hienthi(2,`abc2`)"></i> <i class="fas fa-minus tru2 hidden" onclick="hienthi(2,`abc2`)"></i>
+                                    Áo <i class="fas fa-plus cong2" onclick="hienthi(2,`abc2`)"></i> <i class="fas fa-minus tru2 hidden" onclick="hienthi(2,`abc2`)"></i>
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc2">
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng đá</a>
+                                        @Html.ActionLink("Áo thun", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Chạy</a>
+                                        @Html.ActionLink("Áo Polo", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Cầu lông</a>
+                                        @Html.ActionLink("Áo Sơmi", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng rổ</a>
+                                        @Html.ActionLink("Khoác", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Quần vợt</a>
+                                        @Html.ActionLink("Áo Sweat", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bơi lội</a>
+                                        @Html.ActionLink("Hoodie", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">GOLF</a>
+                                        @Html.ActionLink("Tank Top", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                    </li>
+                                    <li class="ng-scope">
+                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                 </ul>
                             </li>
                             <li class="ng-scope ng-has-child2">
                                 <a href="~/Product.html">
-                                    Già dép<i class="fas fa-plus cong3" onclick="hienthi(3,`abc3`)"></i> <i class="fas fa-minus tru3 hidden" onclick="hienthi(3,`abc3`)"></i>
+                                    Quần<i class="fas fa-plus cong3" onclick="hienthi(3,`abc3`)"></i> <i class="fas fa-minus tru3 hidden" onclick="hienthi(3,`abc3`)"></i>
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc3">
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng đá</a>
+                                        @Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Chạy</a>
+                                        @Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Cầu lông</a>
+                                        @Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng rổ</a>
+                                        @Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Quần vợt</a>
+                                        @Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bơi lội</a>
+                                        @Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">GOLF</a>
+                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                 </ul>
                             </li>
@@ -232,25 +241,25 @@
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc4">
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng đá</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Chạy</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Cầu lông</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bóng rổ</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Quần vợt</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">Bơi lội</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">GOLF</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                 </ul>
                             </li>
@@ -387,23 +396,42 @@
                                           </ul> -->
                                     </li>
                                     <li class="level1">
-                                        <a class="hmega">Giày, dép</a>
+                                        <a class="hmega">Áo</a>
                                         <ul class="level1">
-                                            <li class="level2"><a href="~/Product.html">Bóng đá</a></li>
-                                            <li class="level2"><a href="~/Product.html">Chạy</a></li>
-                                            <li class="level2"><a href="~/Product.html">Cầu lông</a></li>
-                                            <li class="level2"><a href="~/Product.html">Bóng rổ</a></li>
-                                            <li class="level2"><a href="~/Product.html">Quần vợt</a></li>
+                                            <li class="level2">@Html.ActionLink("Áo thun", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Polo", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Sơmi", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Khoác", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Sweat", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Tank Top", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Hoodie", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
                                         </ul>
                                     </li>
                                     <li class="level1">
-                                        <a class="hmega">Quần, áo</a>
+                                        <a class="hmega">Quần</a>
                                         <ul class="level1">
-                                            <li class="level2"><a href="~/Product.html">Bóng đá</a></li>
-                                            <li class="level2"><a href="~/Product.html">Chạy</a></li>
-                                            <li class="level2"><a href="~/Product.html">Cầu lông</a></li>
-                                            <li class="level2"><a href="~/Product.html">Bóng rổ</a></li>
-                                            <li class="level2"><a href="~/Product.html">Quần vợt</a></li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="level1">
@@ -429,8 +457,9 @@
                             </div>
                         </div>
                     </li>
-                    <li class="header_nav-list-item"><a href="~/news.html">Tin tức</a></li>
-                    <li class="header_nav-list-item"><a href="~/contact.html">Liên hệ</a></li>
+                    
+                    <li class="header_nav-list-item"><a href="~/news.html">@Html.ActionLink("Tin Tức", "index", new { controller = "News" })</a></li>
+                    <li class="header_nav-list-item"><a href="~/contact.html">@Html.ActionLink("Liên hệ", "Index",new { Controller="About"})</a></li>
                 </ul>
             </div>
         </nav>
@@ -453,19 +482,19 @@
                         </li>
                         <li class="footer__item">
                             <p>
-                                <i class="fas fa-phone-square-alt footer__item-icon"></i> Phone: <a href="tel:0123456789">0123456789</a>
+                                <i class="fas fa-phone-square-alt footer__item-icon"></i> Phone:  @Html.ActionLink("0123456789", "tel:0123456789")
                             </p>
                         </li>
                         <li class="footer__item">
                             <p>
-                                <i class="fas fa-envelope-square footer__item-icon"></i> Email: <a href="mailto:abc@gmail.com">abc@gmail.com</a>
+                                <i class="fas fa-envelope-square footer__item-icon"></i> Email: @Html.ActionLink("nhamngooinfo@gmail.com", "mailto:nhamngooinfo@gmail.com")
                             </p>
                         </li>
                         <li>
-                            <a href=""><i class="fab fa-facebook" style="font-size: 24px; margin-right: 10px"></i></a>
-                            <a href=""><i class="fab fa-instagram" style="font-size: 24px; margin-right: 10px;color: pink;"></i></a>
-                            <a href=""><i class="fab fa-youtube" style="font-size: 24px; margin-right: 10px;color: red;"></i></a>
-                            <a href=""><i class="fab fa-twitter" style="font-size: 24px; margin-right: 10px"></i></a>
+                            @Html.ActionLink(" ", "https://www.facebook.com/nhamngoo.29/", null, null, new { @class = "fab fa-facebook", @style = "font-size: 24px; margin-right: 10px" })
+                            @Html.ActionLink(" ", "https://www.instagram.com/nhamngoo.29/", null, null, new { @class = "fab fa-instagram", @style = "font-size: 24px; margin-right: 10px;color: pink;" })
+                            @Html.ActionLink(" ", "https://www.instagram.com/nhamngoo.29/", null, null, new { @class = "fab fa-youtube", @style = "font-size: 24px; margin-right: 10px;color: red;" })
+                            @Html.ActionLink(" ", "https://www.instagram.com/nhamngoo.29/", null, null, new { @class = "fab fa-twitter", @style = "font-size: 24px; margin-right: 10px" })
                         </li>
                     </ul>
                 </div>
@@ -540,140 +569,6 @@
     <div id="go-to-top">
         <a class="btn-gototop"><i class="fas fa-arrow-up"></i></a>
     </div>
-    <!-- end footer -->
-    <!-- modal -->
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content ">
-
-                <!-- Modal Header -->
-                <!-- <div class="modal-header">
-                  <h4 class="modal-title">Giày ADIDAS</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div> -->
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-2 main-img-2">
-                                <img src="~/assets/img/product/ars1.jpg" alt="" id="img-main" xoriginal="~/assets/img/product/ars1.jpg">
-                            </div>
-                            <ul class="all-img-2">
-                                <li class="img-item-2">
-                                    <img src="~/assets/img/product/ars1.jpg" alt="" onclick="changeImg('one')" id="one">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="~/assets/img/product/ars2.jpg" alt="" onclick="changeImg('two')" id="two">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="~/assets/img/product/ars3.jpg" alt="" onclick="changeImg('three')" id="three">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="~/assets/img/product/ars4.jpg" alt="" onclick="changeImg('four')" id="four">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-6">
-                            <div class="info-product">
-                                <h3 class="product-name">
-                                    <a href="" title="">Giày ADIDAS</a>
-                                </h3>
-                                <div class="status-product">
-                                    Trạng thái: <b>Còn hàng</b>
-                                </div>
-                                <div class="infor-oder">
-                                    Loại sản phẩm: <b>Giày dép</b>
-                                </div>
-                                <div class="price-product">
-                                    <div class="special-price">
-                                        <span>540.000đ</span>
-                                    </div>
-                                    <div class="price-old">
-                                        Giá gốc:
-                                        <del>650.000đ</del>
-                                        <span class="discount">(-20%)</span>
-                                    </div>
-                                </div>
-                                <div class="product-description">
-                                    Đầu tháng /2021, Nike chính thức trình
-                                    làng thế hệ tiếp theo của dòng giày đá bóng huyền thoại
-                                    thuộc nhà Swoosh là Tiempo Legend 9. Được mệnh danh là
-                                    thế hệ nhẹ nhất từ trước đến nay của dòng giày đá bóng Tiempo,
-                                    Legend 9 đã có những thay đổi đáng kể
-                                    về mặt thiết kế lẫn công nghệ nhằm giúp người chơi có thể tự
-                                    tin và phát huy tối đa khả năng khi chơi bóng.
-                                </div>
-
-                                <div class="product__color d-flex" style="align-items: center;">
-                                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                        Màu:
-                                    </div>
-                                    <div class="select-swap d-flex">
-
-                                        <div class="circlecheck">
-                                            <input type="radio" id="f-option" class="circle-1" name="selector" checked>
-                                            <label for="f-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                        <div class="circlecheck">
-                                            <input type="radio" id="g-option" class="circle-2" name="selector">
-                                            <label for="g-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                        <div class="circlecheck">
-                                            <input type="radio" id="h-option" class="circle-3" name="selector">
-                                            <label for="h-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__size d-flex" style="align-items: center;">
-                                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                        Kích thước:
-                                    </div>
-                                    <div class="select-swap">
-                                        <div class="swatch-element" data-value="38">
-                                            <input type="radio" class="variant-1" id="swatch-1-38" name="mau" value="trung" onclick="check()">
-                                            <label for="swatch-1-38" class="sd"><span>38</span></label>
-                                        </div>
-                                        <div class="swatch-element" data-value="39">
-                                            <input type="radio" class="variant-1" id="swatch-1-39" name="mau" value="thanh" onclick="check()">
-                                            <label for="swatch-1-39" class="sd"><span>39</span></label>
-                                        </div>
-                                        <div class="swatch-element" data-value="40">
-                                            <input type="radio" class="variant-1" id="swatch-1-40" name="mau" value="hieu" onclick="check()">
-                                            <label for="swatch-1-40" class="sd"><span>40</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__wrap">
-                                    <div class="product__amount">
-                                        <label for="">Số lượng: </label>
-                                        <input type="button" value="-" class="control" onclick="tru(1)">
-                                        <input type="text" value="1" class="text-input" id="text_so_luong-1" onkeypress='validate(event)'>
-                                        <input type="button" value="+" class="control" onclick="cong(1)">
-                                    </div>
-                                </div>
-                                <div class="product__shopnow">
-                                    <button class="shopnow2">Mua ngay</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-default btn-close" data-dismiss="modal">
-                    <i class="fas fa-times-circle"></i>
-                </button>
-                <!-- Modal footer -->
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div> -->
-
-            </div>
-        </div>
-    </div>
-    <!-- end modal -->
 </body>
 <script src="~/assets/js/main.js"></script>
 <script src="~/Scripts/bootstrap.bundle.js"></script>

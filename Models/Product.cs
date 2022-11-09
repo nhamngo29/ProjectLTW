@@ -25,13 +25,13 @@ namespace Project.Models
         public Nullable<bool> IncludeVAT { get; set; }//Thuế
         [Display(Name="Số lượng")]
         public Nullable<int> Quantity { get; set; }//Số lượng
-        [Column(TypeName ="nvarchar")]
-        [Display(Name="Tình trạng")]
-        public string Status { get; set; }//Tình trạng
+        public Nullable<bool> Featured { get; set; }//sản phẩm nổi bật
+        public Nullable<System.DateTime> DateCreate { get; set; }//Tình trạng
         public Nullable<int> Evaluate { get; set; }//Đánh giá
         public string ImgeMain { get; set; }//hình ảnh chính
         public int ProductTypeID { get;set ; }
         public Nullable<int> TotalSold { get; set; }//số sp đã bán
+       
         public Nullable<int> BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }

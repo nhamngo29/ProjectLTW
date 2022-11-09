@@ -16,9 +16,12 @@ namespace Project.Models
         [Index()]
         public Nullable<int> Quantity { get; set; }
         [Index(IsUnique = true)]
-        public Nullable<int> Size { get; set; }
-        [Index(IsUnique = true)]
-        public Nullable<int> Color { get; set; }
+        [Column(TypeName ="nvarchar")]
+        [StringLength(41)]
+        public string Size { get; set; }
+        [Column(TypeName = "nvarchar")]
+        [StringLength(100)]
+        public string Color { get; set; }
         [ForeignKey("ProductId")]
         public virtual Product Product { get; set; }
         //

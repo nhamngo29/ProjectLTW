@@ -16,46 +16,35 @@
             <div class="product_popular">
                 <h3 class="product__popular title-product">Sản phẩm phổ biến</h3>
                 <div class="row">
-                    <div class="col-lg-6 col-sm-12 mb-20">
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="~/assets/img/product/addidas1.jpg" alt="Card image" style="width:100%">
-                            <div class="card-body">
-                                <h4 class="card-title">Joma Super Regate</h4>
-                                <p class="card-text custom__name-product" style="font-weight: 400;">
-                                    Phần trên được sản xuất bằng cách sử dụng sợi nhỏ, nylon và TPU chèn trên nylon để bảo vệ chống nứt nẻ
-                                    . Joma Super Regate bao gồm công nghệ BẢO VỆ ở cổ chân để tăng cường sức đề kháng
-                                    và sự ổn định cho đòn đánh. Joma Super Regate có hệ thống thông gió VTS cho phép thở và
-                                    luồng không khí lớn hơn bên trong giày.
-                                    Đế lót EVA định hình sẵn có thể điều chỉnh theo hình dạng của bàn chân.
-                                    Đế được sản xuất bằng EVA tự nhiên góp phần tạo đệm cho giày bằng cách
-                                    hấp thụ tác động từ bàn chân.
-                                </p>
-                                <a href="~/ProductDetail.html" title="GIÀY ADIDAS 4D FUTURECRAFT" class="btn btn-buynow">
-                                    Xem ngay <i class="fas fa-arrow-right"
-                                                style="font-size: 16px;margin-left: 5px;"></i>
-                                </a>
+                    @foreach (var item in Model)
+                    {
+                        if (item.Featured == true)
+                        {
+                            <div class="col-lg-6 col-sm-12 mb-20">
+                                <div class="card" style="width: 100%;">
+                                    <img class="card-img-top" src="~/assets/img/product/@item.ImgeMain" alt="Card image" style="width:100%">
+                                    <div class="card-body">
+                                        <h4 class="card-title">@item.Name</h4>
+                                        <p class="card-text custom__name-product" style="font-weight: 400;">
+                                            @foreach (var Detail in ViewBag.Detail)
+                                            {
+                                                if (item.ProductId == Detail.ProductId)
+                                                {
+                                                    @Detail.Text
+                                                    break;
+                                                }
+                                            }
+                                        </p>
+                                        <a href="~/ProductDetail.html" title="GIÀY ADIDAS 4D FUTURECRAFT" class="btn btn-buynow">
+                                            Xem ngay <i class="fas fa-arrow-right"
+                                                        style="font-size: 16px;margin-left: 5px;"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="card" style="width: 100%;">
-                            <img class="card-img-top" src="~/assets/img/product/stansmith.jpg" alt="Card image" style="width:100%">
-                            <div class="card-body">
-                                <h4 class="card-title">adidas stan smith</h4>
-                                <p class="card-text custom__name-product" style="font-weight: 400;">
-                                    Đúng chất kinh điển.
-                                    Trước đây, Stan Smith từng là ngôi sao lớn của làng quần vợt.
-                                    Mang đôi giày adidas xứng tầm tên tuổi của ông, bạn sẽ là ngôi sao đường phố.
-                                    Từ trên xuống dưới, đôi giày kinh điển này bắt trọn tinh hoa phong cách của kiểu dáng nguyên bản năm 1971,
-                                    với thiết kế bằng da tối giản và đường nét gọn gàng.
-                                </p>
-                                <a href="~/ProductDetail.html" class="btn btn-buynow">
-                                    Xem ngay <i class="fas fa-arrow-right "
-                                                style="font-size: 16px;margin-left: 5px;"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
+
                 </div>
             </div>
             <div class="product__new">
@@ -63,11 +52,15 @@
                 <div class="row">
                     @foreach (var item in Model)
                     {
-
-                        ViewBag.item = item;
-                        Html.RenderPartial("Product");
+                        TimeSpan time = Convert.ToDateTime(DateTime.Now) - Convert.ToDateTime(item.DateCreate);
+                        if (time.Days >= 50)
+                        {
+                            ViewBag.item = item;
+                            Html.RenderPartial("Product");
+                        }
                     }
                 </div>
+
             </div>
         </div>
         <div class="shoesnews">
@@ -138,134 +131,3 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content ">
-
-                <!-- Modal Header -->
-                <!-- <div class="modal-header">
-                  <h4 class="modal-title">Giày ADIDAS</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div> -->
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="mb-2 main-img-2">
-                                <img src="./assets/img/product/ars1.jpg" alt="" id="img-main" xoriginal="./assets/img/product/ars1.jpg">
-                            </div>
-                            <ul class="all-img-2">
-                                <li class="img-item-2">
-                                    <img src="./assets/img/product/ars1.jpg" alt="" onclick="changeImg('one')" id="one">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="./assets/img/product/ars2.jpg" alt="" onclick="changeImg('two')" id="two">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="./assets/img/product/ars3.jpg" alt="" onclick="changeImg('three')" id="three">
-                                </li>
-                                <li class="img-item-2">
-                                    <img src="./assets/img/product/ars4.jpg" alt="" onclick="changeImg('four')" id="four">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-6">
-                            <div class="info-product">
-                                <h3 class="product-name">
-                                    <a href="" title="">Giày ADIDAS</a>
-                                </h3>
-                                <div class="status-product">
-                                    Trạng thái: <b>Còn hàng</b>
-                                </div>
-                                <div class="infor-oder">
-                                    Loại sản phẩm: <b>Giày dép</b>
-                                </div>
-                                <div class="price-product">
-                                    <div class="special-price">
-                                        <span>540.000đ</span>
-                                    </div>
-                                    <div class="price-old">
-                                        Giá gốc:
-                                        <del>650.000đ</del>
-                                        <span class="discount">(-20%)</span>
-                                    </div>
-                                </div>
-                                <div class="product-description">
-                                    Đầu tháng /2021, Nike chính thức trình
-                                    làng thế hệ tiếp theo của dòng giày đá bóng huyền thoại
-                                    thuộc nhà Swoosh là Tiempo Legend 9. Được mệnh danh là
-                                    thế hệ nhẹ nhất từ trước đến nay của dòng giày đá bóng Tiempo,
-                                    Legend 9 đã có những thay đổi đáng kể
-                                    về mặt thiết kế lẫn công nghệ nhằm giúp người chơi có thể tự
-                                    tin và phát huy tối đa khả năng khi chơi bóng.
-                                </div>
-
-                                <div class="product__color d-flex" style="align-items: center;">
-                                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                        Màu:
-                                    </div>
-                                    <div class="select-swap d-flex">
-
-                                        <div class="circlecheck">
-                                            <input type="radio" id="f-option" class="circle-1" name="selector" checked>
-                                            <label for="f-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                        <div class="circlecheck">
-                                            <input type="radio" id="g-option" class="circle-2" name="selector">
-                                            <label for="g-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                        <div class="circlecheck">
-                                            <input type="radio" id="h-option" class="circle-3" name="selector">
-                                            <label for="h-option"></label>
-                                            <div class="outer-circle"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__size d-flex" style="align-items: center;">
-                                    <div class="title" style="font-size: 16px; margin-right: 10px;">
-                                        Kích thước:
-                                    </div>
-                                    <div class="select-swap">
-                                        <div class="swatch-element" data-value="38">
-                                            <input type="radio" class="variant-1" id="swatch-1-38" name="mau" value="trung" onclick="check()">
-                                            <label for="swatch-1-38" class="sd"><span>38</span></label>
-                                        </div>
-                                        <div class="swatch-element" data-value="39">
-                                            <input type="radio" class="variant-1" id="swatch-1-39" name="mau" value="thanh" onclick="check()">
-                                            <label for="swatch-1-39" class="sd"><span>39</span></label>
-                                        </div>
-                                        <div class="swatch-element" data-value="40">
-                                            <input type="radio" class="variant-1" id="swatch-1-40" name="mau" value="hieu" onclick="check()">
-                                            <label for="swatch-1-40" class="sd"><span>40</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product__wrap">
-                                    <div class="product__amount">
-                                        <label for="">Số lượng: </label>
-                                        <input type="button" value="-" class="control" onclick="tru(1)">
-                                        <input type="text" value="1" class="text-input" id="text_so_luong-1" onkeypress='validate(event)'>
-                                        <input type="button" value="+" class="control" onclick="cong(1)">
-                                    </div>
-                                </div>
-                                <div class="product__shopnow">
-                                    <button class="shopnow2">Mua ngay</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-default btn-close" data-dismiss="modal">
-                    <i class="fas fa-times-circle"></i>
-                </button>
-                <!-- Modal footer -->
-                <!-- <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div> -->
-
-            </div>
-        </div>
-    </div>
-    <!-- end modal -->

@@ -1,0 +1,191 @@
+﻿@model List<Project.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/assets/css/product.css">
+<div class="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-12 hidden-xs hidden-sm">
+                <div class="product__filter">
+                    <div class="product__filter-price">
+                        <h4 class="product__filter-heading">
+                            Khoảng giá <i class="fi-rs-minus"
+                                          onclick="khonghienthidanhsach(1,`khoanggia`)" id="minus-1"></i> <i class="fi-rs-plus hidden"
+                                                                                                             id="plus-1" onclick="khonghienthidanhsach(1,`khoanggia`)"></i>
+                        </h4>
+                        <ul id="khoanggia" class="product__filter-ckeckbox">
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="kg1">
+                                    <input type="radio" class="form-check-input checkGia" id="kg1" name="optradio" value="0-1000000" onclick="checkgia(1)"><span>Dưới 1,000,000đ</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="kg2">
+                                    <input type="radio" class="form-check-input checkGia" id="kg2" name="optradio" value="1000000-2000000" onclick="checkgia(2)"><span>1,000,000đ->2,000,000đ</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="kg3">
+                                    <input type="radio" class="form-check-input checkGia" id="kg3" name="optradio" value="2000000-3000000" onclick="checkgia(3)"><span>2,000,000đ->3,000,000đ</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="kg4">
+                                    <input type="radio" class="form-check-input checkGia" id="kg4" name="optradio" value="3000000-4000000" onclick="checkgia(4)"><span>3,000,000đ->4,000,000đ</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="kg5">
+                                    <input type="radio" class="form-check-input checkGia" id="kg5" name="optradio" value="4000000-100000000" onclick="checkgia(5)"><span>Trên 4,000,000đ</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__filter-trademark">
+                        <h4 class="product__filter-heading">
+                            Thương hiệu <i class="fi-rs-minus"
+                                           onclick="khonghienthidanhsach(2,`thuonghieu`)" id="minus-2"></i> <i class="fi-rs-plus hidden"
+                                                                                                               onclick="khonghienthidanhsach(2,`thuonghieu`)" id="plus-2"></i>
+                        </h4>
+                        <ul id="thuonghieu" class="product__filter-ckeckbox">
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th1">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu checkthuonghieu" id="th1" name="option2"
+                                           value="something"><span>Adidas</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th2">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th2" name="option2"
+                                           value="something"><span>Nike</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th3">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th3" name="option2"
+                                           value="something"><span>Puma</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th4">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th4" name="option2"
+                                           value="something"><span>DESPORTE</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th5">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th5" name="option2"
+                                           value="something"><span>X-MUNICH</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="th6">
+                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th6" name="option2"
+                                           value="something"><span>GRAND SPORT</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="product__filter-size">
+                        <h4 class="product__filter-heading">
+                            Size <i class="fi-rs-minus" onclick="khonghienthidanhsach(3,`size`)"
+                                    id="minus-3"></i> <i class="fi-rs-plus hidden" onclick="khonghienthidanhsach(3,`size`)"
+                                                         id="plus-3"></i>
+                        </h4>
+                        <ul id="size" class="product__filter-ckeckbox">
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size1">
+                                    <input type="checkbox" class="form-check-input checksize" id="size1" name="option2"
+                                           value="something"><span>37.5</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size2">
+                                    <input type="checkbox" class="form-check-input checksize" id="size2" name="option2"
+                                           value="something"><span>38</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size3">
+                                    <input type="checkbox" class="form-check-input checksize" id="size3" name="option2"
+                                           value="something"><span>38.5</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size4">
+                                    <input type="checkbox" class="form-check-input checksize" id="size4" name="option2"
+                                           value="something"><span>x</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size5">
+                                    <input type="checkbox" class="form-check-input checksize" id="size5" name="option2"
+                                           value="something"><span>xl</span>
+                                </label>
+                            </li>
+                            <li class="product__filter-item">
+                                <label class="form-check-label" for="size6">
+                                    <input type="checkbox" class="form-check-input checksize" id="size6" name="option2"
+                                           value="something"><span>l</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-12">
+                <div class="sort-wrap row">
+                    <div class="sort-left col-12 col-lg-6">
+                        <h1 class="coll-name">Tất cả sản phẩm</h1>
+                    </div>
+                    <div class="sort-right col-12 col-lg-6">
+                        <div class="sortby">
+                            <label for="">Sắp xếp theo:</label>
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                                    Sản phẩm nổi bật
+                                </button>
+                                <div class="dropdown-menu" style="width: 143px;">
+                                    <a class="dropdown-item" id="sort1">Giá: Tăng dần</a>
+                                    <a class="dropdown-item" id="sort2">Giá: giảm dần</a>
+                                    <a class="dropdown-item" id="sort3">Tên A->Z</a>
+                                    <a class="dropdown-item" id="sort4">Tên Z->A</a>
+                                    <a class="dropdown-item" id="sort5">Cũ nhất</a>
+                                    <a class="dropdown-item" id="sort6">Mới nhất</a>
+                                    <a class="dropdown-item" id="sort7">Bán chạy nhất</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sortby2 hidden" style="float: right;">
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" id="filter">
+                                    Lọc sản phẩm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-product" id="products">
+                </div>
+                <div class="loadmore">
+                    <a style="cursor: pointer;" class="loadmore-btn">Tải thêm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+    </button>
+    <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+</div>
+<script src="~/Scripts/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>

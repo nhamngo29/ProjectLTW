@@ -2150,6 +2150,11 @@
     <Content Include="assets\img\product\ars3.jpg" />
     <Content Include="assets\img\product\ars4.jpg" />
     <Content Include="assets\img\product\ATID0173-01-01.png" />
+    <Content Include="assets\img\product\ATID0174-01-01.png" />
+    <Content Include="assets\img\product\ATID0178-01-02.png" />
+    <Content Include="assets\img\product\ATID0178-01-03.png" />
+    <Content Include="assets\img\product\ATID0178-01-04.png" />
+    <Content Include="assets\img\product\ATID0178-01-05.png" />
     <Content Include="assets\img\product\bangdeotay1.jpg" />
     <Content Include="assets\img\product\bangdeotay2.jpg" />
     <Content Include="assets\img\product\bangdeotay3.jpg" />
@@ -2284,6 +2289,15 @@
     <Content Include="assets\img\product\nikeyoga3.png" />
     <Content Include="assets\img\product\nikeyoga4.png" />
     <Content Include="assets\img\product\noavatar.png" />
+    <Content Include="assets\img\product\PLID0035-01-01.png" />
+    <Content Include="assets\img\product\PLID0035-01-02.png" />
+    <Content Include="assets\img\product\PLID0035-01-03.png" />
+    <Content Include="assets\img\product\PLID0035-01-04.png" />
+    <Content Include="assets\img\product\PLID0035-01-05.png" />
+    <Content Include="assets\img\product\PLID0065-01-01.png" />
+    <Content Include="assets\img\product\PLID0065-01-02.png" />
+    <Content Include="assets\img\product\PLID0065-01-03.png" />
+    <Content Include="assets\img\product\PLID0065-01-04.png" />
     <Content Include="assets\img\product\psg1.jpg" />
     <Content Include="assets\img\product\psg2.png" />
     <Content Include="assets\img\product\psg3.png" />
@@ -2376,9 +2390,35 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211090526588_InitialCreate.cs" />
+    <Compile Include="Migrations\202211090526588_InitialCreate.designer.cs">
+      <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211090909372_update.cs" />
+    <Compile Include="Migrations\202211090909372_update.designer.cs">
+      <DependentUpon>202211090909372_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211090919116_removeUniqueColor.cs" />
+    <Compile Include="Migrations\202211090919116_removeUniqueColor.designer.cs">
+      <DependentUpon>202211090919116_removeUniqueColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211091052428_RemoveStatus.cs" />
+    <Compile Include="Migrations\202211091052428_RemoveStatus.designer.cs">
+      <DependentUpon>202211091052428_RemoveStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211091132167_Remove.cs" />
+    <Compile Include="Migrations\202211091132167_Remove.designer.cs">
+      <DependentUpon>202211091132167_Remove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211091134183_AddFeatured.cs" />
+    <Compile Include="Migrations\202211091134183_AddFeatured.designer.cs">
+      <DependentUpon>202211091134183_AddFeatured.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Detail.cs" />
@@ -2484,6 +2524,8 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Shared\Slide.cshtml" />
     <Content Include="Views\Shared\Product.cshtml" />
+    <Content Include="Views\Shared\View.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2493,6 +2535,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202211090526588_InitialCreate.resx">
+      <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211090909372_update.resx">
+      <DependentUpon>202211090909372_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211090919116_removeUniqueColor.resx">
+      <DependentUpon>202211090919116_removeUniqueColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091052428_RemoveStatus.resx">
+      <DependentUpon>202211091052428_RemoveStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091132167_Remove.resx">
+      <DependentUpon>202211091132167_Remove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211091134183_AddFeatured.resx">
+      <DependentUpon>202211091134183_AddFeatured.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
