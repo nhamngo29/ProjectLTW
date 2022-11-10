@@ -147,13 +147,13 @@
                                     Sản phẩm nổi bật
                                 </button>
                                 <div class="dropdown-menu" style="width: 143px;">
-                                    <a class="dropdown-item" id="sort1">Giá: Tăng dần</a>
-                                    <a class="dropdown-item" id="sort2">Giá: giảm dần</a>
-                                    <a class="dropdown-item" id="sort3">Tên A->Z</a>
-                                    <a class="dropdown-item" id="sort4">Tên Z->A</a>
-                                    <a class="dropdown-item" id="sort5">Cũ nhất</a>
-                                    <a class="dropdown-item" id="sort6">Mới nhất</a>
-                                    <a class="dropdown-item" id="sort7">Bán chạy nhất</a>
+                                    @Html.ActionLink("Giá: Tăng dần", "Index", new { Sort = 1, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Giá: Giảm dần", "Index", new { Sort = 2, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Tên A-Z", "Index", new { Sort = 3, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Tên Z-A", "Index", new { Sort = 4, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Cũ nhất", "Index", new { Sort = 5, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Mới nhất", "Index", new { Sort = 6, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Bán chạy nhất", "Index", new { Sort = 7, controller = "Products" }, htmlAttributes: new { @class = "dropdown-item" })
                                 </div>
                             </div>
                         </div>
@@ -167,6 +167,12 @@
                     </div>
                 </div>
                 <div class="row row-product" id="products">
+                    @foreach (var item in Model)
+                    {
+
+                        ViewBag.item = item;
+                        Html.RenderPartial("Product");
+                    }
                 </div>
                 <div class="loadmore">
                     <a style="cursor: pointer;" class="loadmore-btn">Tải thêm</a>

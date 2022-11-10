@@ -354,8 +354,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 m-auto pdt15">
-                        <form class="example" action="~/Product.html">
-                            <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search">
+                        <form class="example" action="/products/index" method="post">
+                            <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search"value="@ViewBag.Search">
                             <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -379,21 +379,15 @@
         <nav class="header_nav hidden-sm hidden-xs">
             <div class="container">
                 <ul class="header_nav-list nav">
-                    <li class="header_nav-list-item "><a href="~/index.html" class="active">Trang chủ</a></li>
-                    <li class="header_nav-list-item"><a href="~/intro.html">Giới thiệu</a></li>
+                    <li class="header_nav-list-item ">@Html.ActionLink("Trang chủ", "Index", new { controller = "Home" }, htmlAttributes: new { @class = "active" })</li>
+                    <li class="header_nav-list-item">@Html.ActionLink("Giới thiệu", "Index", new { controller = "About" }, htmlAttributes: new { @class = "" })</li>
                     <li class="header_nav-list-item has-mega">
-                        <a href="~/Product.html">Sản phẩm<i class="fas fa-angle-right" style="margin-left: 5px;"></i></a>
+                        <a href="/Products/Index">Sản phẩm<i class="fas fa-angle-right" style="margin-left: 5px;"></i></a>
                         <div class="mega-content" style="overflow-x: hidden;">
                             <div class="row">
                                 <ul class="col-8 no-padding level0">
                                     <li class="level1">
                                         <a class="hmega" href="~/Product.html">Tất cả sản phẩm</a>
-                                        <!-- <ul class="level1">
-                                            <li class="level2"><a href="">Bóng đá</a></li>
-                                            <li class="level2"><a href="">Bóng đá</a></li>
-                                            <li class="level2"><a href="">Bóng đá</a></li>
-                                            <li class="level2"><a href="">Bóng đá</a></li>
-                                          </ul> -->
                                     </li>
                                     <li class="level1">
                                         <a class="hmega">Áo</a>
@@ -437,13 +431,44 @@
                                     <li class="level1">
                                         <a class="hmega">Phụ kiện</a>
                                         <ul class="level1">
-                                            <li class="level2"><a href="~/Product.html">Bóng đá</a></li>
-                                            <li class="level2"><a href="~/Product.html">Chạy</a></li>
-                                            <li class="level2"><a href="~/Product.html">Cầu lông</a></li>
-                                            <li class="level2"><a href="~/Product.html">Bóng rổ</a></li>
-                                            <li class="level2"><a href="~/Product.html">Quần vợt</a></li>
-                                            <li class="level2"><a href="~/Product.html">Bơi lội</a></li>
-                                            <li class="level2"><a href="~/Product.html">Golf</a></li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Balo, Túi & Ví ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Nón ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Thắt lưng", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Mắt kính", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Vớ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="level1">
+                                        <a class="hmega">Giày</a>
+                                        <ul class="level1">
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Sandal", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Giày thể thao", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Giày chạy bộ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Giày đá banh", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Giày tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
+                                            <li class="level2">
+                                                <a href="~/Product.html">@Html.ActionLink("Dép", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -505,10 +530,11 @@
                     </div>
                     <ul class="footer__list collapse show" id="demo2">
                         <li class="footer__item">
-                            <a href="" class="footer__item--link">Cơ sở 1: 26 Đường D1, P12, Quận Tân Bình, TP.HCM</a>
+                            @Html.ActionLink("Cơ sở 1: 140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP .CHM", "https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+nghi%E1%BB%87p+Th%E1%BB%B1c+ph%E1%BA%A9m+TP.HCM/@10.8069256,106.6266457,17z/data=!3m1!4b1!4m5!3m4!1s0x31752be27d8b4f4d:0x92dcba2950430867!8m2!3d10.8069203!4d106.6288344",null,htmlAttributes:new { @class= "footer__item--link" })
                         </li>
                         <li class="footer__item">
                             <a href="" class="footer__item--link">Cơ sở 2: 86 Đinh Bộ Lĩnh, P10, Quận Bình Thanh, TP.HCM</a>
+                            @Html.ActionLink("Cơ sở 2: 86 Đinh Bộ Lĩnh, P10, Quận Bình Thanh, TP.HCM", "https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+nghi%E1%BB%87p+Th%E1%BB%B1c+ph%E1%BA%A9m+TP.HCM/@10.8069256,106.6266457,17z/data=!3m1!4b1!4m5!3m4!1s0x31752be27d8b4f4d:0x92dcba2950430867!8m2!3d10.8069203!4d106.6288344", null, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                         <li class="footer__item">
                             <a href="" class="footer__item--link">Lĩnh vực kinh doanh</a>
@@ -545,18 +571,18 @@
                     </div>
                     <ul class="footer__list collapse show" id="demo">
                         <li class="footer__item">
-                            <a href="#" class="footer__item--link">Trang chủ</a>
+                            @Html.ActionLink("Trang chủ","Index",new {controller="Home"},htmlAttributes:new {@class= "footer__item--link" })
                         <li class="footer__item">
-                            <a href="~/intro.html" class="footer__item--link">Giới thiệu</a>
+                            @Html.ActionLink("Giới thiệu", "Index", new { controller = "About" }, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                         <li class="footer__item">
-                            <a href="~/Product.html" class="footer__item--link">Sản phẩm</a>
+                            @Html.ActionLink("Sản phẩm", "Index", new { controller = "Product" }, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                         <li class="footer__item">
-                            <a href="~/news.html" class="footer__item--link">Tin tức</a>
+                            @Html.ActionLink("Tin tức", "Index", new { controller = "Home" }, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                         <li class="footer__item">
-                            <a href="~/contact.html" class="footer__item--link">Liên hệ</a>
+                            @Html.ActionLink("Liên hệ", "Index", new { controller = "Connect" }, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                     </ul>
                 </div>

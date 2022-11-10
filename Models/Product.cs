@@ -18,7 +18,7 @@ namespace Project.Models
         [Display(Name="Tên sản phẩm")]
         public string Name { get; set; }//Tên sản phẩm
         [Display(Name="Giá sản phẩm")]
-        public Nullable<decimal> Price { get; set; }//Giá sản phẩm
+        public Nullable<double> Price { get; set; }//Giá sản phẩm
         [Display(Name="Phần tram giảm")]
         public Nullable<float> Promotion { get; set; }//Phần trăm giảm của sản phẩm
         [Display(Name="Bao gồm thuế")]
