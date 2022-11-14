@@ -1,0 +1,256 @@
+﻿@model  Project.Models.Product
+@{
+    ViewBag.Title = "Detail";
+}
+<style>
+    @@media (max-width: 767px) {
+        .carousel-inner .carousel-item > div {
+            display: none
+        }
+
+            .carousel-inner .carousel-item > div:first-child {
+                display: block
+            }
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        display: flex
+    }
+
+    @@media (min-width: 768px) {
+        .carousel-inner .carousel-item-end.active, .carousel-inner .carousel-item-next {
+            transform: translateX(25%)
+        }
+
+        .carousel-inner .carousel-item-start.active, .carousel-inner .carousel-item-prev {
+            transform: translateX(-25%)
+        }
+    }
+
+    .carousel-inner .carousel-item-end, .carousel-inner .carousel-item-start {
+        transform: translateX(0)
+    }
+</style>
+<div class="container">
+    <div class="product__detail">
+        <div class="row product__detail-row">
+            <div class="col-lg-6 col-12 daonguoc">
+                <div class="img-product">
+                    <ul class="all-img">
+                        @foreach (var item in ViewBag.AllImg)
+                        {
+                            <li class="img-item">
+                                <img src="~/assets/img/product/@item.Path" class="small-img" alt="anh @item.ProductId" onclick="changeImg(@item.Id)" id=@item.Id>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div id="main-img" style="cursor: pointer;">
+                    <img src="~/assets/img/product/@Model.ImgeMain" class="big-img" alt="ảnh chính" id="img-main" xoriginal="~/assets/img/product/@Model.ImgeMain">
+                    @if (Model.Promotion > 0)
+                    {
+                        <div class="sale-off sale-off-2">
+                            <span class="sale-off-percent">@Model.Promotion%</span>
+                            <span class="sale-off-label">GIẢM</span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="product__name">
+                    <h2>@Model.Name</h2>
+                </div>
+                <div class="status-product">
+                    Trạng thái: @if (Model.Quantity > 0)
+                    {
+                        <b>Còn hàng</b>
+                    }
+                    else
+                    {
+                        <b>Hết hàng</b>
+                    }
+                </div>
+                <div class="infor-oder">
+                    Loại sản phẩm: <b>@Model.ProductType.Name</b>
+                </div>
+                <div class="product__price">
+                    <h2>@ViewBag.Price 000đ</h2>
+                </div>
+                
+                @if (Model.Promotion > 0)
+                {
+                    <div class="price-old">
+                        Giá gốc:
+                        <del>@Model.Price.000đ</del>
+                        <span class="discount">(@Model.Promotion%)</span>
+                    </div>
+                }
+                <div class="product__color d-flex" style="align-items: center;">
+                    <div class="title" style="font-size: 16px; margin-right: 10px;">
+                        Màu:
+                    </div>
+                    <div class="select-swap d-flex">
+                        <div class="circlecheck">
+                            <input type="radio" id="f-option" class="circle-1" name="selector" checked>
+                            <label for="f-option"></label>
+                            <div class="outer-circle"></div>
+                        </div>
+                        <div class="circlecheck">
+                            <input type="radio" id="g-option" class="circle-2" name="selector">
+                            <label for="g-option"></label>
+                            <div class="outer-circle"></div>
+                        </div>
+                        <div class="circlecheck">
+                            <input type="radio" id="h-option" class="circle-3" name="selector">
+                            <label for="h-option"></label>
+                            <div class="outer-circle"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product__size d-flex" style="align-items: center;">
+                    <div class="title" style="font-size: 16px; margin-right: 10px;">
+                        Kích thước:
+                    </div>
+                    <div class="select-swap">
+                        <div class="swatch-element" data-value="38">
+                            <input type="radio" class="variant-1" id="swatch-1-38" name="mau" value="trung" onclick="check()">
+                            <label for="swatch-1-38" class="sd"><span>38</span></label>
+                        </div>
+                        <div class="swatch-element" data-value="39">
+                            <input type="radio" class="variant-1" id="swatch-1-39" name="mau" value="thanh" onclick="check()">
+                            <label for="swatch-1-39" class="sd"><span>39</span></label>
+                        </div>
+                        <div class="swatch-element" data-value="40">
+                            <input type="radio" class="variant-1" id="swatch-1-40" name="mau" value="hieu" onclick="check()">
+                            <label for="swatch-1-40" class="sd"><span>40</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="product__wrap">
+                    <div class="product__amount">
+                        <label for="">Số lượng: </label>
+                        <input type="button" value="-" class="control" onclick="tru()" id="cong">
+                        <input type="text" value="1" class="text-input" id="text_so_luong" onkeypress='validate(event)'>
+                        <input type="button" value="+" class="control" onclick="cong()">
+                    </div>
+                    <button class="add-cart" onclick="fadeInModal()">Thêm vào giỏ</button>
+                </div>
+                <div class="product__shopnow">
+                    <button class="shopnow">Mua ngay</button>
+                    <span class="home-product-item__like home-product-item__like--liked">
+                        <i class="home-product-item__like-icon-empty far fa-heart" style="font-size: 24px;margin-top: 7px;"></i>
+                        <i class="home-product-item__like-icon-fill fas fa-heart" style="font-size: 24px;margin-top: 7px;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product__describe">
+    <div class="container">
+        <h2 class="product__describe-heading">Mô tả</h2>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-11">
+                <h3 class="name__product"></h3>
+                <h3>Thông số kĩ thuật: </h3>
+                <p>Phân khúc: Academy (tầm trung).</p>
+                <p>Upper: Synthetic - Da tổng hợp cao cấp.</p>
+                <p>Thiết kế đinh giày: Các đinh cao su hình chữ nhật, xếp chồng chéo với nhau. Theo đánh giá của nhiều người chơi thì những đinh TF hình chữ nhật lần này giúp đôi giày có thể trụ vững hơn trên sân.</p>
+                <p>Độ ôm chân: Cao</p>
+                <p>Bộ sưu tập: SAFARI PACK - Ra mắt tháng 4/2021</p>
+                <p>PTrên chân các cầu thủ nổi tiếng như: Cristiano Ronaldo, Kylian Mbappé, Erling Haaland, Jadon Sancho, Leroy Sané, Romelu Lukaku...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product__relateto">
+    <div class="container text-center my-3">
+        <h2 class="font-weight-light text-uppercase">Sản phẩm tương tự</h2>
+        <div class="row mx-auto my-auto justify-content-center">
+            <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    @{
+                        int n = 0;
+                    }
+                    @foreach (var item in ViewBag.ProductsSame)
+                    {
+                        if (n == 0)
+                        {
+                            <div class="carousel-item active">
+                                <div class="col-md-3">
+                                    @{
+                                        ViewBag.item = item;
+                                        Html.RenderPartial("Product");
+                                    }
+                                </div>
+                            </div>
+                            n++;
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <div class="col-md-3">
+                                    @{
+                                        ViewBag.item = item;
+                                        Html.RenderPartial("Product");
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <a class="carousel-control-prev bg-transparent w-aut text-black" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next bg-transparent w-aut text-black" href="#recipeCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="seemore">
+        <a href="~/Product.html">Xem thêm</a>
+    </div>
+</div>
+<script src="./assets/js/main.js"></script>
+<script src="~/assets/js/zoomsl.js"></script>
+<script>
+    let items = document.querySelectorAll('.carousel .carousel-item')
+    items.forEach((el) => {
+        const minPerSlide = 4
+        let next = el.nextElementSibling
+        for (var i = 1; i < minPerSlide; i++) {
+            if (!next) {
+                // wrap carousel by using first child
+                next = items[0]
+            }
+            let cloneChild = next.cloneNode(true)
+            el.appendChild(cloneChild.children[0])
+            next = next.nextElementSibling
+        }
+    })
+    $(document).ready(function () {
+        $(".big-img").imagezoomsl({
+            zoomrange: [3, 3]
+        });
+    });
+    function fadeInModal() {
+        $('.alert').fadeIn();
+        $('.overlay1').fadeIn();
+    }
+    function fadeOutModal() {
+        $('.alert').fadeOut();
+        $('.overlay1').fadeOut();
+    }
+    function fadeout() {
+        $('.overlay1').fadeOut();
+        $('.alert').fadeOut();
+    }
+    setInterval(fadeOutModal, 7000);
+</script>
+

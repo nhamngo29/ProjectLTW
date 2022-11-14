@@ -2376,7 +2376,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -2384,6 +2387,21 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Scripts\jquery-3.6.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.6.1.js" />
+    <Content Include="Scripts\jquery-3.6.1.min.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.js" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -2423,15 +2441,40 @@
     <Compile Include="Migrations\202211100537316_updatePrie.designer.cs">
       <DependentUpon>202211100537316_updatePrie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202211130937279_update1.cs" />
+    <Compile Include="Migrations\202211130937279_update1.designer.cs">
+      <DependentUpon>202211130937279_update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211131035495_update2.cs" />
+    <Compile Include="Migrations\202211131035495_update2.designer.cs">
+      <DependentUpon>202211131035495_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211140554540_u.cs" />
+    <Compile Include="Migrations\202211140554540_u.designer.cs">
+      <DependentUpon>202211140554540_u.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211140728156_up.cs" />
+    <Compile Include="Migrations\202211140728156_up.designer.cs">
+      <DependentUpon>202211140728156_up.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211140731340_up1.cs" />
+    <Compile Include="Migrations\202211140731340_up1.designer.cs">
+      <DependentUpon>202211140731340_up1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211140738243_up2.cs" />
+    <Compile Include="Migrations\202211140738243_up2.designer.cs">
+      <DependentUpon>202211140738243_up2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Detail.cs" />
+    <Compile Include="Models\Form.cs" />
     <Compile Include="Models\ImgeProduct.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductType.cs" />
     <Compile Include="Models\PropertieProduct.cs" />
     <Compile Include="Models\ShopDBContext.cs" />
+    <Compile Include="Models\Size.cs" />
     <Compile Include="Models\Slide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2531,6 +2574,9 @@
     <Content Include="Views\Shared\Product.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.6.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.6.1.min.map" />
+    <Content Include="Views\Products\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2562,6 +2608,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211100537316_updatePrie.resx">
       <DependentUpon>202211100537316_updatePrie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211130937279_update1.resx">
+      <DependentUpon>202211130937279_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211131035495_update2.resx">
+      <DependentUpon>202211131035495_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211140554540_u.resx">
+      <DependentUpon>202211140554540_u.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211140728156_up.resx">
+      <DependentUpon>202211140728156_up.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211140731340_up1.resx">
+      <DependentUpon>202211140731340_up1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211140738243_up2.resx">
+      <DependentUpon>202211140738243_up2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

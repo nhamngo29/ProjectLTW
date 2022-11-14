@@ -7,6 +7,7 @@
     <div class="row">
         @{
             ViewBag.Slides = ViewBag.Slides;
+            ViewBag.Cout = ViewBag.Cout;
             Html.RenderPartial("Slide");
         }
     </div>
@@ -26,14 +27,6 @@
                                     <div class="card-body">
                                         <h4 class="card-title">@item.Name</h4>
                                         <p class="card-text custom__name-product" style="font-weight: 400;">
-                                            @foreach (var Detail in ViewBag.Detail)
-                                            {
-                                                if (item.ProductId == Detail.ProductId)
-                                                {
-                                                    @Detail.Text
-                                                    break;
-                                                }
-                                            }
                                         </p>
                                         <a href="~/ProductDetail.html" title="GIÀY ADIDAS 4D FUTURECRAFT" class="btn btn-buynow">
                                             Xem ngay <i class="fas fa-arrow-right"
@@ -53,10 +46,14 @@
                     @foreach (var item in Model)
                     {
                         TimeSpan time = Convert.ToDateTime(DateTime.Now) - Convert.ToDateTime(item.DateCreate);
-                        if (time.Days >= 50)
+                        if (time.Days >= 60)
                         {
-                            ViewBag.item = item;
-                            Html.RenderPartial("Product");
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                @{
+                                    ViewBag.item = item;
+                                    Html.RenderPartial("Product");
+                                }
+                            </div>
                         }
                     }
                 </div>

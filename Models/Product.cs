@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 namespace Project.Models
 {
     public class Product
@@ -31,7 +32,11 @@ namespace Project.Models
         public string ImgeMain { get; set; }//hình ảnh chính
         public int ProductTypeID { get;set ; }
         public Nullable<int> TotalSold { get; set; }//số sp đã bán
-       
+        [DefaultValue(0)]
+        public Nullable<int> FormId { get; set; }
+        [ForeignKey("FormId")]
+        public virtual Form Form { get; set; }    
+
         public Nullable<int> BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }

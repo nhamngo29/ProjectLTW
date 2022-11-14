@@ -15,7 +15,6 @@ namespace Project.Models
         public string ProductId { get; set; }//Mã sản phẩm
         [Index()]
         public Nullable<int> Quantity { get; set; }
-        [Index(IsUnique = true)]
         [Column(TypeName ="nvarchar")]
         [StringLength(41)]
         public string Size { get; set; }

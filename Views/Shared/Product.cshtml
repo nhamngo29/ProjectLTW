@@ -1,70 +1,68 @@
-﻿<div class="col-lg-3 col-md-6 col-sm-12 mb-20">
-    <a href="~/ProductDetail.html" class="product__new-item">
-        <div class="card" style="max-width:100%;max-height:99%">
-            <div>
-                <img class="card-img-top" src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="@ViewBag.item.ProductId">
-                <form action="" class="hover-icon hidden-sm hidden-xs">
-                    <input type="hidden">
-                    <a href="~/pay.html" class="btn-add-to-cart" title="Mua ngay">
-                        <i class="fas fa-cart-plus"></i>
-                    </a>
-                    <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct">
-                        <i class="fas fa-search"></i>
-                    </a>
-                </form>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title custom__name-product">
-                    @ViewBag.item.Name
-                </h5>
-                <div class="product__price">
-                    @{
-                        if (ViewBag.item.Promotion > 0)
-                        {
+﻿
+<a href="/Products/Detail/@ViewBag.item.ProductId" class="product__new-item">
+    <div class="card" style="max-width:100%;min-height:98%;max-height:98%">
+        <div>
+            <img class="card-img-top" src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="@ViewBag.item.ProductId">
+            <form action="" class="hover-icon hidden-sm hidden-xs">
+                <input type="hidden">
+                <a href="~/pay.html" class="btn-add-to-cart" title="Mua ngay">
+                    <i class="fas fa-cart-plus"></i>
+                </a>
+                <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct">
+                    <i class="fas fa-search"></i>
+                </a>
+            </form>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title custom__name-product">
+                @ViewBag.item.Name
+            </h5>
+            <div class="product__price">
+                @{
+                    if (ViewBag.item.Promotion > 0)
+                    {
 
-                            double GiaMoi = ViewBag.item.Price * (1 - ViewBag.item.Promotion * 0.01);
-                            <p class="card-text price-color product__price-old">@ViewBag.item.Price .000₫</p>
-                            <p class="card-text price-color product__price-new">@GiaMoi.000₫</p>
-                        }
-                        else
+                        double GiaMoi = ViewBag.item.Price * (1 - ViewBag.item.Promotion * 0.01);
+                        <p class="card-text price-color product__price-old">@ViewBag.item.Price .000₫</p>
+                        <p class="card-text price-color product__price-new">@GiaMoi.000₫</p>
+                    }
+                    else
+                    {
+                        <p class="card-text price-color product__price-new">@ViewBag.item.Price .000₫</p>
+                    }
+                }
+            </div>
+            <div class="home-product-item__action">
+                <span class="home-product-item__like home-product-item__like--liked">
+                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
+                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
+                </span>
+                <div class="home-product-item__rating">
+                    @{
+                        for (int i = 0; i < 5; i++)
                         {
-                <p class="card-text price-color product__price-new">@int.Parse(@ViewBag.item.Price).000₫</p>
+                            if (i < ViewBag.item.Evaluate)//Nhỏ hơn sao đánh giá
+                            {
+                                <i class="home-product-item__star--gold fas fa-star"></i>
+                                continue;
+                            }
+                            <i class="fas fa-star"></i>
                         }
                     }
                 </div>
-                <div class="home-product-item__action">
-                    <span class="home-product-item__like home-product-item__like--liked">
-                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                    </span>
-                    <div class="home-product-item__rating">
-                        @{
-                            for (int i = 0; i < 5; i++)
-                            {
-                                if (i < ViewBag.item.Evaluate)//Nhỏ hơn sao đánh giá
-                                {
-                                    <i class="home-product-item__star--gold fas fa-star"></i>
-                                    continue;
-                                }
-                                <i class="fas fa-star"></i>
-                            }
-                        }
-                    </div>
-                    <span class="home-product-item__sold">@ViewBag.item.TotalSold đã bán</span>
-                </div>
-                @if (ViewBag.item.Promotion > 0)
-                {
-                    <div class="sale-off">
-                        <span class="sale-off-percent">@ViewBag.item.Promotion%</span>
-                        <span class="sale-off-label">GIẢM</span>
-                    </div>
-                }
+                <span class="home-product-item__sold">@ViewBag.item.TotalSold đã bán</span>
             </div>
+            @if (ViewBag.item.Promotion > 0)
+            {
+                <div class="sale-off">
+                    <span class="sale-off-percent">@ViewBag.item.Promotion%</span>
+                    <span class="sale-off-label">GIẢM</span>
+                </div>
+            }
         </div>
-    </a>
-    <!-- end modal -->
-
-</div>
+    </div>
+</a>
+<!-- end modal -->
 <!-- The Modal -->
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
@@ -192,7 +190,6 @@
             <!-- <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div> -->
-
         </div>
     </div>
 </div>

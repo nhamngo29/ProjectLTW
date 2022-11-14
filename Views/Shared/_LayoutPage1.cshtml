@@ -12,7 +12,9 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.6.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <!-- link font chữ -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <!-- Popper JS -->
@@ -31,6 +33,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <style>
     form.example input[type=text] {
@@ -140,10 +143,10 @@
                 </div>
                 <ul class="la-nav-list-items">
                     <li class="ng-scope">
-                        @Html.ActionLink("Trang chủ", "Index", new {Controller="Home"})
+                        @Html.ActionLink("Trang chủ", "Index", new { Controller = "Home" })
                     </li>
                     <li class="ng-scope">
-                        @Html.ActionLink("Giới thiệu", "intro", new {Controller="About"})
+                        @Html.ActionLink("Giới thiệu", "intro", new { Controller = "About" })
                     </li>
                     <li class="ng-scope ng-has-child1">
                         <a href="~/Product.html">Sản phẩm <i class="fas fa-plus cong"></i> <i class="fas fa-minus tru hidden"></i></a>
@@ -355,7 +358,7 @@
                     </div>
                     <div class="col-lg-6 m-auto pdt15">
                         <form class="example" action="/products/index" method="post">
-                            <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search"value="@ViewBag.Search">
+                            <input type="text" class="input-search" placeholder="Tìm kiếm.." name="search" value="@ViewBag.Search">
                             <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -482,9 +485,9 @@
                             </div>
                         </div>
                     </li>
-                    
+
                     <li class="header_nav-list-item"><a href="~/news.html">@Html.ActionLink("Tin Tức", "index", new { controller = "News" })</a></li>
-                    <li class="header_nav-list-item"><a href="~/contact.html">@Html.ActionLink("Liên hệ", "Index",new { Controller="About"})</a></li>
+                    <li class="header_nav-list-item"><a href="~/contact.html">@Html.ActionLink("Liên hệ", "Index", new { Controller = "About" })</a></li>
                 </ul>
             </div>
         </nav>
@@ -530,7 +533,7 @@
                     </div>
                     <ul class="footer__list collapse show" id="demo2">
                         <li class="footer__item">
-                            @Html.ActionLink("Cơ sở 1: 140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP .CHM", "https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+nghi%E1%BB%87p+Th%E1%BB%B1c+ph%E1%BA%A9m+TP.HCM/@10.8069256,106.6266457,17z/data=!3m1!4b1!4m5!3m4!1s0x31752be27d8b4f4d:0x92dcba2950430867!8m2!3d10.8069203!4d106.6288344",null,htmlAttributes:new { @class= "footer__item--link" })
+                            @Html.ActionLink("Cơ sở 1: 140 Lê Trọng Tấn, Tây Thạnh, Tân Phú, TP .CHM", "https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%90%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+nghi%E1%BB%87p+Th%E1%BB%B1c+ph%E1%BA%A9m+TP.HCM/@10.8069256,106.6266457,17z/data=!3m1!4b1!4m5!3m4!1s0x31752be27d8b4f4d:0x92dcba2950430867!8m2!3d10.8069203!4d106.6288344", null, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
                         <li class="footer__item">
                             <a href="" class="footer__item--link">Cơ sở 2: 86 Đinh Bộ Lĩnh, P10, Quận Bình Thanh, TP.HCM</a>
@@ -571,7 +574,7 @@
                     </div>
                     <ul class="footer__list collapse show" id="demo">
                         <li class="footer__item">
-                            @Html.ActionLink("Trang chủ","Index",new {controller="Home"},htmlAttributes:new {@class= "footer__item--link" })
+                            @Html.ActionLink("Trang chủ", "Index", new { controller = "Home" }, htmlAttributes: new { @class = "footer__item--link" })
                         <li class="footer__item">
                             @Html.ActionLink("Giới thiệu", "Index", new { controller = "About" }, htmlAttributes: new { @class = "footer__item--link" })
                         </li>
@@ -595,8 +598,9 @@
     <div id="go-to-top">
         <a class="btn-gototop"><i class="fas fa-arrow-up"></i></a>
     </div>
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.6.1.js"></script>
 </body>
-<script src="~/assets/js/main.js"></script>
-<script src="~/Scripts/bootstrap.bundle.js"></script>
-<script src="~/Scripts/bootstrap.js"></script>
 </html>

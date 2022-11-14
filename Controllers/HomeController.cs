@@ -14,10 +14,8 @@ namespace Project.Controllers
         {
             List<Slide> Slides=DB.Slides.ToList();
             ViewBag.Slides=Slides;
-            List<ImgeProduct> imges=DB.Imges.ToList();
+            ViewBag.Cout = Slides.Count();
             List<Product> Products=DB.Products.ToList();
-            List<Detail> Details=DB.Details.ToList();
-            ViewBag.Detail=Details;
             return View(Products);
         }
     }
