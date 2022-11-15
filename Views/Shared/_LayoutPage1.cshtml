@@ -7,11 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P&T Shop</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/Scripts/jquery-3.6.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
@@ -305,12 +303,24 @@
                     </div>
                     <div class="col-6 login_link">
                         <ul class="header_link right m-auto">
-                            <li>
-                                <a href="~/Login.html"><i class="fas fa-sign-in-alt mr-3"></i>Đăng nhập</a>
-                            </li>
-                            <li>
-                                <a href="~/registration.html"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a href="/Account/Profile"><i class="fi fi-sr-user"></i>@User.Identity.Name.ToString()</a>
+                                </li>
+                                <li>
+                                    <a href="/Account/LogOut"><i class="fas fa-sign-in-alt mr-3" style="margin-left: 10px;"></i>Đăng xuất</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/Account/LogIn"><i class="fas fa-sign-in-alt mr-3" ></i>Đăng nhập</a>
+                                </li>
+                                <li>
+                                    <a href="/Account/Regisster"><i class="fas fa-user-plus mr-3" style="margin-left: 10px;"></i>Đăng kí</a>
+                                </li>
+                            }
                         </ul>
                         <!-- <ul class="nav nav__first right">
                             <li class="nav-item nav-item__first nav-item__first-user">

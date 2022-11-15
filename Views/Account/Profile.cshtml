@@ -1,0 +1,207 @@
+﻿@model Project.Identity.AppUser
+@{
+    ViewBag.Title = "Profile";
+}
+<link rel="stylesheet" href="~/assets/css/login.css">
+<link rel="stylesheet" href="~/assets/css/account.css">
+<div class="container h-100">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-lg-2 col-12">
+                <div class="heading">
+                    <img src=".~assets/img/product/" alt="" class="heading-img">
+                    <span class="heading-name_acc"></span>
+                </div>
+                <div class="menu-manager">
+                    <div class="my-profile item-manager active">
+                        <div class="my-profile-title ">
+                            <div class="my-profile-icon"><i class="fas fa-user"></i></div>
+                            <div class="my-profile-name">Hồ sơ của tôi</div>
+                        </div>
+                    </div>
+                    <div class="my-password item-manager">
+                        <div class="my-password-title">
+                            <div class="my-password-icon"><i class="fas fa-key"></i></div>
+                            <div class="my-password-name">Đổi mật khẩu</div>
+                        </div>
+                    </div>
+                    <div class="my-order item-manager">
+                        <div class="my-order-title">
+                            <div class="my-order-icon"><i class="fas fa-shopping-bag"></i></div>
+                            <div class="my-order-name">Đơn hàng của tôi</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-10 col-12">
+                <div class="menu-detail">
+                    <div class="detial__my-profile item-detail active">
+                        <div class="heading-edit-account">
+                            <h2>Hồ sơ của tôi</h2>
+                            <div class="row">
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.FullName, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullname", @value = Model.FullName })
+                                        <span class="form-message"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "Email", @value = Model.Email })
+                                        <span class="form-message"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.BirthDay, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.BirthDay, new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "DateOfBirth", type = "Date", Model.BirthDay })
+                                        <span class="form-message"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.PhoneNumber, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "Mobile", Model.PhoneNumber })
+                                        <span class="form-message"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.Address, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "Address", Model.Address })
+                                        <span class="form-message"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-lg-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(t => t.City, htmlAttributes: new { @class = "form-label" })
+                                        @Html.TextBoxFor(t => t.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "Address", Model.City })
+                                        <span class="form-message"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="form-submit">Lưu</button>
+                        </div>
+                    </div>
+                    <div class="detail__confirm-password item-detail">
+                        <div class="heading-edit-password">
+                            <h2>Đổi lại mật khẩu</h2>
+                        </div>
+                        <div class="form-group form-group-old-password">
+                            <div style="display:flex;justify-content: space-between;">
+                                <label for="password" class="form-label">Mật khẩu cũ</label>
+                                <span class="show-hide"><i class="fas fa-eye"></i></span>
+                            </div>
+                            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group form-group-new-password">
+                            <div style="display:flex;justify-content: space-between;">
+                                <label for="password-new" class="form-label">Mật khẩu mới</label>
+                                <span class="show-hide-two"><i class="fas fa-eye fa-eye-2"></i></span>
+                            </div>
+                            <input id="password-new" name="password-new" type="password" placeholder="Nhập mật khẩu"
+                                   class="form-control">
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group form-group-confirm-password">
+                            <div style="display:flex;justify-content: space-between;">
+                                <label for="password-confirm" class="form-label">Mật khẩu mới</label>
+                                <span class="show-hide-three"><i class="fas fa-eye fa-eye-3"></i></span>
+                            </div>
+                            <input id="password-confirm" name="password-confirm" type="password" placeholder="Nhập mật khẩu"
+                                   class="form-control">
+                            <span class="form-message"></span>
+                        </div>
+                        <button class="form-submit">Lưu</button>
+                    </div>
+                    <div class="detail__my-order item-detail">
+                        <div class="heading-edit-password">
+                            <h2>Đơn hàng của bạn</h2>
+                        </div>
+                        <div class="detail__my-order-content">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>MĐH</th>
+                                        <th>Ngày</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Trạng thái</th>
+                                        <th>Chi tiết</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#1</td>
+                                        <td>05-06-2021</td>
+                                        <td>3.000.000 VNĐ</td>
+                                        <td>
+                                            <span class="btn-stt blue">Đang xác nhận</span>
+                                        </td>
+                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#2</td>
+                                        <td>05-06-2021</td>
+                                        <td>3.000.000 VNĐ</td>
+                                        <td>
+                                            <span class="btn-stt green">Đã giao</span>
+                                        </td>
+                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#3</td>
+                                        <td>05-06-2021</td>
+                                        <td>3.000.000 VNĐ</td>
+                                        <td>
+                                            <span class="btn-stt red">Đã hủy</span>
+                                        </td>
+                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const pass_field = document.querySelector('#password');
+    const show_btn = document.querySelector('.fa-eye')
+    show_btn.addEventListener("click", function () {
+        if (pass_field.type === "password") {
+            pass_field.type = "text";
+            show_btn.classList.add("hide");
+        } else {
+            pass_field.type = "password";
+            show_btn.classList.remove("hide");
+        }
+    });
+</script>
+<script>
+    const pass_field2 = document.querySelector('#password-new');
+    const show_btn2 = document.querySelector('.fa-eye-2')
+    show_btn2.addEventListener("click", function () {
+        if (pass_field2.type === "password") {
+            pass_field2.type = "text";
+            show_btn2.classList.add("hide");
+        } else {
+            pass_field2.type = "password";
+            show_btn2.classList.remove("hide");
+        }
+    });
+</script>
+<script>
+    const pass_field3 = document.querySelector('#password-confirm');
+    const show_btn3 = document.querySelector('.fa-eye-3')
+    show_btn3.addEventListener("click", function () {
+        if (pass_field3.type === "password") {
+            pass_field3.type = "text";
+            show_btn3.classList.add("hide");
+        } else {
+            pass_field3.type = "password";
+            show_btn3.classList.remove("hide");
+        }
+    });
+</script>

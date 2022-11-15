@@ -7,83 +7,84 @@
 <div class="container">
     <div class="registration__form">
         <div class="row">
-            <div class="col-sm-12 col-lg-6">
-                @using (Html.BeginForm("Register", "Account", FormMethod.Post, htmlAttributes: new { @class = "form", @id = "form-1" }))
+            <div class="col-sm-12 col-lg-8">
+                @using (Html.BeginForm("Regisster", "Account", FormMethod.Post, htmlAttributes: new { @class = "form", @id = "form-1" }))
                 {
-                <div class="row">
-                    <h3 class="heading">ĐĂNG KÍ</h3>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.UserName, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "username" })
-                            <span class="form-message"></span>
-                        </div>
-                        
-                        <div class="form-group matkhau">
-                            @Html.LabelFor(t => t.Password, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.Password, new { type = "password", @class = "form-control", @id = "password", placeholder = "Nhập mật khẩu" })
-                            <span class="show-hide"><i class="fas fa-eye"></i></span>
-                            <span class="form-message"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "Email" })
-                            <span class="form-message"></span>
-                        </div>
-                        <div class="form-group matkhau">
-                            @Html.LabelFor(t => t.ConfirmPassword, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.ConfirmPassword, new { type = "password", @class = "form-control", @id = "password_confirmation", placeholder = "Nhập lại mật khẩu" })
-                            <span class="show-hide-two"><i class="fas fa-eye fa-eye-2"></i></span>
-                            <span class="form-message"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.Gender, htmlAttributes: new { @class = "form-label" })
-                            @*Phân này hoàn thành sau sẽ là giới tinh sữ dụng dropdowlist*@
-                            @Html.DropDownListFor(t => t.Gender, new
-                           List<SelectListItem>()
-                           {
-                               new SelectListItem(){Text="Nam",Value="mele"},
-                               new SelectListItem(){Text="Nữ",Value="female"},
-                               new SelectListItem(){Text="Khác",Value="order"}
-                           }, "Vui lòng chọn giới tính....", new { @class = "form-control" })
-                        </div>
-                        <span class="form-message"></span>
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.FullName, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullname" })
-                            <span class="form-message"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.DateOfBirth, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.DateOfBirth, new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "DateOfBirth", type = "Date" })
-                            <span class="form-message"></span>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.Mobile, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.Mobile, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "Mobile" })
-                            <span class="form-message"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-6">
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.Address, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "Address" })
-                            <span class="form-message"></span>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.City, htmlAttributes: new { @class = "form-label" })
-                            @Html.TextBoxFor(t => t.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "Address" })
-                            <span class="form-message"></span>
-                        </div>
-                    </div>
+                    <div class="row">
+                        <h3 class="heading">ĐĂNG KÍ</h3>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.UserName, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "username" })
+                                <span class="form-message"></span>
+                            </div>
 
-                </div>
+                            <div class="form-group matkhau">
+                                @Html.LabelFor(t => t.Password, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.Password, new { type = "password", @class = "form-control", @id = "password", placeholder = "Nhập mật khẩu" })
+                                <span class="show-hide"><i class="fas fa-eye"></i></span>
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "Email" })
+                                <span class="form-message"></span>
+                            </div>
+                            <div class="form-group matkhau">
+                                @Html.LabelFor(t => t.ConfirmPassword, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.ConfirmPassword, new { type = "password", @class = "form-control", @id = "password_confirmation", placeholder = "Nhập lại mật khẩu" })
+                                <span class="show-hide-two"><i class="fas fa-eye fa-eye-2"></i></span>
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.Gender, htmlAttributes: new { @class = "form-label" })
+                                @*Phân này hoàn thành sau sẽ là giới tinh sữ dụng dropdowlist*@
+                                @Html.DropDownListFor(t => t.Gender, new
+                               List<SelectListItem>()
+                               {
+                                   new SelectListItem(){Text="Nam",Value="mele"},
+                                   new SelectListItem(){Text="Nữ",Value="female"},
+                                   new SelectListItem(){Text="Khác",Value="order"}
+                               }, "Vui lòng chọn giới tính....", new { @class = "form-control" })
+                            </div>
+                            <span class="form-message"></span>
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.FullName, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullname" })
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.DateOfBirth, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.DateOfBirth, new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "DateOfBirth", type = "Date" })
+                                <span class="form-message"></span>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.Mobile, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.Mobile, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "Mobile" })
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.Address, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "Address" })
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(t => t.City, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextBoxFor(t => t.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "Address" })
+                                <span class="form-message"></span>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" class="form-submit btn-blocker" style="border-radius: unset;">
                         Đăng ký <i class="fas fa-arrow-right"
                                    style="font-size: 16px;margin-left: 10px;"></i>
@@ -95,7 +96,7 @@
                 }
 
             </div>
-            <div class="col-sm-12 col-lg-6">
+            <div class="col-sm-12 col-lg-4">
                 <h3 class="heading">TẠO MỘT TÀI KHOẢN</h3>
                 <p class="text-login">Đăng nhập bằng tài khoản sẽ giúp bạn truy cập:</p>
                 <ul>
@@ -125,7 +126,7 @@
 </div>
 <!-- end registration form -->
 <script src="~/assets/js/validator.js"></script>
-<script>
+@*<script>
     Validator({
         form: '#form-1',
         formGroupSelector: '.form-group',
@@ -172,4 +173,4 @@
             show_btn2.classList.remove("hide");
         }
     });
-</script>
+</script>*@
