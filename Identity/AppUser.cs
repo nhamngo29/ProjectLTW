@@ -12,6 +12,5 @@ namespace Project.Identity
         public string City { get; set; }
         public string PathAvt { get; set; }
         public string FullName { get; set; }
-
     }
 }
