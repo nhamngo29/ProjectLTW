@@ -1,0 +1,165 @@
+﻿@model Project.ViewModel.RegisterVM
+@{
+    ViewBag.Title = "Regisster";
+}
+<link rel="stylesheet" href="~/assets/css/login.css">
+<!-- registration form -->
+<div class="container">
+    <div class="registration__form">
+        <div class="row">
+            <div class="col-sm-12 col-lg-6">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, htmlAttributes: new { @class = "form", @id = "form-1" }))
+                {
+                <div class="row">
+                    <h3 class="heading">ĐĂNG KÍ</h3>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.FullName, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullname" })
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "password" })
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group matkhau">
+                            @Html.LabelFor(t => t.Password, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.Password, new { type = "password", @class = "form-control", @id = "password", placeholder = "Nhập mật khẩu" })
+                            <span class="show-hide"><i class="fas fa-eye"></i></span>
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group matkhau">
+                            @Html.LabelFor(t => t.ConfirmPassword, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.ConfirmPassword, new { type = "password", @class = "form-control", @id = "password_confirmation", placeholder = "Nhập lại mật khẩu" })
+                            <span class="show-hide-two"><i class="fas fa-eye fa-eye-2"></i></span>
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.Gender, htmlAttributes: new { @class = "form-label" })
+                            @*Phân này hoàn thành sau sẽ là giới tinh sữ dụng dropdowlist*@
+                            @Html.DropDownListFor(t => t.Gender, new
+                           List<SelectListItem>()
+                           {
+                               new SelectListItem(){Text="Nam",Value="mele"},
+                               new SelectListItem(){Text="Nữ",Value="female"},
+                               new SelectListItem(){Text="Khác",Value="order"}
+                           }, "Vui lòng chọn giới tính....", new { @class = "form-control" })
+                        </div>
+                        <span class="form-message"></span>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.UserName, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "username" })
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.DateOfBirth, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.DateOfBirth, new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "DateOfBirth", type = "Date" })
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.Mobile, htmlAttributes: new { @class = "form-label" })
+                            @Html.TextBoxFor(t => t.Mobile, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "Mobile" })
+                            <span class="form-message"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-6">
+                        
+                    </div>
+
+                </div>
+                    <button type="submit" class="form-submit btn-blocker" style="border-radius: unset;">
+                        Đăng ký <i class="fas fa-arrow-right"
+                                   style="font-size: 16px;margin-left: 10px;"></i>
+                    </button>
+                    <p style="font-size: 16px;margin: 10px 0;">
+                        Bạn đã có tài khoản? <a href="./Login.html"
+                                                style="color: black; font-weight: bold">Đăng nhập</a>
+                    </p>
+                }
+
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <h3 class="heading">TẠO MỘT TÀI KHOẢN</h3>
+                <p class="text-login">Đăng nhập bằng tài khoản sẽ giúp bạn truy cập:</p>
+                <ul>
+                    <li class="text-login-item">
+                        <i class="fas fa-check"></i>
+                        <p class="text-login">
+                            Một lần đăng nhập chung duy nhất để tương tác với các sản phẩm và dịch vụ của P&T
+                            shop
+                        </p>
+                    </li>
+                    <li class="text-login-item">
+                        <i class="fas fa-check"></i>
+                        <p class="text-login">Thanh toán nhanh hơn</p>
+                    </li>
+                    <li class="text-login-item">
+                        <i class="fas fa-check"></i>
+                        <p class="text-login">Xem lịch sử đặt hàng riêng của bạn</p>
+                    </li>
+                    <li class="text-login-item">
+                        <i class="fas fa-check"></i>
+                        <p class="text-login">Thêm hoặc thay đổi tùy chọn email</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end registration form -->
+<script src="~/assets/js/validator.js"></script>
+<script>
+    Validator({
+        form: '#form-1',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
+            Validator.isRequired('#email'),
+            Validator.isEmail('#email'),
+            Validator.minLength('#password', 6),
+            Validator.isRequired('#password_confirmation'),
+            Validator.isRequired('input[name="gender"]'),
+            Validator.isConfirmed('#password_confirmation', function () {
+                return document.querySelector('#form-1 #password').value;
+            }, 'Mật khẩu nhập lại không chính xác')
+        ],
+        onSubmit: function (data) {
+            // call api
+            console.log(data);
+        }
+    });
+</script>
+<script>
+    const pass_field = document.querySelector('#password');
+    const show_btn = document.querySelector('.fa-eye')
+    show_btn.addEventListener("click", function () {
+        if (pass_field.type === "password") {
+            pass_field.type = "text";
+            show_btn.classList.add("hide");
+        } else {
+            pass_field.type = "password";
+            show_btn.classList.remove("hide");
+        }
+    });
+</script>
+<script>
+    const pass_field2 = document.querySelector('#password_confirmation');
+    const show_btn2 = document.querySelector('.fa-eye-2')
+    show_btn2.addEventListener("click", function () {
+        if (pass_field2.type === "password") {
+            pass_field2.type = "text";
+            show_btn2.classList.add("hide");
+        } else {
+            pass_field2.type = "password";
+            show_btn2.classList.remove("hide");
+        }
+    });
+</script>
