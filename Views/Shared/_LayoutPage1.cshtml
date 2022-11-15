@@ -91,7 +91,6 @@
             display: none;
         }
     }
-
 </style>
 <body>
     <div class="overlay hidden"></div>
@@ -185,28 +184,28 @@
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc2">
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Áo thun", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Áo thun", "Index", new { ProType = 1, Controller = "Products" }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Áo Polo", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Áo Polo", "Index", new { Controller = "Products", ProType = 2 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Áo Sơmi", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Áo Sơmi", "Index", new { Controller = "Products", ProType = 3 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Khoác", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Khoác", "Index", new { Controller = "Products", ProType = 4 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Áo Sweat", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Áo Sweat", "Index", new { Controller = "Products", ProType = 5 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Hoodie", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Hoodie", "Index", new { Controller = "Products", ProType = 6 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Tank Top", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Tank Top", "Index", new { Controller = "Products", ProType = 7 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products", ProType = 8 }, htmlAttributes: new { })
                                     </li>
                                 </ul>
                             </li>
@@ -216,25 +215,25 @@
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc3">
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Jean", "Index", new { Controller = "Products", ProType = 9 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Short", "Index", new { Controller = "Products", ProType = 10 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products", ProType = 11 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Joger", "Index", new { Controller = "Products", ProType = 12 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Tây", "Index", new { Controller = "Products", ProType = 13 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products", ProType = 14 }, htmlAttributes: new { })
                                     </li>
                                     <li class="ng-scope">
-                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                        @Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products", ProType = 8 }, htmlAttributes: new { })
                                     </li>
                                 </ul>
                             </li>
@@ -244,25 +243,25 @@
                                 </a>
                                 <ul class="ul-has-child2 hidden" id="abc4">
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Jean", "Index", new { Controller = "Products", ProType = 15 }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Short", "Index", new { Controller = "Products", ProType = 16 }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
                                         <a href="~/Product.html">@Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Joger", "Index", new { Controller = "Products", ProType = 17 }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Tây", "Index", new { Controller = "Products", ProType = 18 }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products", ProType = 19 }, htmlAttributes: new { })</a>
                                     </li>
                                     <li class="ng-scope">
-                                        <a href="~/Product.html">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                        <a href="~/Product.html">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products", ProType = 8 }, htmlAttributes: new { })</a>
                                     </li>
                                 </ul>
                             </li>
@@ -390,69 +389,69 @@
                             <div class="row">
                                 <ul class="col-8 no-padding level0">
                                     <li class="level1">
-                                        <a class="hmega" href="~/Product.html">Tất cả sản phẩm</a>
+                                        @Html.ActionLink("Tất cả sản phẩm", "Index", new { Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
                                     </li>
                                     <li class="level1">
-                                        <a class="hmega">Áo</a>
+                                        @Html.ActionLink("Áo", "Index", new { CaregoryID = 1, Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
                                         <ul class="level1">
-                                            <li class="level2">@Html.ActionLink("Áo thun", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Áo Polo", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Áo Sơmi", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Khoác", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Áo Sweat", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Tank Top", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
-                                            <li class="level2">@Html.ActionLink("Hoodie", "Index", new { Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo thun", "Index", new { ProType = 1, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Polo", "Index", new { ProType = 2, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Sơmi", "Index", new { ProType = 3, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Khoác", "Index", new { ProType = 4, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Áo Sweat", "Index", new { ProType = 5, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Sét Đồ", "Index", new { ProType = 6, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Tank Top", "Index", new { ProType = 7, Controller = "Products" }, htmlAttributes: new { })</li>
+                                            <li class="level2">@Html.ActionLink("Hoodie", "Index", new { ProType = 8, Controller = "Products" }, htmlAttributes: new { })</li>
                                         </ul>
                                     </li>
                                     <li class="level1">
-                                        <a class="hmega">Quần</a>
+                                        @Html.ActionLink("Quần", "Index", new { CaregoryID = 2, Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
                                         <ul class="level1">
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Jean", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Jean", "Index", new { ProType = 9, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Short", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Short", "Index", new { ProType = 10, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Kaki & Chino", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Kaki & Chino", "Index", new { ProType = 11, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Joger", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Joger", "Index", new { ProType = 12, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Tây", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Tây", "Index", new { ProType = 13, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Quần Tập Gym", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Quần Tập Gym", "Index", new { ProType = 14, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                             <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Sét Đồ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="level1">
-                                        <a class="hmega">Phụ kiện</a>
-                                        <ul class="level1">
-                                            <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Balo, Túi & Ví ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Nón ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Thắt lưng", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Mắt kính", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
-                                            </li>
-                                            <li class="level2">
-                                                <a href="~/Product.html">@Html.ActionLink("Vớ", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>
+                                                @Html.ActionLink("Sét Đồ", "Index", new { ProType = 8, Controller = "Products" }, htmlAttributes: new { })
                                             </li>
                                         </ul>
                                     </li>
                                     <li class="level1">
-                                        <a class="hmega">Giày</a>
+                                        @Html.ActionLink("Phụ kiện", "Index", new { CaregoryID = 4, Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
+                                        <ul class="level1">
+                                            <li class="level2">
+                                                @Html.ActionLink("Balo, Túi & Ví ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                            </li>
+                                            <li class="level2">
+                                                @Html.ActionLink("Nón ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                            </li>
+                                            <li class="level2">
+                                                @Html.ActionLink("Thắt lưng", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                            </li>
+                                            <li class="level2">
+                                                @Html.ActionLink("Mắt kính", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                            </li>
+                                            <li class="level2">
+                                                @Html.ActionLink("Vớ", "Index", new { Controller = "Products" }, htmlAttributes: new { })
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="level1">
+                                        @Html.ActionLink("Giày", "Index", new { CaregoryID = 3, Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
                                         <ul class="level1">
                                             <li class="level2">
                                                 <a href="~/Product.html">@Html.ActionLink("Sandal", "Index", new { Controller = "Products" }, htmlAttributes: new { })</a>

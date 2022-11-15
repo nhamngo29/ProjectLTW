@@ -12,7 +12,7 @@ namespace Project.Controllers
         ShopDBContext DB=new ShopDBContext();
         // GET: Products
         [MyActionFilters]
-        public ActionResult Index(string Search="",int? Sort=0)
+        public ActionResult Index(string Search="",int? Sort=0,int? ProType=0,int? CaregoryID=0,int page=1)
         {
             List<Product> Products = DB.Products.Where(t => t.Name.Contains(Search)).ToList();
             ViewBag.Search=Search;
@@ -43,7 +43,23 @@ namespace Project.Controllers
             else if (Sort==7)
             {
                 Products = Products.OrderByDescending(T => T.TotalSold).ToList();
-            }  
+            }
+            if (CaregoryID!=0)
+            {
+                Products = Products.Where(t => t.ProductType.CategoryID==CaregoryID).ToList();
+            }
+            if (ProType!=0)
+            {
+                Products = Products.Where(t => t.ProductTypeID == ProType).ToList();
+            }
+            //Paging
+            ViewBag.Sort=Sort;
+            int NoOfrecordPerPage = 8;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Products.Count) / Convert.ToDouble(NoOfrecordPerPage)));
+            int NoOfRecordToSkip = (page - 1) * NoOfrecordPerPage;
+            ViewBag.Page = page;
+            ViewBag.NoOfPages = NoOfPages;
+            Products = Products.Skip(NoOfRecordToSkip).Take(NoOfrecordPerPage).ToList();
             return View(Products);
         }
         public ActionResult Detail(string id)

@@ -2,6 +2,19 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    .pagination > li > a {
+        border-radius: 50% !important;
+        margin: 10px;
+        background-color: black;
+        color: white;
+        padding: 2rem;
+    }
+
+        .pagination > li > a:hover {
+            color: black;
+        }
+</style>
 <link rel="stylesheet" href="~/assets/css/product.css">
 <div class="product">
     <div class="container">
@@ -11,7 +24,7 @@
                     <div class="product__filter-price">
                         <h4 class="product__filter-heading">
                             Khoảng giá <i class="fi-rs-minus"
-                                          onclick="khonghienthidanhsach(1,`khoanggia`)" id="minus-1"></i> <i class="fi-rs-plus hidden"id="plus-1" onclick="khonghienthidanhsach(1,`khoanggia`)"></i>
+                                          onclick="khonghienthidanhsach(1,`khoanggia`)" id="minus-1"></i> <i class="fi-rs-plus hidden" id="plus-1" onclick="khonghienthidanhsach(1,`khoanggia`)"></i>
                         </h4>
                         <ul id="khoanggia" class="product__filter-ckeckbox">
                             <li class="product__filter-item">
@@ -52,36 +65,6 @@
                                            value="something"><span>Adidas</span>
                                 </label>
                             </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="th2">
-                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th2" name="option2"
-                                           value="something"><span>Nike</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="th3">
-                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th3" name="option2"
-                                           value="something"><span>Puma</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="th4">
-                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th4" name="option2"
-                                           value="something"><span>DESPORTE</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="th5">
-                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th5" name="option2"
-                                           value="something"><span>X-MUNICH</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="th6">
-                                    <input type="checkbox" class="form-check-input checkthuonghieu" id="th6" name="option2"
-                                           value="something"><span>GRAND SPORT</span>
-                                </label>
-                            </li>
                         </ul>
                     </div>
                     <div class="product__filter-size">
@@ -103,30 +86,7 @@
                                            value="something"><span>38</span>
                                 </label>
                             </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="size3">
-                                    <input type="checkbox" class="form-check-input checksize" id="size3" name="option2"
-                                           value="something"><span>38.5</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="size4">
-                                    <input type="checkbox" class="form-check-input checksize" id="size4" name="option2"
-                                           value="something"><span>x</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="size5">
-                                    <input type="checkbox" class="form-check-input checksize" id="size5" name="option2"
-                                           value="something"><span>xl</span>
-                                </label>
-                            </li>
-                            <li class="product__filter-item">
-                                <label class="form-check-label" for="size6">
-                                    <input type="checkbox" class="form-check-input checksize" id="size6" name="option2"
-                                           value="something"><span>l</span>
-                                </label>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -174,8 +134,62 @@
                         </div>
                     }
                 </div>
-                <div class="loadmore">
-                    <a style="cursor: pointer;" class="loadmore-btn">Tải thêm</a>
+                <div>
+                    <ul class="pagination justify-content-center">
+
+                        <li class="page-item">
+                            @if (ViewBag.page == 1)
+                            {
+                                <a class="page-link disabled" href="/products/index?Sort=#" aria-label="Previous">
+                                    <span aria-hidden="true"><</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            }
+                            else
+                            {
+                                int PrePage = ViewBag.Page - 1;
+                                <a class="page-link" href="/products/index?Sort=@ViewBag.Sort&page=@PrePage" aria-label="Previous">
+                                    <span aria-hidden="true"><</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            }
+                        </li>
+                        @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                        {
+                            if (i + 1 == ViewBag.Page)
+                            {
+                                <li class="page-item">
+                                    <a style="background-color:white;color:black" class="page-link" href="/products/index?Sort=@ViewBag.Sort&page=@(i+1)">@(i+1)</a>
+                                </li>
+                            }
+                            else
+
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/products/index?Sort=@ViewBag.Sort&page=@(i+1)">@(i+1)</a>
+                                </li>
+                            }
+
+                        }
+
+                        <li class="page-item">
+                            @if (ViewBag.page == ViewBag.NoOfPages)
+                            {
+                                <a class="page-link disabled" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            }
+                            else
+                            {
+                                int NetPage = ViewBag.Page + 1;
+                                <a class="page-link" href="/products/index?Sort=@ViewBag.Sort&page=@NetPage" aria-label="Previous">
+                                    <span aria-hidden="true">></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            }
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
