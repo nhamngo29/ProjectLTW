@@ -3,7 +3,6 @@
     ViewBag.Title = "Regisster";
 }
 <link rel="stylesheet" href="~/assets/css/login.css">
-<!-- registration form -->
 <div class="container">
     <div class="registration__form">
         <div class="row">
@@ -15,7 +14,7 @@
                         <div class="col-sm-12 col-lg-6">
                             <div class="form-group">
                                 @Html.LabelFor(t => t.UserName, htmlAttributes: new { @class = "form-label" })
-                                @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "username" })
+                                @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "UserName" })
                                 <span class="form-message"></span>
                             </div>
 
@@ -29,7 +28,7 @@
                         <div class="col-sm-12 col-lg-6">
                             <div class="form-group">
                                 @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
-                                @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "Email" })
+                                @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "email" })
                                 <span class="form-message"></span>
                             </div>
                             <div class="form-group matkhau">
@@ -49,7 +48,7 @@
                                    new SelectListItem(){Text="Nam",Value="mele"},
                                    new SelectListItem(){Text="Nữ",Value="female"},
                                    new SelectListItem(){Text="Khác",Value="order"}
-                               }, "Vui lòng chọn giới tính....", new { @class = "form-control" })
+                               }, "Vui lòng chọn giới tính....", new { @class = "form-control",@id="Gender" })
                             </div>
                             <span class="form-message"></span>
                             <div class="form-group">
@@ -126,18 +125,19 @@
 </div>
 <!-- end registration form -->
 <script src="~/assets/js/validator.js"></script>
-@*<script>
+<script>
     Validator({
         form: '#form-1',
         formGroupSelector: '.form-group',
         errorSelector: '.form-message',
         rules: [
+            Validator.Mobile('#Mobile','Trường này phải là số điện thoại'),
+            Validator.UserName('#UserName', 'Vui lòng nhập tên đăng nhập'),
             Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
             Validator.isRequired('#email'),
             Validator.isEmail('#email'),
             Validator.minLength('#password', 6),
             Validator.isRequired('#password_confirmation'),
-            Validator.isRequired('input[name="gender"]'),
             Validator.isConfirmed('#password_confirmation', function () {
                 return document.querySelector('#form-1 #password').value;
             }, 'Mật khẩu nhập lại không chính xác')
@@ -173,4 +173,4 @@
             show_btn2.classList.remove("hide");
         }
     });
-</script>*@
+</script>

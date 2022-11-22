@@ -19,6 +19,7 @@ namespace Project.Models
         [Display(Name="Tên sản phẩm")]
         public string Name { get; set; }//Tên sản phẩm
         [Display(Name="Giá sản phẩm")]
+        [DisplayFormat(DataFormatString ="{0:0,0 đ}")]
         public Nullable<double> Price { get; set; }//Giá sản phẩm
         [Display(Name="Phần tram giảm")]
         public Nullable<float> Promotion { get; set; }//Phần trăm giảm của sản phẩm
@@ -36,7 +37,6 @@ namespace Project.Models
         public Nullable<int> FormId { get; set; }
         [ForeignKey("FormId")]
         public virtual Form Form { get; set; }    
-
         public Nullable<int> BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }

@@ -13,37 +13,37 @@ namespace Project.Controllers
         ShopDBContext DB=new ShopDBContext();
         // GET: Products
         [MyActionFilters]
+        [OutputCache(Duration = 1000)]//Thời gian để chờ load lại trang
         public ActionResult Index(string Search="",int? Sort=0,int? ProType=0,int? CaregoryID=0,int page=1)
         {
             List<Product> Products = DB.Products.Where(t => t.Name.Contains(Search)).ToList();
             ViewBag.Search=Search;
-            if (Sort==1)
+            switch (Sort)
             {
-                Products = Products.OrderBy(T => T.Price).ToList();
-            }
-            else if(Sort==2)
-            {
-                Products=Products.OrderByDescending(T => T.Price).ToList();
-            }    
-            else if(Sort==3)
-            {
-                Products = Products.OrderBy(T => T.Name).ToList();
-            }    
-            else if(Sort==4)
-            {
-                Products = Products.OrderByDescending(T => T.Name).ToList();
-            }    
-            else if(Sort==5)
-            {
-                Products = Products.OrderByDescending(T => T.DateCreate).ToList();
-            }    
-            else if(Sort==6)
-            {
-                Products = Products.OrderBy(T => T.DateCreate).ToList();
-            }
-            else if (Sort==7)
-            {
-                Products = Products.OrderByDescending(T => T.TotalSold).ToList();
+                case 1:
+                    Products = Products.OrderBy(T => T.Price).ToList();
+                    break;
+                case 2:
+                    Products = Products.OrderByDescending(T => T.Price).ToList();
+                    break;
+                case 3:
+                    Products = Products.OrderBy(T => T.Name).ToList();
+                    break;
+                case 4:
+                    Products = Products.OrderByDescending(T => T.Name).ToList();
+                    break;
+                case 5:
+                    Products = Products.OrderByDescending(T => T.DateCreate).ToList();
+                    break;
+                case 6:
+                    Products = Products.OrderBy(T => T.DateCreate).ToList();
+                    break;
+                case 7:
+                    Products = Products.OrderByDescending(T => T.TotalSold).ToList();
+                    break;
+                case 8:
+                    Products = Products.OrderByDescending(T => T.TotalSold).ToList();
+                    break;
             }
             if (CaregoryID!=0)
             {
@@ -63,6 +63,7 @@ namespace Project.Controllers
             Products = Products.Skip(NoOfRecordToSkip).Take(NoOfrecordPerPage).ToList();
             return View(Products);
         }
+        [OutputCache(Duration = 1000)]//Thời gian để chờ load lại trang
         public ActionResult Detail(string id)
         {
             Product product=DB.Products.Find(id);
@@ -78,9 +79,14 @@ namespace Project.Controllers
                     ViewBag.Price = product.Price;
                 }    
             }
+            
             ViewBag.ProductsSame = DB.Products.Where(t => t.ProductType.Id == product.ProductTypeID).ToList();
             ViewBag.Property = DB.Properties.Where(t=>t.ProductId==id).ToList();
             return View(product);
         }
+        //public ActionResult AddToCard()
+        //{
+
+        //}
     }
 }

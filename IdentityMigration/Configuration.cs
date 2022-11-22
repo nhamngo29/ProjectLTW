@@ -1,4 +1,4 @@
-﻿namespace Project.IdentityMigration
+﻿namespace Project.identityMigration
 {
     using System;
     using System.Data.Entity;
@@ -10,7 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            MigrationsDirectory = @"IdentityMigration";
+            MigrationsDirectory = @"identityMigration";
         }
 
         protected override void Seed(Project.Identity.AppDBContext context)

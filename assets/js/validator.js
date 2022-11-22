@@ -79,12 +79,16 @@ function Validator(options) {
                             case 'file':
                                 values[input.name] = input.files;
                                 break;
+                            case 'select':
+                                values[input.name] = '';
+                                break;
                             default:
                                 values[input.name] = input.value;
                         }
                         return values;
                     },{});
                     options.onSubmit(formValues);
+                    formElement.submit();
                 }
                 // trường hợp submit với hành vi mặc đinh
                 else {
@@ -122,6 +126,14 @@ function Validator(options) {
 // nguyên tắc của rules:
 // khi có lỗi tạo re mes lỗi
 //  khi không có lỗi không trả gì cả (undefined)
+Validator.UserName = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            return value ? undefined : message || 'Vui lòng nhập trường này'
+        }
+    };
+}
 Validator.isRequired = function(selector, message){
     return {
         selector: selector,
@@ -144,6 +156,15 @@ Validator.minLength = function(selector, min, message){
         selector: selector,
         test: function(value){
             return value.length >= min ? undefined : message || `Vui lòng nhập tối thiểu ${min} ký tự`;
+        }
+    };
+}
+Validator.Mobile = function (selector, message) {
+    return {
+        selector: selector,
+        test: function (value) {
+            var regex = /[0-9]/;
+            return value.length==10 & regex.test(value) ? undefined : message || 'Trường này phải là số điện thoại';
         }
     };
 }

@@ -21,14 +21,13 @@
                 @{
                     if (ViewBag.item.Promotion > 0)
                     {
-
                         double GiaMoi = ViewBag.item.Price * (1 - ViewBag.item.Promotion * 0.01);
-                        <p class="card-text price-color product__price-old">@ViewBag.item.Price .000₫</p>
-                        <p class="card-text price-color product__price-new">@GiaMoi.000₫</p>
+                        <p class="card-text price-color product__price-old">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
+                        <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}",GiaMoi)</p>
                     }
                     else
                     {
-                        <p class="card-text price-color product__price-new">@ViewBag.item.Price .000₫</p>
+            <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
                     }
                 }
             </div>

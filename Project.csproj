@@ -134,6 +134,7 @@
     <Content Include="assets\css\account.css" />
     <Content Include="assets\css\base.css" />
     <Content Include="assets\css\cart.css" />
+    <Content Include="assets\css\Error.css" />
     <Content Include="assets\css\login.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\news.css" />
@@ -2145,6 +2146,8 @@
     <Content Include="assets\img\logo\5.png" />
     <Content Include="assets\img\logo\8.png" />
     <Content Include="assets\img\logo\A.mp4" />
+    <Content Include="assets\img\logo\cart.png" />
+    <Content Include="assets\img\logo\empty_cart.png" />
     <Content Include="assets\img\logo\logomain.png" />
     <Content Include="assets\img\logo\main.png" />
     <Content Include="assets\img\product\addidas1.jpg" />
@@ -2386,6 +2389,7 @@
     <Content Include="assets\img\slideshow\Header_M21.png" />
     <Content Include="assets\img\slideshow\M-06-RUN-PUMA.jpg" />
     <Content Include="assets\img\slideshow\Unbenannt-1.jpg" />
+    <Content Include="assets\js\Cart.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\product.js" />
     <Content Include="assets\js\validator.js" />
@@ -2427,12 +2431,15 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.js" />
     <Content Include="Scripts\jquery-3.6.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -2441,7 +2448,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Filters\MyActionFilters.cs" />
@@ -2450,15 +2459,22 @@
     </Compile>
     <Compile Include="Helper\ConstantHelper.cs" />
     <Compile Include="Helper\SendMail.cs" />
-    <Compile Include="IdentityMigration\202211151147582_Init.cs" />
-    <Compile Include="IdentityMigration\202211151147582_Init.designer.cs">
-      <DependentUpon>202211151147582_Init.cs</DependentUpon>
+    <Compile Include="identityMigration\202211210700449_init.cs" />
+    <Compile Include="identityMigration\202211210700449_init.designer.cs">
+      <DependentUpon>202211210700449_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="IdentityMigration\Configuration.cs" />
+    <Compile Include="identityMigration\202211211519065_updateQuantity.cs" />
+    <Compile Include="identityMigration\202211211519065_updateQuantity.designer.cs">
+      <DependentUpon>202211211519065_updateQuantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\Configuration.cs" />
     <Compile Include="Identity\AppDBContext.cs" />
     <Compile Include="Identity\AppUser.cs" />
     <Compile Include="Identity\AppUserManager.cs" />
     <Compile Include="Identity\AppUserStore.cs" />
+    <Compile Include="Identity\Cart.cs" />
+    <Compile Include="Identity\Order.cs" />
+    <Compile Include="Identity\OrderDetail.cs" />
     <Compile Include="Migrations\202211090526588_InitialCreate.cs" />
     <Compile Include="Migrations\202211090526588_InitialCreate.designer.cs">
       <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>
@@ -2520,6 +2536,7 @@
     <Compile Include="Models\ProductType.cs" />
     <Compile Include="Models\PropertieProduct.cs" />
     <Compile Include="Models\ShopDBContext.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\Slide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2629,6 +2646,7 @@
     <Content Include="Views\Account\Regisster.cshtml" />
     <Content Include="Views\Account\LogIn.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\Cart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2636,10 +2654,18 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="IdentityMigration\202211151147582_Init.resx">
-      <DependentUpon>202211151147582_Init.cs</DependentUpon>
+    <Folder Include="Areas\Admin\Controllers\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Views\Errors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="identityMigration\202211210700449_init.resx">
+      <DependentUpon>202211210700449_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211211519065_updateQuantity.resx">
+      <DependentUpon>202211211519065_updateQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211090526588_InitialCreate.resx">
       <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>
