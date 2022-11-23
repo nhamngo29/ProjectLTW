@@ -96,44 +96,83 @@ namespace Project.Controllers
             AppUser curentUser = db.Users.Find(curentUserID);
             return View(curentUser);
         }
-        public ActionResult Cart()
+        public ActionResult ShowCount()
         {
             string curentUserID = User.Identity.GetUserId();
             List<Identity.Cart> Carts = db.Carts.Where(t => t.IdUser == curentUserID).ToList();
-            return View(Carts);
+            if (Carts!=null)
+            {
+                return Json(new {Count=Carts.Count()},JsonRequestBehavior.AllowGet);
+            }
+            return Json(new {Count = 0}, JsonRequestBehavior.AllowGet);
+        }    
+        public ActionResult Cart()
+        {
+            string curentUserID = User.Identity.GetUserId();
+            List<ShoppingCartItem> products=new List<ShoppingCartItem>();
+            
+            Product product = new Product();
+            List<Identity.Cart> Carts = db.Carts.Where(t => t.IdUser == curentUserID).ToList();
+            
+            foreach (var item in Carts)
+            {
+                ShoppingCartItem x = new ShoppingCartItem();
+                product = DB.Products.Find(item.IdProduct);
+                if (product.Promotion>0)
+                {
+                    product.Price = product.Price * (1 - product.Promotion * 0.01);
+                }
+                x.ProductId = product.ProductId;
+                x.Price =(double)product.Price;
+                x.Name =(string)product.Name;
+                x.img = product.ImgeMain;
+                x.Quantity = item.Quantity;
+                x.TotalPrice = x.Quantity * x.Price;
+                products.Add(x);
+            }
+            return View(products);
         }
         [HttpPost]
         public ActionResult AddToCart(string id, int Quantity)
         {
-            var code = new { Success = false, msg = "", code = -1 ,count=0};
-            var checkProduct = DB.Products.FirstOrDefault(x => x.ProductId == id);
-            if (checkProduct != null)
+            string curentUserID = User.Identity.GetUserId();
+            var code = new { Success = false, msg = "", code = -1, count = 0 };
+            var Cart = db.Carts.FirstOrDefault(x => x.IdUser == curentUserID &&x.IdProduct==id);
+            Cart Carts = new Cart();
+            Carts.IdProduct = id;
+            Carts.IdUser = curentUserID;
+            Carts.Quantity = Quantity;
+            if (Cart == null)
             {
-                ShoppingCart cart = (ShoppingCart)Session["Cart"];
-                
-                if (cart == null)
-                {
-                    cart=new ShoppingCart();
-                }
-                ShoppingCartItem item = new ShoppingCartItem
-                {
-                    ProductId = checkProduct.ProductId,
-                    Name = checkProduct.Name,
-                    Price = (double)checkProduct.Price,
-                    img = checkProduct.ImgeMain,
-                    Quantity = Quantity
-                };
-                item.Price = (double)checkProduct.Price;
-                if (checkProduct.Promotion > 0)
-                {
-                    item.Price = (double)(checkProduct.Price * (1 - checkProduct.Promotion * 0.01));
-                }
-                item.TotalPrice = (double)(item.Quantity * checkProduct.Price);
-                cart.AddToCart(item, Quantity);
-                Session["Cart"] = cart;
-                code=new { Success = true, msg = "Them san pham vao gio hang thanh cong", code = 1 ,count=cart.items.Count()}; 
+                db.Carts.Add(Carts);
+                db.SaveChanges();
+                code = new { Success = true, msg = "Them san pham vao gio hang thanh cong", code = 1, count = db.Carts.Count() };
             }
+            else
+            {
+                Quantity +=  1;
+                Cart.Quantity=Quantity;
+                db.SaveChanges();
+            }    
             return Json(code);
         }
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            string curentUserID = User.Identity.GetUserId();
+            var code = new { Success = false, msg = "", code = -1, count = 0 };
+            var Cart = db.Carts.Where(t=>t.IdUser==curentUserID);
+            if (Cart!=null)
+            {
+                var checkProducts = db.Carts.FirstOrDefault(x => x.IdProduct == id);
+                if (checkProducts!=null)
+                {
+                    db.Carts.Remove(checkProducts);
+                    db.SaveChanges();
+                    code = new { Success = true, msg = "", code = 1, count = db.Carts.Count() };
+                }    
+            }
+            return Json(code);
+        }    
     }
 }

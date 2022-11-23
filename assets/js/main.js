@@ -91,8 +91,11 @@ function hienthi(id, name){
 }
 
 function cong(id) {
-    var value = document.getElementById(`text_so_luong-${id}`).value
+    console.log(id);
+    alert(id);
+    var value = document.getElementById(`text_so_luong-${id}`).value;
     document.getElementById(`text_so_luong-${id}`).value = parseInt(value) + 1;
+    alert(value);
 }
 function tru(id) {
     var value = document.getElementById(`text_so_luong-${id}`).value

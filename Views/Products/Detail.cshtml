@@ -137,9 +137,8 @@
                         <input type="text" value="1" class="text-input" id="text_so_luong-2" onkeypress='validate(event)'>
                         <input type="button" value="+" class="control" onclick="cong(2)">
                     </div>
-                    <button type="button" class="add-cart ajax-add-to-cart" data-id="@Model.ProductId">Thêm vào giỏ</button>
 
-                    <button type="button" class="add-cart ajax-add-to-cart" onclick="fadeInModal()" data-id="@Model.ProductId">Thêm vào giỏ</button>
+                    <button type="button" class="add-cart ajax-add-to-cart" id="model-show" onclick="fadeInModal()"  data-id="@Model.ProductId">Thêm vào giỏ</button>
                 </div>
                 <div class="product__shopnow">
                     <button class="shopnow">Mua ngay</button>

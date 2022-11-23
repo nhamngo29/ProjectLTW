@@ -2467,6 +2467,10 @@
     <Compile Include="identityMigration\202211211519065_updateQuantity.designer.cs">
       <DependentUpon>202211211519065_updateQuantity.cs</DependentUpon>
     </Compile>
+    <Compile Include="identityMigration\202211230215167_update.cs" />
+    <Compile Include="identityMigration\202211230215167_update.designer.cs">
+      <DependentUpon>202211230215167_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="identityMigration\Configuration.cs" />
     <Compile Include="Identity\AppDBContext.cs" />
     <Compile Include="Identity\AppUser.cs" />
@@ -2666,6 +2670,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="identityMigration\202211211519065_updateQuantity.resx">
       <DependentUpon>202211211519065_updateQuantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211230215167_update.resx">
+      <DependentUpon>202211230215167_update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211090526588_InitialCreate.resx">
       <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>

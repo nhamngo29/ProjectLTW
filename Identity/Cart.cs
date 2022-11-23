@@ -11,6 +11,7 @@ namespace Project.Identity
     public class Cart
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(128)]
@@ -20,7 +21,6 @@ namespace Project.Identity
         public string IdProduct { get; set; }
         public int Quantity { get; set; }
         [ForeignKey("IdUser")]
-        
         public virtual AppUser AppUser { get; set; }
         [ForeignKey("IdProduct")]
         public virtual Product Product { get; set; }

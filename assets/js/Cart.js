@@ -31,6 +31,7 @@ function fadeout() {
 }
 setInterval(fadeOutModal, 7000);
 $(document).ready(function () {
+    ShowCount();
     $('body').on('click', '.ajax-add-to-cart', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
@@ -44,9 +45,32 @@ $(document).ready(function () {
             success: function (rs) {
                 if (rs.Success) {
                     $('.header__second__cart--notice').html(rs.count);
-                    
+                }
+            }
+        });
+    });
+    $('body').on('click', '.btnDelete', function (e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $.ajax({
+            url: '/Account/Delete',
+            type: 'POST',
+            data: { id: id },
+            success: function (rs) {
+                if (rs.Success) {
+                    $('.header__second__cart--notice').html(rs.Count);
+                    $('#trow-'+ id).remove();
                 }
             }
         });
     });
 });
+function ShowCount() {
+    $.ajax({
+        url: '/Account/ShowCount',
+        type: 'GET',
+        success: function (rs) {
+            $('.header__second__cart--notice').html(rs.Count);
+        }
+    });
+}
