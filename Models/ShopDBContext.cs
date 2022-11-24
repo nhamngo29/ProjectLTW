@@ -18,6 +18,5 @@ namespace Project.Models
         public DbSet<PropertieProduct> Properties { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Size> Sizes { get; set; }
-        
     }
 }

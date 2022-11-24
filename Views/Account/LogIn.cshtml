@@ -81,34 +81,37 @@
     </div>
 </div>
 <!-- end login form -->
-<script src="~/assets/js/validator.js"></script>
-<script>
-    Validator({
-        form: '#form-2',
-        formGroupSelector: '.form-group',
-        errorSelector: '.form-message',
-        rules: [
-            Validator.UserName('#UserName', 'Vui lòng nhập tên đăng nhập'),
-            Validator.isRequired('#password'),
-            Validator.minLength('#password', 6),
+@section script{
+    <script src="~/assets/js/validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-2',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.UserName('#UserName', 'Vui lòng nhập tên đăng nhập'),
+                Validator.isRequired('#password'),
+                Validator.minLength('#password', 6),
 
-        ],
-        onSubmit: function (data) {
-            // call api
-            console.log(data);
-        }
-    });
-</script>
-<script>
-    const pass_field = document.querySelector('#password');
-    const show_btn = document.querySelector('.fa-eye')
-    show_btn.addEventListener("click", function () {
-        if (pass_field.type === "password") {
-            pass_field.type = "text";
-            show_btn.classList.add("hide");
-        } else {
-            pass_field.type = "password";
-            show_btn.classList.remove("hide");
-        }
-    });
-</script>
+            ],
+            onSubmit: function (data) {
+                // call api
+                console.log(data);
+            }
+        });
+    </script>
+    <script>
+        const pass_field = document.querySelector('#password');
+        const show_btn = document.querySelector('.fa-eye')
+        show_btn.addEventListener("click", function () {
+            if (pass_field.type === "password") {
+                pass_field.type = "text";
+                show_btn.classList.add("hide");
+            } else {
+                pass_field.type = "password";
+                show_btn.classList.remove("hide");
+            }
+        });
+    </script>
+
+}

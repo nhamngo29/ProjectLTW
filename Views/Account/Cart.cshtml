@@ -38,17 +38,18 @@
                                                     <a href="/products/detail/@item.ProductId" class="cart-name"><h5>@item.Name</h5></a>
                                                 </div>
                                                 <div class="col-md-2 col-12" style="font-size: 16px;">
-                                                    <input type="text" name="DonGia" id="DonGia" value="@string.Format("{0:0,0 đ}",item.Price)" style="border:none;">
+                                                    <input type="text" name="DonGia" id="" value="@string.Format("{0:0,0 đ}",item.Price)" style="border:none;">
+                                                    <input type="text" id="price-@item.ProductId" value="@item.Price" style="border:none;" hidden>
                                                 </div>
                                                 <div class="col-md-3 col-12">
                                                     <div class="cart-quantity">
-                                                        <input type="button" value="-" class="control minus-btn" onclick="tru(@item.ProductId)">
+                                                        <input type="button" value="-" class="control" onclick="tru('@item.ProductId')">
                                                         <input type="text" value="@item.Quantity" class="text-input" id="text_so_luong-@item.ProductId" onkeypress='validate(event)'>
-                                                        <input type="button" value="+" class="control plus-btn" onclick="cong(@item.ProductId)">
+                                                        <input type="button" value="+" class="control" onclick="cong('@item.ProductId')">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 col-12 hidden-xs" style="font-size: 16px;">
-                                                    <input type="text" name="Gia" id="Gia" value="@string.Format("{0:0,0 đ}", item.TotalPrice)" style="border:none;">
+                                                    <input type="text" name="Gia" id="total-@item.ProductId" value="@string.Format("{0:0,0 VND}", item.TotalPrice)" style="border:none;">
                                                 </div>
                                             </div>
                                         </div>
@@ -73,7 +74,7 @@
                         <div class="cart-body-right">
                             <div class="cart-total">
                                 <label for="">Thành tiền:</label>
-                                <span class="total__price">1,415,000₫</span>
+                                <span class="total__price"><span id="total__Price" value="@ViewBag.TongTien">@string.Format("{0:0,0}", ViewBag.TongTien)</span>VND</span>
                             </div>
                             <div class="cart-buttons">
                                 <a style="display: block; text-align: center;" href="~/pay.html" class="chekout">THANH TOÁN</a>
@@ -87,6 +88,13 @@
 }
 else
 {
+    <div class="text-center">
+        <div class="text-center">
+            <img src="~/assets/img/logo/empty_cart.png" alt="Alternate Text" />
+            <p>không có sản phẩm nào trong giỏ hàng cua</p>
+        </div>
+    </div>
 }
-<script src="~/assets/js/Cart.js"></script> 
-<script src="~/assets/js/main.js"></script>
+@section script{
+    <script src="~/assets/js/Cart.js"></script>
+}

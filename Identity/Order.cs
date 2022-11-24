@@ -7,13 +7,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace Project.Identity
 {
-    public class UserCart
+    public class Order
     {
-        public int ID { get => ID; set { 
-                Random r = new Random();
-                ID= r.Next(-9999,9999);
-            } }
-        //[DefaultValue(DateTime.Now.ToString())]
+        [Key]
+        public int ID { get; set; }
         public DateTime? PurchaseDate { get; set; }//Ngày mua
         [Required]
         [DefaultValue(0)]
@@ -22,8 +19,10 @@ namespace Project.Identity
         [Display(Name = "Trạng thái")]
         [DefaultValue(0)]
         public int Status { get; set; } //--0 chưa xác định
-                                        //--1 Đang xác nhận
-                                        //--2 Đã giao
-                                        //--3 Đã hủy
+        [Column(TypeName = "nvarchar")]
+        [StringLength(128)]
+        public string IdUser { get; set; }
+        [ForeignKey("IdUser")]
+        public AppUser AppUser { get; set; }
     }
 }

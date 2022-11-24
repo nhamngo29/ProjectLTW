@@ -89,23 +89,32 @@ function hienthi(id, name){
     $(`.cong${id}`).toggleClass('hidden');
     $(`.tru${id}`).toggleClass('hidden');
 }
-
+function txtPrice(id,count,price) {
+    var a = parseFloat(count * price);
+    document.getElementById(`total-${id}`).value = a.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+    TotalPrice(price);
+}
 function cong(id) {
     console.log(id);
-    alert(id);
-    var value = document.getElementById(`text_so_luong-${id}`).value;
-    document.getElementById(`text_so_luong-${id}`).value = parseInt(value) + 1;
-    alert(value);
+    var value = parseInt(document.getElementById(`text_so_luong-${id}`).value)+1;
+    document.getElementById(`text_so_luong-${id}`).value = value;
+    var price = parseFloat(document.getElementById(`price-${id}`).value);
+    txtPrice(id, value, price);
+    TotalPrice(price)
 }
 function tru(id) {
-    var value = document.getElementById(`text_so_luong-${id}`).value
-    if(parseInt(value) > 1)
+    var value = parseInt(document.getElementById(`text_so_luong-${id}`).value)-1
+    if(parseInt(value) >= 1)
     {
-        document.getElementById(`text_so_luong-${id}`).value = parseInt(value) - 1;
+        document.getElementById(`text_so_luong-${id}`).value = parseInt(value);
+        var price = parseFloat(document.getElementById(`price-${id}`).value);
+        txtPrice(id, value, price);
     }
-    
 }
-
+function TotalPrice(price) {
+    var a = parseFloat(document.getElementById(`total__Price`).data);
+    alert(a);
+}
 
     function validate(evt) {
   var theEvent = evt || window.event;

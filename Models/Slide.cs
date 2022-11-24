@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 namespace Project.Models
 {
     public class Slide
@@ -12,6 +13,8 @@ namespace Project.Models
         public int Id { get; set; }
         [Column(TypeName ="nvarchar")]
         public string Image { get; set; }
+        [DefaultValue(false)]
+        public Boolean Active { get; set; }
         [Column(TypeName = "varchar")]
         [StringLength(40)]
         public string ProductId { get; set; }//Mã sản phẩm

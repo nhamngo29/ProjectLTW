@@ -93,7 +93,10 @@ namespace Project.Controllers
         public ActionResult Profile()
         {
             string curentUserID = User.Identity.GetUserId();
-            AppUser curentUser = db.Users.Find(curentUserID);
+            AppUser curentUser = db.Users.Where(t=>t.Id== curentUserID).FirstOrDefault();
+            Product product = new Product();
+            List<Cart> Carts = db.Carts.Where(t=>t.IdUser==curentUserID).ToList();
+            
             return View(curentUser);
         }
         public ActionResult ShowCount()
@@ -113,7 +116,7 @@ namespace Project.Controllers
             
             Product product = new Product();
             List<Identity.Cart> Carts = db.Carts.Where(t => t.IdUser == curentUserID).ToList();
-            
+            double TongTien = 0;
             foreach (var item in Carts)
             {
                 ShoppingCartItem x = new ShoppingCartItem();
@@ -129,7 +132,9 @@ namespace Project.Controllers
                 x.Quantity = item.Quantity;
                 x.TotalPrice = x.Quantity * x.Price;
                 products.Add(x);
+                TongTien += x.TotalPrice;
             }
+            ViewBag.TongTien = TongTien;
             return View(products);
         }
         [HttpPost]
@@ -156,6 +161,10 @@ namespace Project.Controllers
             }    
             return Json(code);
         }
+        public ActionResult Partital_Item_Cart()
+        {
+            return PartialView();
+        }    
         [HttpPost]
         public ActionResult Delete(string id)
         {

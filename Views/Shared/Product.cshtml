@@ -8,7 +8,7 @@
                 <a href="~/pay.html" class="btn-add-to-cart" title="Mua ngay">
                     <i class="fas fa-cart-plus"></i>
                 </a>
-                <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct">
+                <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct" onclick="modal('@ViewBag.item.ProductId','@ViewBag.item.Name',@ViewBag.item.Promotion,@ViewBag.item.Price)">
                     <i class="fas fa-search"></i>
                 </a>
             </form>
@@ -66,13 +66,6 @@
 <div class="modal" id="myModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
-
-            <!-- Modal Header -->
-            <!-- <div class="modal-header">
-              <h4 class="modal-title">Giày ADIDAS</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div> -->
-            <!-- Modal body -->
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
@@ -97,7 +90,7 @@
                     <div class="col-6">
                         <div class="info-product">
                             <h3 class="product-name">
-                                <a href="" title="">Giày ADIDAS</a>
+                                <a href="" title="" id="name-modal-product"></a>
                             </h3>
                             <div class="status-product">
                                 Trạng thái: <b>Còn hàng</b>
@@ -107,7 +100,7 @@
                             </div>
                             <div class="price-product">
                                 <div class="special-price">
-                                    <span>540.000đ</span>
+                                    
                                 </div>
                                 <div class="price-old">
                                     Giá gốc:
@@ -193,3 +186,4 @@
     </div>
 </div>
 <!-- end modal -->
+<script src="~/assets/js/modal.js"></script>

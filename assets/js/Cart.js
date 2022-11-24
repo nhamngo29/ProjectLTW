@@ -58,7 +58,7 @@ $(document).ready(function () {
             data: { id: id },
             success: function (rs) {
                 if (rs.Success) {
-                    $('.header__second__cart--notice').html(rs.Count);
+                    
                     $('#trow-'+ id).remove();
                 }
             }
