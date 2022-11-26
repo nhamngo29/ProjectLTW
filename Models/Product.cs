@@ -5,6 +5,8 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel;
+using System.Web.Mvc;
+
 namespace Project.Models
 {
     public class Product
@@ -24,7 +26,7 @@ namespace Project.Models
         [Display(Name="Phần tram giảm")]
         public Nullable<float> Promotion { get; set; }//Phần trăm giảm của sản phẩm
         [Display(Name="Bao gồm thuế")]
-        public Nullable<bool> IncludeVAT { get; set; }//Thuế
+        public bool IncludeVAT { get; set; }//Thuế
         [Display(Name="Số lượng")]
         public Nullable<int> Quantity { get; set; }//Số lượng
         public Nullable<bool> Featured { get; set; }//sản phẩm nổi bật
@@ -42,5 +44,18 @@ namespace Project.Models
         public virtual Brand Brand { get; set; }
         [ForeignKey("ProductTypeID")]
         public virtual ProductType ProductType { get; set; }//Khóa ngoại của bảng ProductType
+        [DefaultValue(false)]
+        public bool IsHot { get; set; }
+        [DefaultValue(true)]
+        public bool IsActive { get; set; }
+        [StringLength(250)]
+        public string SeoTitle { get; set; }
+        [StringLength(500)]
+        public string SeoDescription { get; set; }
+        [StringLength(250)]
+        public string SeoKeywords { get; set; }
+        [AllowHtml]
+        public string Detail { get; set; }
+        public string Description { get; set; }
     }
 }

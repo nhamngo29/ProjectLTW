@@ -1,7 +1,195 @@
-﻿
+﻿@model List<Project.Models.Slide>
+
 @{
     ViewBag.Title = "Index";
 }
+@{
+    ViewBag.Title = "Index";
+}
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/Content/Clients/index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/Productypes/Index" class="nav-link">Silder</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="text-uppercase">Quản lý Slider</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/Content/Clients/index.htm">Home</a></li>
+                    <li class="breadcrumb-item active">Slider</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
 
-<h2>Index</h2>
+<!-- Main content -->
+<section class="content">
 
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-uppercase">Danh sách loại sản phẩm</h3>
+
+            <div class="card-tools">
+                <a href="/Admin/Sliders/Create" class="btn btn-primary">Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="text-center">
+                    <tr>
+                        <th>ID Slide</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Hình ảnh</th>
+                        <th>Active</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        using (Html.BeginForm("Edit", "Slides", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            for (int i = 0; i < Model.Count(); i++)
+                            {
+                                var strCheck = Model[i].Active ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                                <tr id="trow-@Model[i].Id" class="text-center">
+                                    <td>
+                                        @Html.TextBox("Slides[" + i + "].Id", Model[i].Id, new { @readonly = "readonly" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBox("Slides[" + i + "].Name", Model[i].ProductId, htmlAttributes: new { @class = "form-control" })
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" onclick="ImgModals(`@Model[i].Image`)">Hình ảnh</a>
+                                    </td>
+                                    <td>
+                                        <a href='#' data-id="@Model[i].Id" class="btnActive text-center">@Html.Raw(strCheck)</a>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="@Model[i].Id" onclick="GetId(`@Model[i].ProductId`,@Model[i].Id)">
+                                            Xóa
+                                        </button>
+                                    </td>
+                                </tr>
+                                <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalToggleLabel">Hình ảnh sliders</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" id="ImgModals">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Changes imge</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <tr colspan="2">
+                                <td> <input type="submit" class="btn btn-primary" value="Lưu"></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4"> Không có bản ghi nào</td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
+                <a id="id-Modal" hidden></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ImgModals(Img) {
+        document.getElementById('ImgModals').innerHTML = `<img src="/assets/img/slideshow/${Img}" alt="Alternate Text" width="770px"/>`;
+    }
+</script>
+@section Ajax{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/Sliders/Remove',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+            $('body').on('click', '.btnActive', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/Sliders/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isAcive) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            }
+                            else {
+                                btn.html("<i class='fas fa-times text-danger'></i>");
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

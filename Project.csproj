@@ -81,6 +81,12 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -4310,6 +4316,7 @@
     <Content Include="Content\Clients\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -4415,6 +4422,10 @@
     <Content Include="Areas\Admin\Views\Brands\Create.cshtml" />
     <Content Include="Areas\Admin\Views\ProductTypes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Sliders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
@@ -4442,7 +4453,9 @@
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Filters\AdminAuthorrization.cs" />
     <Compile Include="Filters\MyActionFilters.cs" />
+    <Compile Include="Filters\MyAuthenFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4467,6 +4480,22 @@
     <Compile Include="identityMigration\202211231604368_update1.cs" />
     <Compile Include="identityMigration\202211231604368_update1.designer.cs">
       <DependentUpon>202211231604368_update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211261330510_a.cs" />
+    <Compile Include="identityMigration\202211261330510_a.designer.cs">
+      <DependentUpon>202211261330510_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211261749545_a1.cs" />
+    <Compile Include="identityMigration\202211261749545_a1.designer.cs">
+      <DependentUpon>202211261749545_a1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211261800175_update2.cs" />
+    <Compile Include="identityMigration\202211261800175_update2.designer.cs">
+      <DependentUpon>202211261800175_update2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211261859174_update3.cs" />
+    <Compile Include="identityMigration\202211261859174_update3.designer.cs">
+      <DependentUpon>202211261859174_update3.cs</DependentUpon>
     </Compile>
     <Compile Include="identityMigration\Configuration.cs" />
     <Compile Include="Identity\AppDBContext.cs" />
@@ -4535,6 +4564,30 @@
     <Compile Include="Migrations\202211241256340_addActiveForSlide.cs" />
     <Compile Include="Migrations\202211241256340_addActiveForSlide.designer.cs">
       <DependentUpon>202211241256340_addActiveForSlide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261245341_updateproducts.cs" />
+    <Compile Include="Migrations\202211261245341_updateproducts.designer.cs">
+      <DependentUpon>202211261245341_updateproducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261250581_updateproducts1.cs" />
+    <Compile Include="Migrations\202211261250581_updateproducts1.designer.cs">
+      <DependentUpon>202211261250581_updateproducts1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261310426_update4.cs" />
+    <Compile Include="Migrations\202211261310426_update4.designer.cs">
+      <DependentUpon>202211261310426_update4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261746549_update5.cs" />
+    <Compile Include="Migrations\202211261746549_update5.designer.cs">
+      <DependentUpon>202211261746549_update5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261757297_update6.cs" />
+    <Compile Include="Migrations\202211261757297_update6.designer.cs">
+      <DependentUpon>202211261757297_update6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211261900436_update7.cs" />
+    <Compile Include="Migrations\202211261900436_update7.designer.cs">
+      <DependentUpon>202211261900436_update7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -4665,7 +4718,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Products\" />
     <Folder Include="Views\Errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -4683,6 +4735,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="identityMigration\202211231604368_update1.resx">
       <DependentUpon>202211231604368_update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211261330510_a.resx">
+      <DependentUpon>202211261330510_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211261749545_a1.resx">
+      <DependentUpon>202211261749545_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211261800175_update2.resx">
+      <DependentUpon>202211261800175_update2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211261859174_update3.resx">
+      <DependentUpon>202211261859174_update3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211090526588_InitialCreate.resx">
       <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>
@@ -4728,6 +4792,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211241256340_addActiveForSlide.resx">
       <DependentUpon>202211241256340_addActiveForSlide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261245341_updateproducts.resx">
+      <DependentUpon>202211261245341_updateproducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261250581_updateproducts1.resx">
+      <DependentUpon>202211261250581_updateproducts1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261310426_update4.resx">
+      <DependentUpon>202211261310426_update4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261746549_update5.resx">
+      <DependentUpon>202211261746549_update5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261757297_update6.resx">
+      <DependentUpon>202211261757297_update6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211261900436_update7.resx">
+      <DependentUpon>202211261900436_update7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

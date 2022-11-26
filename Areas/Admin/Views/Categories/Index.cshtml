@@ -123,3 +123,23 @@
         </div>
     </div>
 </div>
+@section Ajax{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/Categories/Remove',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -9,6 +9,7 @@ using System.Web.Helpers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Project.Models;
+using Project.Filters;
 namespace Project.Controllers
 {
     public class AccountController : Controller
@@ -84,12 +85,14 @@ namespace Project.Controllers
             }
 
         }
+        [MyAuthenFilter]
         public ActionResult LogOut()
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;
             authenManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+        [MyAuthenFilter]
         public ActionResult Profile()
         {
             string curentUserID = User.Identity.GetUserId();
@@ -99,6 +102,7 @@ namespace Project.Controllers
             
             return View(curentUser);
         }
+        [MyAuthenFilter]
         public ActionResult ShowCount()
         {
             string curentUserID = User.Identity.GetUserId();
@@ -108,7 +112,8 @@ namespace Project.Controllers
                 return Json(new {Count=Carts.Count()},JsonRequestBehavior.AllowGet);
             }
             return Json(new {Count = 0}, JsonRequestBehavior.AllowGet);
-        }    
+        }
+        [MyAuthenFilter]
         public ActionResult Cart()
         {
             string curentUserID = User.Identity.GetUserId();
@@ -138,6 +143,7 @@ namespace Project.Controllers
             return View(products);
         }
         [HttpPost]
+        [MyAuthenFilter]
         public ActionResult AddToCart(string id, int Quantity)
         {
             string curentUserID = User.Identity.GetUserId();
@@ -161,11 +167,13 @@ namespace Project.Controllers
             }    
             return Json(code);
         }
+
         public ActionResult Partital_Item_Cart()
         {
             return PartialView();
         }    
         [HttpPost]
+        [MyAuthenFilter]
         public ActionResult Delete(string id)
         {
             string curentUserID = User.Identity.GetUserId();

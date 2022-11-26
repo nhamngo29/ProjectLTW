@@ -45,7 +45,7 @@
             <h3 class="card-title text-uppercase">Danh sách loại sản phẩm</h3>
 
             <div class="card-tools">
-                <a href="/Admin/Productypes/Create" class="btn btn-primary">Thêm mới</a>
+                <a href="/Admin/Producttypes/Create" class="btn btn-primary">Thêm mới</a>
             </div>
         </div>
         <div class="card-body">
@@ -61,20 +61,20 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        using (Html.BeginForm("Edit", "Brands", FormMethod.Post))
+                        using (Html.BeginForm("Edit", "ProductTypes", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
                             for (int i = 0; i < Model.Count(); i++)
                             {
                                 <tr id="trow-@Model[i].Id">
                                     <td>
-                                        @Html.TextBox("Brands[" + i + "].Id", Model[i].Id, new { @readonly = "readonly" })
+                                        @Html.TextBox("ProductTypes[" + i + "].Id", Model[i].Id, new { @readonly = "readonly" })
                                     </td>
                                     <td>
-                                        @Html.TextBox("Brands[" + i + "].Name", Model[i].Name, htmlAttributes: new { @class = "form-control" })
+                                        @Html.TextBox("ProductTypes[" + i + "].Name", Model[i].Name, htmlAttributes: new { @class = "form-control" })
                                     </td>
                                     <td>
-                                        @Html.DropDownList("Brands[" + i + "].Category.Name", new SelectList(ViewBag.Categories, "Id", "Name"),Model[i].Category.Name.ToString(), htmlAttributes: new { @class = "form-control" ,@value= Model[i].Category.Name})
+                                        @Html.DropDownList("ProductTypes[" + i + "].CategoryID", new SelectList(ViewBag.Categories), Model[i].Category.Name.ToString(), htmlAttributes: new { @class = "form-control", Value = Model[i].CategoryID })
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="@Model[i].Id" onclick="GetId(`@Model[i].Name`,@Model[i].Id)">
@@ -117,13 +117,34 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Bạn có chắc chắn xóa danh mục này không <span id="Name-Modal" class="text-bold"></span>
+                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
                 <a id="id-Modal" hidden></a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary Ajax-delete-category" data-bs-dismiss="modal">Xóa</button>
+                <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
             </div>
         </div>
     </div>
 </div>
+@section Ajax{
+    <script>
+
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/ProductTypes/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

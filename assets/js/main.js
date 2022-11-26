@@ -113,7 +113,6 @@ function tru(id) {
 }
 function TotalPrice(price) {
     var a = parseFloat(document.getElementById(`total__Price`).data);
-    alert(a);
 }
 
     function validate(evt) {

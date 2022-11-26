@@ -9,6 +9,7 @@ namespace Project.Filters
     public class MyActionFilters : FilterAttribute, IActionFilter
     {
         ShopDBContext DB=new ShopDBContext();
+
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
             

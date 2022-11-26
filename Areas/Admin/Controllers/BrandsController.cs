@@ -4,8 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Project.Models;
+using Project.Filters;
 namespace Project.Areas.Admin.Controllers
 {
+    [MyAuthenFilter]
+    [AdminAuthorrization]
     public class BrandsController : Controller
     {
         // GET: Admin/Brands

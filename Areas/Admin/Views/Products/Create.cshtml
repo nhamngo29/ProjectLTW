@@ -1,0 +1,266 @@
+﻿@model Project.Models.Product
+@{
+    ViewBag.Title = "Thêm mới sản phẩm";
+}
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/Products" class="nav-link">Sản phẩm</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm mới sản phẩm</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                @using (Html.BeginForm("Create", "Products", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="card-header p-2">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Thông tin chung</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Hình ảnh</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">SEO</a></li>
+                        </ul>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="active tab-pane" id="activity">
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.ProductId)
+                                    @Html.TextBoxFor(t => t.ProductId, new { @class = "form-control", placeholder = "Nhập id sản phẩm" })
+                                    @Html.ValidationMessageFor(x => x.ProductId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.Name)
+                                    @Html.TextBoxFor(t => t.Name, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+                                    @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.Detail)
+                                    @Html.TextAreaFor(t => t.Detail, new { @class = "form-control", placeholder = "Nhập chi tiết sản phẩm sản phẩm" })
+                                    @Html.ValidationMessageFor(x => x.Detail, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.Description)
+                                    @Html.TextAreaFor(t => t.Description, new { @class = "form-control", placeholder = "Nhập mô tả sản phẩm sản phẩm" })
+                                    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.Price)
+                                            @Html.TextBoxFor(t => t.Price, new { @class = "form-control", placeholder = "Nhập giá sản phẩm", @type = "number", min = 0 })
+                                            @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.Quantity)
+                                            @Html.TextBoxFor(t => t.Quantity, new { @class = "form-control", placeholder = "Nhập số lượng sản phẩm", @type = "number", max = 100, min = 0 })
+                                            @Html.ValidationMessageFor(x => x.Quantity, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.Promotion)
+                                            @Html.TextBoxFor(t => t.Promotion, new { @class = "form-control", placeholder = "Nhập số phần trắm giảm giá sản phẩm", @type = "number", max = 100, min = 0 })
+                                            @Html.ValidationMessageFor(x => x.Promotion, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.Evaluate)
+                                            @Html.TextBoxFor(t => t.Evaluate, new { @class = "form-control", placeholder = "Nhập số sao đánh giá sản phẩm", @type = "number", max = 5, min = 0 })
+                                            @Html.ValidationMessageFor(x => x.Evaluate, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.TotalSold)
+                                            @Html.TextBoxFor(t => t.TotalSold, new { @class = "form-control", placeholder = "Nhập số sản phẩm đã bán", @type = "number", min = 0 })
+                                            @Html.ValidationMessageFor(x => x.TotalSold, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-2">
+                                            @Html.LabelFor(t => t.DateCreate)
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                @Html.TextBoxFor(t => t.DateCreate, new { type = "text", @class = "form-control datetimepicker-input", placeholder = "Ngày tạo sản phẩm" })
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(x => x.IsActive, new { @class = "custom-control-input", @checked = "checked" })
+                                                @Html.LabelFor(t => t.IsActive, "Active sản phẩm ?", htmlAttributes: new { @class = "custom-control-label" })
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(x => x.IsHot, new { @class = "custom-control-input", @checked = "checked" })
+                                                @Html.LabelFor(t => t.IsHot, "Sản phẩm HOT ?", htmlAttributes: new { @class = "custom-control-label" })
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="custom-control custom-checkbox">
+                                                @Html.CheckBoxFor(x => x.IncludeVAT, new { @class = "custom-control-input", @checked = "checked" })
+                                                @Html.LabelFor(t => t.IncludeVAT, "Đã bao gồm thuế ?", htmlAttributes: new { @class = "custom-control-label" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            @Html.LabelFor(t => t.ProductTypeID)
+                                            @Html.DropDownListFor(t => t.ProductTypeID, new SelectList(ViewBag.ProductTypes, "Id", "Name"), "Vui lòng chọn loại sản phẩm...", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.ProductTypeID, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-6">
+                                            @Html.LabelFor(t => t.BrandID)
+                                            @Html.DropDownListFor(t => t.BrandID, new SelectList(ViewBag.Brands, "Id", "Name"), "Vui lòng chọn loại sản phẩm...", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.ProductTypeID, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="timeline">
+                                <!-- The timeline -->
+                                <div class="col-md-12">
+                                    <input type="button" id="IdTaiAnh" onclick="BrowseServer()" value="Tai Anh" />
+                                </div>
+                                <div class="col-md-12">
+                                    <table class="table table-hover" id="tdAnhSanPham">
+                                        <thead>
+                                            <tr>
+                                                <th>Ảnh</th>
+                                                <th>Ảnh Đại Diện</th>
+                                                <th>Thao Tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.tab-pane -->
+
+                            <div class="tab-pane" id="settings">
+                                <form class="form-horizontal">
+                                    <div class="form-group row">
+                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- /.tab-pane -->
+                        </div>
+                        <!-- /.tab-content -->
+                    </div><!-- /.card-body -->
+
+
+                }
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+@section  scripts{
+    <script>
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+
+    </script>
+}
