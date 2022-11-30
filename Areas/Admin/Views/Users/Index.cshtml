@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<Project.Identity.AppUser>
+@using PagedList.Mvc
+@using PagedList;
+@{
+    ViewBag.Title = "Quản lý user";
+}
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/Content/Clients/index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/User/Index" class="nav-link">User</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="text-uppercase">Quản lý user</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/Content/Clients/index.htm">Home</a></li>
+                    <li class="breadcrumb-item active">User</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-uppercase">Danh sách user</h3>
+            <div class="card-tools">
+                <a href="/Admin/brands/Create" class="btn btn-primary">Thêm mới</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th>Full name</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Active</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr id="trow-@item.Id">
+                                <td>@item.FullName</td>
+                                <td>@item.UserName</td>
+                                <td>@item.Email</td>
+                                <td>@Html.CheckBox("item.IsActive", item.IsActive, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = item.IsActive })</td>
+                                <td>
+                                    <a href="/admin/users/Detail/@item.Id" class="btn btn-primary">Detail</a> |
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4"> Không có bản ghi nào</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-6"></div>
+                <div class="col-6" style="text-align:right;">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
+                <a id="id-Modal" hidden></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Ajax{
+    <script>
+
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/ProductTypes/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

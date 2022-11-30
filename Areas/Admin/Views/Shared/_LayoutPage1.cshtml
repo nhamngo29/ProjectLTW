@@ -351,8 +351,11 @@
         document.querySelector("#actions .cancel").onclick = function () {
             myDropzone.removeAllFiles(true)
         }
-              // DropzoneJS Demo Code End
+                      // DropzoneJS Demo Code End
     </script>
-    @RenderSection("Ajax",required:false)
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    @RenderSection("Ajax", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

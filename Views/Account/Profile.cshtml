@@ -130,33 +130,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#1</td>
-                                        <td>05-06-2021</td>
-                                        <td>3.000.000 VNĐ</td>
-                                        <td>
-                                            <span class="btn-stt blue">Đang xác nhận</span>
-                                        </td>
-                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#2</td>
-                                        <td>05-06-2021</td>
-                                        <td>3.000.000 VNĐ</td>
-                                        <td>
-                                            <span class="btn-stt green">Đã giao</span>
-                                        </td>
-                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>#3</td>
-                                        <td>05-06-2021</td>
-                                        <td>3.000.000 VNĐ</td>
-                                        <td>
-                                            <span class="btn-stt red">Đã hủy</span>
-                                        </td>
-                                        <td><a href="" data-toggle="modal" data-target="#myModal">Xem</a></td>
-                                    </tr>
+                                    @foreach (var item in ViewBag.Orders)
+                                    {
+                                        <tr>
+                                            <td>@item.Id</td>
+                                            <td>@item.DateBooking</td>
+                                            <td>@string.Format("{0:0,0 đ}",item.Total)</td>
+                                            <td>
+                                                @switch (item.Status)
+                                                {
+                                                    case 0:
+                                                        <span class="btn-stt blue">Đang xác nhận</span>
+                                                        break;
+                                                    case 1:
+                                                        <span class="btn-stt yellow">Đang giao</span>
+                                                        break;
+                                                    case 2:
+                                                        <span class="btn-stt green">Đã giao</span>
+                                                        break;
+                                                    default:
+                                                        <span class="btn-stt red">Đã hủy</span>
+                                                        break;
+                                                }
+                                            </td>
+                                            <td><a href="/Orders/OrderDetail/@item.Id" data-toggle="modal" data-target="#myModal">Xem</a></td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

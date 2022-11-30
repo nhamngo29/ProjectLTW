@@ -8,7 +8,7 @@
                 <a href="~/pay.html" class="btn-add-to-cart" title="Mua ngay">
                     <i class="fas fa-cart-plus"></i>
                 </a>
-                <a data-toggle="modal" data-target="#myModal" class="quickview" title="Xem nhanh" id="QuickViewProduct" onclick="modal('@ViewBag.item.ProductId','@ViewBag.item.Name',@ViewBag.item.Promotion,@ViewBag.item.Price)">
+                <a data-toggle="modal" data-target="#myModal-@ViewBag.item.ProductId" class="quickview" title="Xem nhanh" id="QuickViewProduct" onclick="modal('@ViewBag.item.ProductId','@ViewBag.item.Name',@ViewBag.item.Promotion,@ViewBag.item.Price)">
                     <i class="fas fa-search"></i>
                 </a>
             </form>
@@ -23,11 +23,11 @@
                     {
                         double GiaMoi = ViewBag.item.Price * (1 - ViewBag.item.Promotion * 0.01);
                         <p class="card-text price-color product__price-old">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
-                        <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}",GiaMoi)</p>
+                        <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}", GiaMoi)</p>
                     }
                     else
                     {
-            <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
+                        <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
                     }
                 }
             </div>
@@ -63,59 +63,61 @@
 </a>
 <!-- end modal -->
 <!-- The Modal -->
-<div class="modal" id="myModal">
+<div class="modal" id="myModal-@ViewBag.item.ProductId">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-body">
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-2 main-img-2">
-                            <img src="./assets/img/product/ars1.jpg" alt="" id="img-main" xoriginal="./assets/img/product/ars1.jpg">
+                            <img src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="" id="img-main" xoriginal="./assets/img/product/ars1.jpg">
                         </div>
                         <ul class="all-img-2">
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars1.jpg" alt="" onclick="changeImg('one')" id="one">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars2.jpg" alt="" onclick="changeImg('two')" id="two">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars3.jpg" alt="" onclick="changeImg('three')" id="three">
-                            </li>
-                            <li class="img-item-2">
-                                <img src="./assets/img/product/ars4.jpg" alt="" onclick="changeImg('four')" id="four">
-                            </li>
+                            @for (int i = 2; i <= 5; i++)
+                                    {
+                                        string a = "-0"+i+".png";
+                                   <li class="img-item-2">
+                                        <img src="./assets/img/product/@ViewBag.item.ProductId@a" alt="" onclick="changeImg(@i)" id="@i">
+                                    </li>
+                            }
                         </ul>
                     </div>
                     <div class="col-6">
                         <div class="info-product">
                             <h3 class="product-name">
-                                <a href="" title="" id="name-modal-product"></a>
+                                <a href="" title="">@ViewBag.item.Name</a>
                             </h3>
                             <div class="status-product">
-                                Trạng thái: <b>Còn hàng</b>
+                                Trạng thái: @if (true)
+                                {
+
+                                }
                             </div>
                             <div class="infor-oder">
-                                Loại sản phẩm: <b>Giày dép</b>
+                                Loại sản phẩm: <b>@ViewBag.item.ProductType.Name</b>
                             </div>
                             <div class="price-product">
                                 <div class="special-price">
-                                    
+                                    @if (ViewBag.item.Promotion > 0)
+                                    {
+
+                                        double GiaMoi = ViewBag.item.Price * (1 - ViewBag.item.Promotion * 0.01);
+                                        <p>@string.Format("{0:0,0 đ}", GiaMoi)</p>
+                                        <div class="price-old">
+                                            Giá gốc:
+                                            <del>@string.Format("{0:0,0 đ}", ViewBag.item.Price)</del>
+                                            <span class="discount">(-@ViewBag.item.Promotion%)</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p class="card-text price-color product__price-new">@string.Format("{0:0,0 đ}", ViewBag.item.Price)</p>
+                                    }
                                 </div>
-                                <div class="price-old">
-                                    Giá gốc:
-                                    <del>650.000đ</del>
-                                    <span class="discount">(-20%)</span>
-                                </div>
+
                             </div>
                             <div class="product-description">
-                                Đầu tháng /2021, Nike chính thức trình
-                                làng thế hệ tiếp theo của dòng giày đá bóng huyền thoại
-                                thuộc nhà Swoosh là Tiempo Legend 9. Được mệnh danh là
-                                thế hệ nhẹ nhất từ trước đến nay của dòng giày đá bóng Tiempo,
-                                Legend 9 đã có những thay đổi đáng kể
-                                về mặt thiết kế lẫn công nghệ nhằm giúp người chơi có thể tự
-                                tin và phát huy tối đa khả năng khi chơi bóng.
+
                             </div>
 
                             <div class="product__color d-flex" style="align-items: center;">
@@ -186,4 +188,10 @@
     </div>
 </div>
 <!-- end modal -->
-<script src="~/assets/js/modal.js"></script>
+
+@section script
+{
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/assets/js/Cart.js"></script>
+    <script src="~/assets/js/modal.js"></script>
+}

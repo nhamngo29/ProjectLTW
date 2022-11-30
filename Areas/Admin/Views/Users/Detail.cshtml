@@ -1,0 +1,143 @@
+﻿@model Project.Identity.AppUser
+@{
+    ViewBag.Title = "Detail";
+}
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/home/index" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/User/Index" class="nav-link">User</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="text-uppercase">Quản lý user</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/Content/Clients/index.htm">Home</a></li>
+                    <li class="breadcrumb-item active">User</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-uppercase">Chi tiết user</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { }))
+                {
+                    @Html.TextBoxFor(t=>t.Id,htmlAttributes:new {@type="Hidden",@value=Model.Id})
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
+                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.UserName)
+                        @Html.TextBoxFor(t => t.UserName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm", @readonly = "readonly" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.FullName)
+                        @Html.TextBoxFor(t => t.FullName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.Email)
+                        @Html.TextBoxFor(t => t.Email, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên Email" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.Address)
+                        @Html.TextBoxFor(t => t.Address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.City)
+                        @Html.TextBoxFor(t => t.City, htmlAttributes: new { @class = "form-control", placeholder = "Địa chỉ" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.BirthDay)
+                        @Html.TextBoxFor(t => t.BirthDay, htmlAttributes: new { @class = "form-control", placeholder = "Sinh nhật", @type = "Date" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.PhoneNumber)
+                        @Html.TextBoxFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Số điện thoại", @type = "number" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.PhoneNumber)
+                        @Html.TextBoxFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Số điện thoại" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.IsActive)
+                        @Html.CheckBoxFor(t => t.IsActive, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = Model.IsActive })
+                    </div>
+                    
+                    <a class="btn btn-danger" href="/admin/Users" onclick="stepper.previous()">Quay lại</a>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+                }
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
+                <a id="id-Modal" hidden></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Ajax{
+    <script>
+
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/ProductTypes/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+

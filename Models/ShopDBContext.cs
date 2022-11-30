@@ -10,7 +10,6 @@ namespace Project.Models
     {
         public ShopDBContext() : base("MyConnectionString") { }
         public DbSet<Brand> Brands { get; set; }
-        public DbSet<Form> Form { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ImgeProduct> Imges { get; set; }

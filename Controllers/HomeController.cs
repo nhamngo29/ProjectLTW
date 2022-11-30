@@ -12,7 +12,7 @@ namespace Project.Controllers
         ShopDBContext DB=new ShopDBContext();
         public ActionResult Index()
         {
-            List<Slide> Slides=DB.Slides.Where(t=>t.Active==false).ToList();
+            List<Slide> Slides=DB.Slides.Where(t=>t.Active==true).ToList();
             ViewBag.Slides=Slides;
             ViewBag.Cout = Slides.Count();
             List<Product> Products=DB.Products.ToList();

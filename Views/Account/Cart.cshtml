@@ -4,7 +4,7 @@
     ViewBag.Title = "Cart";
 }
 <link rel="stylesheet" href="~/assets/css/cart.css">
-@if (Model != null)
+@if (Model != null &&Model.Any())
 {
     <div class="cart">
         <div class="container">
@@ -74,10 +74,12 @@
                         <div class="cart-body-right">
                             <div class="cart-total">
                                 <label for="">Thành tiền:</label>
-                                <span class="total__price"><span id="total__Price" value="@ViewBag.TongTien">@string.Format("{0:0,0}", ViewBag.TongTien)</span>VND</span>
+                                <span class="total__price"><span id="total__Price" value="@ViewBag.TongTien">@string.Format("{0:0,0 VND}", ViewBag.TongTien)</span></span>
+                                @*<a hidden id="total-price">@ViewBag.TongTien</a>*@
+                                <input type="hidden" id="total-price" value="@ViewBag.TongTien"/>
                             </div>
                             <div class="cart-buttons">
-                                <a style="display: block; text-align: center;" href="~/pay.html" class="chekout">THANH TOÁN</a>
+                                <a style="display: block; text-align: center;"class="chekout Ajax-pay">THANH TOÁN</a>
                             </div>
                         </div>
                     </form>
@@ -97,4 +99,22 @@ else
 }
 @section script{
     <script src="~/assets/js/Cart.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-pay', function (e) {
+                e.preventDefault();
+                var price = parseFloat(document.getElementById('total-price').value);
+                $.ajax({
+                    url: '/Orders/Order',
+                    type: 'POST',
+                    data: {price:price},
+                    success: function (sr) {
+                        if (sr.Success) {
+                            location.assign("/Orders/OrderSucces");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 }

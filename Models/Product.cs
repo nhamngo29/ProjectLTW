@@ -13,7 +13,7 @@ namespace Project.Models
     {
         [Key]
         [Display(Name = "Mã sản phẩm")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(TypeName ="varchar")]
         [StringLength(40)]
         public string ProductId { get; set; }//Mã sản phẩm
@@ -25,20 +25,20 @@ namespace Project.Models
         public Nullable<double> Price { get; set; }//Giá sản phẩm
         [Display(Name="Phần tram giảm")]
         public Nullable<float> Promotion { get; set; }//Phần trăm giảm của sản phẩm
-        [Display(Name="Bao gồm thuế")]
-        public bool IncludeVAT { get; set; }//Thuế
         [Display(Name="Số lượng")]
         public Nullable<int> Quantity { get; set; }//Số lượng
-        public Nullable<bool> Featured { get; set; }//sản phẩm nổi bật
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yy}")]
+        [Display(Name = "Ngày bán sản phẩm")]
         public Nullable<System.DateTime> DateCreate { get; set; }//Tình trạng
+        [Display(Name = "Sao đánh giá")]
         public Nullable<int> Evaluate { get; set; }//Đánh giá
+        [Display(Name = "Ảnh đại diện")]
         public string ImgeMain { get; set; }//hình ảnh chính
+        [Display(Name = "Loại sản phẩm")]
         public int ProductTypeID { get;set ; }
+        public bool Featured { get; set; }
+        [Display(Name = "đã bán")]
         public Nullable<int> TotalSold { get; set; }//số sp đã bán
-        [DefaultValue(0)]
-        public Nullable<int> FormId { get; set; }
-        [ForeignKey("FormId")]
-        public virtual Form Form { get; set; }    
         public Nullable<int> BrandID { get; set; }
         [ForeignKey("BrandID")]
         public virtual Brand Brand { get; set; }
@@ -48,12 +48,6 @@ namespace Project.Models
         public bool IsHot { get; set; }
         [DefaultValue(true)]
         public bool IsActive { get; set; }
-        [StringLength(250)]
-        public string SeoTitle { get; set; }
-        [StringLength(500)]
-        public string SeoDescription { get; set; }
-        [StringLength(250)]
-        public string SeoKeywords { get; set; }
         [AllowHtml]
         public string Detail { get; set; }
         public string Description { get; set; }

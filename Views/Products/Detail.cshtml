@@ -79,6 +79,7 @@
                 </div>
                 <div class="product__price">
                     <h2>@string.Format("{0:0,0 đ}", ViewBag.Price)</h2>
+                    <a id="price-pr" hidden>@ViewBag.Price</a>
                 </div>
 
                 @if (Model.Promotion > 0)
@@ -138,7 +139,7 @@
                         <input type="button" value="+" class="control" onclick="cong(2)">
                     </div>
 
-                    <button type="button" class="add-cart ajax-add-to-cart" id="model-show" onclick="fadeInModal()" data-id="@Model.ProductId">Thêm vào giỏ</button>
+                    <button type="button" class="add-cart ajax-add-to-cart" id="model-show" data-id="@Model.ProductId">Thêm vào giỏ</button>
                 </div>
                 <div class="product__shopnow">
                     <button class="shopnow">Mua ngay</button>
@@ -233,7 +234,6 @@
         </div>
     </div>
     <div class="alert__footer">
-
         @Html.ActionLink("Xem giỏ hàng", "Index", new { controller = "Products" }, htmlAttributes: new { @class = "click__cart", style = "border-radius: 4px" })
     </div>
 </div>
@@ -242,5 +242,6 @@
 </div>
 @section script
 {
-    <link rel="stylesheet" href="~/assets/css/product.css">
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/assets/js/Cart.js"></script>
 }

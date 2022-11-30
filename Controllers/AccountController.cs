@@ -95,11 +95,11 @@ namespace Project.Controllers
         [MyAuthenFilter]
         public ActionResult Profile()
         {
+
             string curentUserID = User.Identity.GetUserId();
             AppUser curentUser = db.Users.Where(t=>t.Id== curentUserID).FirstOrDefault();
-            Product product = new Product();
-            List<Cart> Carts = db.Carts.Where(t=>t.IdUser==curentUserID).ToList();
-            
+            List<Order> Orders = db.Orders.Where(t => t.IdUser==curentUserID).ToList();
+            ViewBag.Orders = Orders;
             return View(curentUser);
         }
         [MyAuthenFilter]
@@ -126,12 +126,8 @@ namespace Project.Controllers
             {
                 ShoppingCartItem x = new ShoppingCartItem();
                 product = DB.Products.Find(item.IdProduct);
-                if (product.Promotion>0)
-                {
-                    product.Price = product.Price * (1 - product.Promotion * 0.01);
-                }
                 x.ProductId = product.ProductId;
-                x.Price =(double)product.Price;
+                x.Price =item.Price;
                 x.Name =(string)product.Name;
                 x.img = product.ImgeMain;
                 x.Quantity = item.Quantity;
@@ -144,7 +140,7 @@ namespace Project.Controllers
         }
         [HttpPost]
         [MyAuthenFilter]
-        public ActionResult AddToCart(string id, int Quantity)
+        public ActionResult AddToCart(string id, int Quantity,float price)
         {
             string curentUserID = User.Identity.GetUserId();
             var code = new { Success = false, msg = "", code = -1, count = 0 };
@@ -153,6 +149,7 @@ namespace Project.Controllers
             Carts.IdProduct = id;
             Carts.IdUser = curentUserID;
             Carts.Quantity = Quantity;
+            Carts.Price = price;
             if (Cart == null)
             {
                 db.Carts.Add(Carts);
@@ -179,6 +176,7 @@ namespace Project.Controllers
             string curentUserID = User.Identity.GetUserId();
             var code = new { Success = false, msg = "", code = -1, count = 0 };
             var Cart = db.Carts.Where(t=>t.IdUser==curentUserID);
+            
             if (Cart!=null)
             {
                 var checkProducts = db.Carts.FirstOrDefault(x => x.IdProduct == id);
@@ -190,6 +188,7 @@ namespace Project.Controllers
                 }    
             }
             return Json(code);
-        }    
+        }
+        
     }
 }

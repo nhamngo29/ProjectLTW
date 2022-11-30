@@ -19,6 +19,8 @@ namespace Project.Identity
         [Column(TypeName = "varchar")]
         [StringLength(40)]
         public string IdProduct { get; set; }
+        [DefaultValue(0)]
+        public double Price { get; set; }
         public int Quantity { get; set; }
         [ForeignKey("IdUser")]
         public virtual AppUser AppUser { get; set; }

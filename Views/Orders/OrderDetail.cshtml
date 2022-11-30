@@ -1,0 +1,63 @@
+﻿@model List<Project.Identity.OrderDetail>
+@{
+    ViewBag.Title = "OrderDetail";
+}
+<div class="container">
+    <h1 class="text-center display-1"><strong>Chi tiết đơn hàng</strong></h1>
+    <div class="header">
+        <h1>Đơn hàng:<strong> @ViewBag.Order.Id</strong> <span>Đặt lúc:<strong> @ViewBag.Order.DateBooking</strong> </span></h1>
+        <h3><a href="/Account/profile" class="link-black">Quay về trang chủ</a></h3>
+    </div>
+    <div class="detail__my-order-content">
+        <table class="table" style="font-size:17px">
+            <thead>
+                <tr class="text-center">
+                    <th>Tên sản phẩm</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th class="text-end">Thành tiền</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <br />
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td><strong class="text-success">@item.Product.Name</strong></td>
+                        <td>@item.IdProductt</td>
+                        <td>@string.Format("{0:0,0 }", item.Price)</td>
+                        <td>@item.Count</td>
+                        <td class="text-end">@string.Format("{0:0,0 }", item.Thanhtien)</td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot class="text-end">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th >Giá sản phẩm    </th>
+                    <th class="text-end">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Miễn phí ship đơn từ 500K	    </th>
+                    <th class="text-end">                    0</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Tổng tiền    </th>
+                    <th class="text-end">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class=""></div>
+    </div>
+</div>

@@ -35,16 +35,17 @@ $(document).ready(function () {
     $('body').on('click', '.ajax-add-to-cart', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
-        var sl = 1;
-        var quantity = $('#text_so_luong-2').val();
-        sl = parseInt(quantity);
+        var quantity = parseInt($('#text_so_luong-2').val());
+        var price = parseFloat($('#price-pr').html());
         $.ajax({
             url: '/Account/AddToCart',
             type: 'POST',
-            data: { id: id, Quantity: quantity },
+            data: { id: id, Quantity: quantity, price:price },
             success: function (rs) {
                 if (rs.Success) {
                     $('.header__second__cart--notice').html(rs.count);
+                    $('.alert').fadeIn();
+                    $('.overlay1').fadeIn();
                 }
             }
         });
@@ -65,6 +66,7 @@ $(document).ready(function () {
         });
     });
 });
+
 function ShowCount() {
     $.ajax({
         url: '/Account/ShowCount',

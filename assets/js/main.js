@@ -21,9 +21,11 @@ $(window).scroll(function(){
 $('#go-to-top').click(function(){
     $('html, body').animate({scrollTop: 0 }, 'slow');
 });
+
 // change img
 function changeImg(id){
     let imgPath = document.getElementById(id).getAttribute('src');
+    alert(imgPath);
     document.getElementById('img-main').setAttribute('src', imgPath);
 }
 function check(){
@@ -92,7 +94,12 @@ function hienthi(id, name){
 function txtPrice(id,count,price) {
     var a = parseFloat(count * price);
     document.getElementById(`total-${id}`).value = a.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
-    TotalPrice(price);
+}
+function Total(price) {
+    var Sum = parseFloat(document.getElementById('total-price').value);
+    Sum += price;
+    document.getElementById('total__Price').innerHTML = Sum.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+    document.getElementById('total-price').value = Sum;
 }
 function cong(id) {
     console.log(id);
@@ -100,7 +107,7 @@ function cong(id) {
     document.getElementById(`text_so_luong-${id}`).value = value;
     var price = parseFloat(document.getElementById(`price-${id}`).value);
     txtPrice(id, value, price);
-    TotalPrice(price)
+    Total(price);
 }
 function tru(id) {
     var value = parseInt(document.getElementById(`text_so_luong-${id}`).value)-1
@@ -109,10 +116,8 @@ function tru(id) {
         document.getElementById(`text_so_luong-${id}`).value = parseInt(value);
         var price = parseFloat(document.getElementById(`price-${id}`).value);
         txtPrice(id, value, price);
+        Total(-price);
     }
-}
-function TotalPrice(price) {
-    var a = parseFloat(document.getElementById(`total__Price`).data);
 }
 
     function validate(evt) {
