@@ -65,6 +65,7 @@
                             @Html.AntiForgeryToken()
                             for (int i = 0; i < Model.Count(); i++)
                             {
+
                                 <tr id="trow-@Model[i].Id">
                                     <td>
                                         @Html.TextBox("Brands[" + i + "].Id", Model[i].Id, new { @readonly = "readonly" })

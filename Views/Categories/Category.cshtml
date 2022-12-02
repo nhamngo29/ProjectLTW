@@ -1,0 +1,22 @@
+﻿
+@{
+    string URL = String.Concat(Request.Url.Scheme, "://", Request.Url.Host);
+}
+@model List<Project.Models.Category>
+@foreach (var item in Model)
+{
+    <li class="level1">
+        @Html.ActionLink(item.Name, "Index", new { CaregoryID = item.Id, Controller = "Products" }, htmlAttributes: new { @class = "hmega" })
+        <ul class="level1">
+            @foreach (var type in ViewBag.ProductTypes)
+            {
+                if (item.Id == type.CategoryID)
+                {
+                    <li class="level2">
+                        @Html.ActionLink("123", "Index", new { ProType = type.Id, Controller = "Products" }, htmlAttributes: new { })
+                    </li>
+                }
+            }
+        </ul>
+    </li>
+}

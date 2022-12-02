@@ -91,6 +91,10 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -101,6 +105,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -5336,6 +5346,8 @@
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Detail.cshtml" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />
@@ -5352,15 +5364,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SlidersController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -5432,6 +5447,22 @@
     <Compile Include="identityMigration\202211300817317_up2.cs" />
     <Compile Include="identityMigration\202211300817317_up2.designer.cs">
       <DependentUpon>202211300817317_up2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211300922499_up3.cs" />
+    <Compile Include="identityMigration\202211300922499_up3.designer.cs">
+      <DependentUpon>202211300922499_up3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211301012062_up4.cs" />
+    <Compile Include="identityMigration\202211301012062_up4.designer.cs">
+      <DependentUpon>202211301012062_up4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211301029599_up5.cs" />
+    <Compile Include="identityMigration\202211301029599_up5.designer.cs">
+      <DependentUpon>202211301029599_up5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="identityMigration\202211301032494_up6.cs" />
+    <Compile Include="identityMigration\202211301032494_up6.designer.cs">
+      <DependentUpon>202211301032494_up6.cs</DependentUpon>
     </Compile>
     <Compile Include="identityMigration\Configuration.cs" />
     <Compile Include="Identity\AppDBContext.cs" />
@@ -5655,6 +5686,7 @@
     <Content Include="Views\Account\Cart.cshtml" />
     <Content Include="Views\Orders\OrderSucces.cshtml" />
     <Content Include="Views\Orders\OrderDetail.cshtml" />
+    <Content Include="Views\Categories\Category.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5664,6 +5696,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Views\Category\" />
     <Folder Include="Views\Errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -5711,6 +5744,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="identityMigration\202211300817317_up2.resx">
       <DependentUpon>202211300817317_up2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211300922499_up3.resx">
+      <DependentUpon>202211300922499_up3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211301012062_up4.resx">
+      <DependentUpon>202211301012062_up4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211301029599_up5.resx">
+      <DependentUpon>202211301029599_up5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="identityMigration\202211301032494_up6.resx">
+      <DependentUpon>202211301032494_up6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211090526588_InitialCreate.resx">
       <DependentUpon>202211090526588_InitialCreate.cs</DependentUpon>

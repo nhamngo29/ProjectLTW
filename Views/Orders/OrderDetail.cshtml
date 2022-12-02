@@ -36,28 +36,38 @@
             </tbody>
             <tfoot class="text-end">
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th >Giá sản phẩm    </th>
-                    <th class="text-end">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
+                    <th colspan="3">Giá sản phẩm    </th>
+                    <th class="text-end" colspan="3">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Miễn phí ship đơn từ 500K	    </th>
-                    <th class="text-end">                    0</th>
+                    <th colspan="3">Miễn phí ship đơn từ 500K	    </th>
+                    <th class="text-end" colspan="3">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Ship)</th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>Tổng tiền    </th>
-                    <th class="text-end">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
+
+                    <th colspan="3">Tổng tiền    </th>
+                    <th class="text-end" colspan="3">                    @string.Format("{0:0,0 VND}", ViewBag.Order.TotalPrice)</th>
                 </tr>
             </tfoot>
         </table>
-        <div class=""></div>
+        @*<div class="footer row">
+            <div class="col-6">
+                <div class="" style="font-size:17px">
+                    <h3 class="order_section_title" style="font-size:22px">Địa chỉ nhận hàng và thanh toán</h3>
+                    <div class="Crd p-4" style="background-color: #d1ecf1">
+                        <span class="text_status">Vận chuyển:</span> <span class="status_not fulfilled">not fulfilled</span>
+                    </div>
+                    <div class="address">
+                        <p class="adressName ">1232131 </p>
+                        <p></p>
+                        <p>12313213</p>
+                        <p></p>
+                        <p> Hồ Chí Minh</p>
+                        <p>Vietnam </p>
+                        <p>3213213213213</p>
+                    </div>
+                </div>
+            </div>
+        </div>*@
     </div>
 </div>

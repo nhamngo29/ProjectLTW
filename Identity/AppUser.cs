@@ -12,6 +12,7 @@ namespace Project.Identity
     {
         public DateTime? BirthDay { get; set; }
         public string Address { get; set; }
+        public string Gender { get; set; }
         public string City { get; set; }
         public string PathAvt { get; set; }
         public string FullName { get; set; }

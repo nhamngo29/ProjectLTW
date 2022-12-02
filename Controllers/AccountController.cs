@@ -95,12 +95,24 @@ namespace Project.Controllers
         [MyAuthenFilter]
         public ActionResult Profile()
         {
-
             string curentUserID = User.Identity.GetUserId();
             AppUser curentUser = db.Users.Where(t=>t.Id== curentUserID).FirstOrDefault();
             List<Order> Orders = db.Orders.Where(t => t.IdUser==curentUserID).ToList();
             ViewBag.Orders = Orders;
             return View(curentUser);
+        }
+        [HttpPost]
+        public ActionResult Edit(AppUser appUser)
+        {
+            AppUser User = db.Users.Where(t=>t.Id==appUser.Id).FirstOrDefault();
+            User.UserName = appUser.UserName;
+            User.Address = appUser.Address;
+            User.City=appUser.City;
+            User.PhoneNumber=appUser.PhoneNumber;
+            User.BirthDay=appUser.BirthDay;
+            User.Email=appUser.Email;
+            db.SaveChanges();
+            return RedirectToAction("Profile","Account");
         }
         [MyAuthenFilter]
         public ActionResult ShowCount()

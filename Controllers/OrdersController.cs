@@ -23,7 +23,12 @@ namespace Project.Controllers
                 Orderr.DateBooking = DateTime.Now;
                 Orderr.IdUser = curentUserID;
                 Orderr.Total = price;
-                
+                Orderr.Status = 0;
+                if (Orderr.Total<500000)
+                {
+                    Orderr.Ship = 30000;
+                }
+                Orderr.TotalPrice = price+Orderr.Ship;
                 db.Orders.Add(Orderr);
                 db.SaveChanges();
                 foreach (var item in Carts)

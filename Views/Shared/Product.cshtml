@@ -70,14 +70,14 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-2 main-img-2">
-                            <img src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="" id="img-main" xoriginal="./assets/img/product/ars1.jpg">
+                            <img src="~/assets/img/product/@ViewBag.item.ImgeMain" alt="" class="img-main" xoriginal="./assets/img/product/ars1.jpg">
                         </div>
                         <ul class="all-img-2">
                             @for (int i = 2; i <= 5; i++)
                                     {
-                                        string a = "-0"+i+".png";
+                                    string a = "-0"+i+".png";
                                    <li class="img-item-2">
-                                        <img src="./assets/img/product/@ViewBag.item.ProductId@a" alt="" onclick="changeImg(@i)" id="@i">
+                                        <img src="~/assets/img/product/@ViewBag.item.ProductId@a" alt="" onclick="changeImgg(@i)" id="@i">
                                     </li>
                             }
                         </ul>

@@ -1,0 +1,171 @@
+﻿@model List<Project.Identity.OrderDetail>
+@{
+    ViewBag.Title = "Detail";
+}
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/home/index" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/User/Index" class="nav-link">Chi tiết đơn hàng</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="text-uppercase">Quán lý đơn hàng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/Content/Clients/index.htm">Home</a></li>
+                    <li class="breadcrumb-item active">Đơn hàngr</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container">
+        <h1 class="text-center display-1"><strong>Chi tiết đơn hàng</strong></h1>
+        <div class="header">
+            <h1>Đơn hàng:<strong> @ViewBag.Order.Id</strong> <span>Đặt lúc:<strong> @ViewBag.Order.DateBooking</strong> </span></h1>
+            <h3><a href="/Account/profile" class="link-black">Quay về trang chủ</a></h3>
+        </div>
+        <div class="detail__my-order-content">
+            <table class="table" style="font-size:17px">
+                <thead>
+                    <tr class="text-center">
+                        <th>Tên sản phẩm</th>
+                        <th>Mã sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th class="text-end">Thành tiền</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <br />
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-center">
+                            <td><strong class="text-success">@item.Product.Name</strong></td>
+                            <td>@item.IdProductt</td>
+                            <td>@string.Format("{0:0,0 }", item.Price)</td>
+                            <td>@item.Count</td>
+                            <td class="text-end">@string.Format("{0:0,0 }", item.Thanhtien)</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th colspan="3">Giá sản phẩm    </th>
+                        <th class="text-end" colspan="4">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Total)</th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">Miễn phí ship đơn từ 500K	    </th>
+                        <th class="text-end" colspan="3">                    @string.Format("{0:0,0 VND}", ViewBag.Order.Ship)</th>
+                    </tr>
+                    <tr>
+
+                        <th colspan="3">Tổng tiền    </th>
+                        <th class="text-end" colspan="3">                    @string.Format("{0:0,0 VND}", ViewBag.Order.TotalPrice)</th>
+                    </tr>
+                </tbody>
+                <tfoot class="text-end">
+
+                </tfoot>
+            </table>
+            <div class="row">
+                <div class="col-3">
+                    <h5 >Thông tin người nhận</h5>
+                    Tên khách hàng : @ViewBag.User.FullName
+                    <br />
+                    Email : @ViewBag.User.Email
+                    <br />
+                    Số dt : @ViewBag.User.PhoneNumber
+                </div>
+                <div class="col-3">
+                    <h5>Địa chỉ</h5>
+                    Tỉnh/Thành : @ViewBag.User.City
+                    <br />
+                    Phường/Xã :
+                    <br />
+                    Quận/Huyện :
+                    <br />
+                    Địa chỉ : @ViewBag.User.Address
+                </div>
+                <div class="col-6">
+                    <div class="col-6">
+                        <h5>Thông tin đơn hàng</h5>
+                        <p>
+                            @switch (ViewBag.Order.Status)
+                            {
+                                case 0:
+                                    <span class="btn" style="background-color: blue">Đang xác nhận</span>
+                                    break;
+                                case 1:
+                                    <span class="btn "style="background-color: yellow">Đang giao</span>
+                                    break;
+                                case 2:
+                                    <span class="btn" style="background-color: green";>Đã giao</span>
+                                    break;
+                                default:
+                                    <span class="btn" style="background-color: red;">Đã hủy</span>
+                                    break;
+                            }
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Xóa danh mục</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
+                <a id="id-Modal" hidden></a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Ajax{
+    <script>
+
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-delete', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/ProductTypes/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
+

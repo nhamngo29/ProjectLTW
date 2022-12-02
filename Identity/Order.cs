@@ -26,6 +26,7 @@ namespace Project.Identity
         public double Ship { get; set; }
         [DefaultValue(0)]
         public double TotalPrice { get; set; }
+        [Column(TypeName = "nvarchar")]
         public string IdUser { get; set; }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         [ForeignKey("IdUser")]

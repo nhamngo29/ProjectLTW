@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-2 col-12">
                 <div class="heading">
-                    <img src=".~assets/img/product/" alt="" class="heading-img">
+                    <img src="~assets/img/product/" alt="" class="heading-img">
                     <span class="heading-name_acc"></span>
                 </div>
                 <div class="menu-manager">
@@ -37,50 +37,70 @@
             <div class="col-lg-10 col-12">
                 <div class="menu-detail">
                     <div class="detial__my-profile item-detail active">
-                        <div class="heading-edit-account">
-                            <h2>Hồ sơ của tôi</h2>
-                            <div class="row">
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.FullName, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullname", @value = Model.FullName })
-                                        <span class="form-message"></span>
+                        @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        {
+                            <div class="heading-edit-account">
+                                <h2>Hồ sơ của tôi</h2>
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-6">
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.Id)
+                                        <div class="form-group">
+                                            @Html.LabelFor(t => t.FullName, "Họ tên", htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.FullName, Model.FullName, new { placeholder = "VD: Nhâm Ngọ ", @class = "form-control", @id = "fullName" })
+                                            <span class="form-message"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.Email, Model.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "email" })
+                                            <span class="form-message"></span>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.Email, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.Email, new { placeholder = "VD: nhamngooinfo@gmail.com", @class = "form-control", @id = "Email", @value = Model.Email })
-                                        <span class="form-message"></span>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(t => t.BirthDay, "Ngày sinh", htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.BirthDay.Value,Model.BirthDay.Value.ToString("yyyy-mm-"), new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "birthDay", type = "Date"})
+                                            <span class="form-message"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(t => t.PhoneNumber, "Số điện thoại", htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.PhoneNumber, Model.PhoneNumber,new { placeholder = "VD: 0336669999", @class = "form-control", @id = "mobile" })
+                                            <span class="form-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(t => t.Address, "Địa chỉ", htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.Address,Model.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "address" })
+                                            <span class="form-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-6">
+                                        <div class="form-group ">
+                                            @Html.LabelFor(t => t.City, "Thành phố", htmlAttributes: new { @class = "form-label" })
+                                            @Html.TextBoxFor(t => t.City,Model.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "city" })
+                                            <span class="form-message"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-lg-12 text-center">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    @Html.LabelFor(t => t.Gender, "Nam", htmlAttributes: new { @class = "form-label" })
+                                                    @Html.RadioButtonFor(m => m.Gender, "Male")
+                                                </div>
+                                                <div class="col-6">
+                                                    @Html.LabelFor(t => t.Gender, "Nữ", htmlAttributes: new { @class = "form-label"})
+                                                    @Html.RadioButtonFor(m => m.Gender, "Female")
+                                                </div>
+                                            </div>
+                                            <span class="form-message"></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.BirthDay, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.BirthDay, new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "DateOfBirth", type = "Date", Model.BirthDay })
-                                        <span class="form-message"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.PhoneNumber, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "Mobile", Model.PhoneNumber })
-                                        <span class="form-message"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.Address, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "Address", Model.Address })
-                                        <span class="form-message"></span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-lg-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(t => t.City, htmlAttributes: new { @class = "form-label" })
-                                        @Html.TextBoxFor(t => t.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "Address", Model.City })
-                                        <span class="form-message"></span>
-                                    </div>
-                                </div>
+                                <button type="submit" class="form-submit save-profile">Lưu</button>
                             </div>
-                            <button class="form-submit">Lưu</button>
-                        </div>
+                        }
                     </div>
                     <div class="detail__confirm-password item-detail">
                         <div class="heading-edit-password">
@@ -135,7 +155,7 @@
                                         <tr>
                                             <td>@item.Id</td>
                                             <td>@item.DateBooking</td>
-                                            <td>@string.Format("{0:0,0 đ}",item.Total)</td>
+                                            <td>@string.Format("{0:0,0 đ}", item.Total)</td>
                                             <td>
                                                 @switch (item.Status)
                                                 {
@@ -166,6 +186,26 @@
     </div>
 </div>
 @section script{
+    @*<script>
+        $(document).ready(function () {
+            $('body').on('click', '.save-profile', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-profile').value;
+                var fullName = document.getElementById('fullname').innerHTML;
+                var birthDay = document.getElementById('fullname').innerHTML;
+                $.ajax({
+                    url: '/Account/Edit',
+                    type: 'POST',
+                    data: { id: id ,},
+                    success: function (rs) {
+                        if (rs.Success) {
+                            alert("Cập nhật thành công");
+                        }
+                    }
+                });
+            });
+        });
+    </script>*@
     <script>
         const pass_field = document.querySelector('#password');
         const show_btn = document.querySelector('.fa-eye')

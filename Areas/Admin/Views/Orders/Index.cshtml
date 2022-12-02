@@ -1,0 +1,239 @@
+﻿@model List<Project.Identity.Order>
+@{
+    ViewBag.Title = "Index";
+}
+@section naviheader{
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/Content/Clients/index.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="~/admin/Categories/Index" class="nav-link">Đơn hàng</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="text-uppercase">Quản lý đơn hàng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/admin/Content/Clients/index.htm">Home</a></li>
+                    <li class="breadcrumb-item active">Đơn hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title text-uppercase">Danh sách đơn hàng</h3>
+
+        </div>
+        <div class="card-body">
+            <div class="card-tools">
+                <div class="sortby">
+                    <div class="dropdown">
+
+                        <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+                            Sản phẩm nổi bật
+                        </button>
+                        <div class="dropdown-menu" style="width: 143px;">
+                            @Html.ActionLink("Giá: Tăng dần", "Index", new { Sort = 1, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Giá: Giảm dần", "Index", new { Sort = 2, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tổng tiền</th>
+                        <th>Tình trạng</th>
+                        <th>Chức năng</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        using (Html.BeginForm("Edit", "Orders", FormMethod.Post, htmlAttributes: new { }))
+                        {
+                            for (int i = 0; i < Model.Count(); i++)
+                            {
+                                Html.AntiForgeryToken();
+                                @Html.TextBox("Orders[" + i + "].IdUser", "#" + Model[i].IdUser, new { @readonly = "readonly", @class = "form-control", @type="Hidden"})
+                                <tr id="trow-@Model[i].Id">
+                                    <td>
+                                        @Html.TextBox("Orders[" + i + "].Id", "#" + Model[i].Id, new { @readonly = "readonly", @class = "form-control" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBox("Orders[" + i + "].DateBooking", Model[i].DateBooking.Value.ToString("dd/MM/yyyy"), htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBox("Orders[" + i + "].TotalPrice.ToString()", string.Format("{0:0,0 VND}", Model[i].TotalPrice), htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                                    </td>
+                                    <td>
+
+                                        @{
+                                            string temp;
+                                            switch (Model[i].Status)
+                                            {
+
+                                                case 1:
+                                                    temp = "Chờ lấy hàng";
+
+                                                    break;
+                                                case 2:
+                                                    temp = "Đang giao hàng";
+                                                    break;
+                                                case 3:
+                                                    temp = "Hủy đơn hàng";
+                                                    break;
+                                                default:
+                                                    temp = "Đang xác nhận";
+                                                    break;
+                                            }
+                                        }
+                                        @Html.DropDownList("Orders["+i+"].Status", new List<SelectListItem>()
+                                        {
+                                        new SelectListItem() { Text = "Đang xác nhận", Value = "0"},
+                                        new SelectListItem() { Text = "Chờ Lấy hàng", Value = "1" },
+                                        new SelectListItem() { Text = "Đang giao hàng", Value = "2" },
+                                        new SelectListItem() { Text = "Hủy đơn hàng", Value = "3" }
+                                        }, temp, htmlAttributes: new { @class = "form-control" })
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Chi tiết", "Detail", "Orders", new { id = Model[i].Id }, htmlAttributes: new { @class = "btn btn-success", id = Model[i].Id })
+                                    </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td><input type="submit" class="btn btn-primary" value="Lưu"></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4"> Không có bản ghi nào</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item">
+                    @if (ViewBag.page == 1)
+                    {
+                        <a class="page-link disabled" href="/Admin/Orders/index?Sort=@ViewBag.Sort" aria-label="Previous">
+                            <span aria-hidden="true"><</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    }
+                    else
+                    {
+                        int PrePage = ViewBag.Page - 1;
+                        <a class="page-link" href="/Admin/Orders/index?Sort=@ViewBag.Sort&page=@PrePage" aria-label="Previous">
+                            <span aria-hidden="true"><</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    }
+                </li>
+                @for (int i = 0; i < ViewBag.NoOfPages; i++)
+                {
+                    if (i + 1 == ViewBag.Page)
+                    {
+                        <li class="page-item">
+                            <a style="background-color:white;color:black" class="page-link" href="/Admin/Orders/index?Sort=@ViewBag.Sort&page=@(i+1)">@(i+1)</a>
+                        </li>
+                    }
+                    else
+
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="/Admin/Orders/index??Sort=@ViewBag.Sort&page=@(i+1)">@(i+1)</a>
+                        </li>
+                    }
+
+                }
+
+                <li class="page-item">
+                    @if (ViewBag.page == ViewBag.NoOfPages)
+                    {
+                        <a class="page-link disabled" href="#" aria-label="Previous">
+                            <span aria-hidden="true">></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    }
+                    else
+                    {
+                        int NetPage = ViewBag.Page + 1;
+                        <a class="page-link" href="/Admin/Orders/index?Sort=@ViewBag.Sort&page=@NetPage" aria-label="Previous">
+                            <span aria-hidden="true">></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    }
+                </li>
+            </ul>
+        </div>
+        <div>
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Thống kê
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Thông kê tất cả các đơn hàng</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            Footer
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+@section Ajax{
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('body').on('click', '.Ajax-Save', function (e) {
+                e.preventDefault();
+                var id = document.getElementById('id-Modal').innerHTML;
+                $.ajax({
+                    url: '/Categories/Remove',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-' + id).remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

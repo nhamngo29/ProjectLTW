@@ -23,10 +23,14 @@ $('#go-to-top').click(function(){
 });
 
 // change img
-function changeImg(id){
+function changeImg(id) {
     let imgPath = document.getElementById(id).getAttribute('src');
-    alert(imgPath);
     document.getElementById('img-main').setAttribute('src', imgPath);
+}
+function changeImgg(id) {
+    let imgPath = document.getElementById(id).getAttribute('src');
+    alert(imgPath)
+    document.getElementsByClassName('img-main').setAttribute('src', imgPath);
 }
 function check(){
     
