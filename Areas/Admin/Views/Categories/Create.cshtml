@@ -42,7 +42,6 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Thêm mới thể loại</h3>
-
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -54,21 +53,15 @@
         </div>
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { }))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    @Html.AntiForgeryToken()
-                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-
-                        <div class="form-group">
-                            @Html.LabelFor(t => t.Name)
-                            @Html.TextBoxFor(t => t.Name, new { @class = "form-control", placeholder = "Nhập tên danh mục" })
-                            @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
-                        </div>
-                        <a class="btn btn-danger" href="/admin/categories" onclick="stepper.previous()">Quay lại</a>
-                        <button type="submit" class="btn btn-primary">Tạo</button>
+                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        @Html.LabelFor(t => t.Name)
+                        @Html.TextBoxFor(t => t.Name, new { @class = "form-control txtCategoryName", placeholder = "Nhập tên danh mục"})
+                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                     </div>
-                }
+                    <a class="btn btn-danger" href="/admin/categories" onclick="stepper.previous()">Quay lại</a>
+                    <button type="button" class="btn btn-primary btnInsert">Tạo</button>
+                </div>
             </div>
         </div>
 
@@ -80,3 +73,19 @@
     <!-- /.card -->
 </section>
 <!-- Modal -->
+@section Ajax{
+    <script>
+        $('.btnInsert').click(()=>{
+            const CategoryName = $('.txtCategoryName').val();
+            $.ajax({
+                type: 'Post',
+                url: '/api/categories/Post',
+                data: { 'Name': CategoryName },
+                success: ()=>{
+                    location.assign("/admin/Categories/index");
+                },
+                error: (err) => {cconsole.log(err)}
+            });
+        });
+    </script>
+}

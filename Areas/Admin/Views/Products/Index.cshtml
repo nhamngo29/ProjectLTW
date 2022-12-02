@@ -55,153 +55,22 @@
                         <th>Ngày tạo</th>
                         <th>Số lượng</th>
                         <th>Giá</th>
-                        <th>Hiện thị</th>
-                        <th>Hót</th>
-                        <th>Nổi bật</th>
                         <th>Giảm giá</th>
-                        <th>Sao </th>
-                        <th>Hình ảnh</th>
-                        <th>đã bán</th>
-                        <th>Thể loại sản phẩm</th>
-                        <th>Thương hiệu</th>
                         <th>Chi tiết</th>
-                        <th>Mô tả</th>
                         <th>Xóa</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
-                    {
-                        using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            for (int i = 0; i < Model.Count(); i++)
-                            {
-
-                                <tr id="trow-@Model[i].ProductId">
-                                    <td>
-                                        @Html.TextBox("Products[" + i + "].ProductId", Model[i].ProductId, new { @readonly = "readonly", @class = "form-control disabled" })
-                                    </td>
-                                    <td>
-                                        @Html.TextBox("Products[" + i + "].Name", Model[i].Name, htmlAttributes: new { @class = "form-control" })
-                                    </td>
-                                    <td>
-                                        @Html.TextBox("Products[" + i + "].DateCreate", Model[i].DateCreate.Value, new { type = "Date", @class = "form-control datetimepicker-input", placeholder = "Ngày tạo sản phẩm" })
-                                    </td>
-                                    <td width="90px">
-                                        @Html.TextBox("Products[" + i + "].Quantity", Model[i].Quantity, htmlAttributes: new { @class = "form-control", @Type = "Number", Min = 0 })
-                                    </td>
-                                    <td width="110px">
-                                        @Html.TextBox("Products[" + i + "].Price", Model[i].Price, htmlAttributes: new { @class = "form-control", @Type = "Number", Min = 0 })
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            @Html.CheckBox("Products[" + i + "].IsActive", Model[i].IsActive, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = Model[i].IsActive })
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            @Html.CheckBox("Products[" + i + "].IsHot", Model[i].IsHot, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = Model[i].IsHot })
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            @Html.CheckBox("Products[" + i + "].Featured", Model[i].Featured, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = Model[i].Featured })
-                                        </div>
-                                    </td>
-                                    <td>
-                                        @Html.TextBox("Products[" + i + "].Promotion", Model[i].Promotion, htmlAttributes: new { @class = "form-control", @Type = "Number", Min = 0, max = 100 })
-                                    </td>
-                                    <td>
-                                        @Html.TextBox("Products[" + i + "].Evaluate", Model[i].Evaluate, htmlAttributes: new { @class = "form-control", @Type = "Number", Min = 0, max = 5 })
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success" data-bs-toggle="modal" href="#exampleModalToggle" role="button" onclick="ImgModals(`@Model[i].ImgeMain`)">Ảnh</a>
-                                    </td>
-                                    <td width="80px">
-                                        @Html.TextBox("Products[" + i + "].TotalSold", Model[i].TotalSold, htmlAttributes: new { @class = "form-control", @Type = "Number", Min = 0 })
-                                    </td>
-                                    <td>
-                                        @Html.DropDownList("Products[" + i + "].ProductTypeID", new SelectList(ViewBag.ProductTypes, "ID", "Name"), Model[i].ProductType.Name.ToString(), htmlAttributes: new { @class = "form-control" })
-                                    </td>
-                                    <td>
-                                        @Html.DropDownList("Products[" + i + "].BrandID", new SelectList(ViewBag.Brands, "Id", "Name"), Model[i].Brand.Name.ToString(), htmlAttributes: new { @class = "form-control" })
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalTogg-@Model[i].ProductId" role="button">Show</a>
-                                        <div class="modal fade" id="exampleModalTogg-@Model[i].ProductId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalToggleLabel">Hình ảnh sliders</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        @Html.TextArea("Products[" + i + "].Detail", Model[i].Detail, new { @class = "form-control", placeholder = "Nhập chi tiết sản phẩm sản phẩm", @Value = Model[i].Detail })
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Changes imge</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning" data-bs-toggle="modal" href="#exampleModalMoTa-@Model[i].ProductId" role="button">Show</a>
-                                        <div class="modal fade" id="exampleModalMoTa-@Model[i].ProductId" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalToggleLabel">Hình ảnh sliders</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        @Html.TextArea("Products[" + i + "].Description", Model[i].Description, new { @class = "form-control", placeholder = "Nhập mô tả sản phẩm", @Value = Model[i].Description })
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Changes imge</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="@Model[i].ProductId" onclick="GetId(`@Model[i].Name`,`@Model[i].ProductId`)">
-                                            Xóa
-                                        </button>
-                                    </td>
-                                </tr>
-
-                            }
-                        <tr colspan="2">
+                <tbody class="productTable">
+                    <tr colspan="2">
                             <td> <input type="submit" class="btn btn-primary" value="Lưu"></td>
-                        </tr>
-                        }
-
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="4"> Không có bản ghi nào</td>
-                        </tr>
-                    }
+                    </tr>
                 </tbody>
             </table>
-            <br />
-            <div class="row">
-                <div class="col-6"></div>
-                <div class="col-6" style="text-align:right;">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-                </div>
-            </div>
         </div>
-        <!-- /.card-body -->
         <div class="card-footer">
             Footer
         </div>
-        <!-- /.card-footer-->
     </div>
-    <!-- /.card -->
 
 </section>
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -240,53 +109,50 @@
     </div>
 </div>
 @section Ajax{
-
     <script>
-        $(document).ready(function () {
-            CKEDITOR.replace('txtDetail', {
-                customConfig: '/Content/ckeditor/config.js',
-                extraAllowedContent: 'span',
+        window.onload = loadFinished;
+        function loadFinished() {
+            $.ajax({
+                type: 'GET',
+                url: '/Api/Categories',
+                success: (responses) => {
+                    for (var i = 0; i < responses.length; i++) {
+                        const categoryRow = responses[i];
+                        const strHTML = `<tr id="trow-${categoryRow.Id}">
+                                                <td><input id="Categories_${i}__Id" name="Categories[${i}].Id" readonly="readonly" type="text" value="${categoryRow.Id}"></td>
+                                                <td><input class="form-control" id="Categories_${i}__Name" name="${categoryRow.Name}" type="text" value="${categoryRow.Name}"></<td>
+                                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="${categoryRow.Id}" onclick="GetId('${categoryRow.Name}',${categoryRow.Id})">Xóa</button></td>
+                                            </tr>`
+                        $('.productTable').append(strHTML);
+                    }
+                },
+                error: (err) => { console.log(err); }
             });
-        });
-        function ImgModals(Img) {
-            document.getElementById('ImgModals').innerHTML = `<img src="/assets/img/Product/${Img}" alt="Alternate Text" width="770px"/>`;
         }
-        $(document).ready(function () {
-            $('body').on('click', '.Ajax-delete', function (e) {
-                e.preventDefault();
-                var id = document.getElementById('id-Modal').innerHTML;
-                $.ajax({
-                    url: '/Sliders/Remove',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function (rs) {
-                        if (rs.Success) {
-                            $('#trow-' + id).remove();
-                        }
+        window.onload = loadFinished;
+        function loadFinished() {
+            $.ajax({
+                type: 'GET',
+                url: '/Api/Products',
+                success: (responses) => {
+                    alert(123);
+                    for (var i = 0; i < responses.length; i++) {
+                        const categoryRow = responses[i];
+                        const strHTML = `<tr id="trow-${categoryRow.Id}">
+                                                <td><input class="form-control disabled" id="Products_${i}__ProductId" name="Products[${i}].ProductId" readonly="readonly" type="text" value="${categoryRow.ProductId}"></td>
+                                                <td><input class="form-control" id="Categories_${i}__Name" name="Products[${i}].Name" type="text" value="${categoryRow.Name}"></<td>
+                                                <td><input class="form-control datetimepicker-input" id="Products_${i}__DateCreate" name="Products[${i}].DateCreate" placeholder="Ngày tạo sản phẩm"  value="" type="date""></td>
+                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Quantity" name="Products[${i}].Quantity" value="${categoryRow.Quantity}"></td>
+                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Price" name="Products[${i}].Price" value="${categoryRow.Price}"></td>
+                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Promotion" max="100" name="Products[${i}].Promotion" value="${categoryRow.Promotion}"></td>
+                                                <td><button type="button" class="btn btn-danger"  data-id="SMID0105-01" onclick="GetId(${categoryRow.Name},)">Xóa</button></td>
+                                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="SMID0105-01" onclick="GetId(${categoryRow.Name},${categoryRow.ProductId})"> Xóa</button></td>
+                                        </tr>`
+                        $('.productTable').append(strHTML);
                     }
-                });
+                },
+                error: (err) => { console.log(err); }
             });
-            $('body').on('click', '.btnActive', function (e) {
-                e.preventDefault();
-                var btn = $(this);
-                var id = btn.data("id");
-                $.ajax({
-                    url: '/admin/Products/IsActive',
-                    type: 'POST',
-                    data: { id: id },
-                    success: function (rs) {
-                        alert(id);
-                        if (rs.success) {
-                            if (rs.isAcive) {
-                                btn.html("<i class='fa fa-check text-success'></i>");
-                            }
-                            else {
-                                btn.html("<i class='fas fa-times text-danger'></i>");
-                            }
-                        }
-                    }
-                });
-            });
-        });
+        }
     </script>
 }
