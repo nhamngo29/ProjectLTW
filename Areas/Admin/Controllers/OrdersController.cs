@@ -26,6 +26,24 @@ namespace Project.Areas.Admin.Controllers
                 case 2:
                     Orders = Orders.OrderByDescending(T => T.TotalPrice).ToList();
                     break;
+                case 3:
+                    Orders = Orders.OrderBy(T => T.DateBooking).ToList();
+                    break;
+                case 4:
+                    Orders = Orders.OrderByDescending(T => T.DateBooking).ToList();
+                    break;
+                case 5:
+                    Orders = Orders.Where(t => t.Status == 0).ToList();
+                    break;
+                case 6:
+                    Orders = Orders.Where(t => t.Status == 1).ToList();
+                    break;
+                case 7:
+                    Orders = Orders.Where(t => t.Status == 2).ToList();
+                    break;
+                case 8:
+                    Orders = Orders.Where(t => t.Status == 3).ToList();
+                    break;
             }
             int NoOfrecordPerPage = 10;
             int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Orders.Count) / Convert.ToDouble(NoOfrecordPerPage)));

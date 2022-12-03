@@ -5348,6 +5348,7 @@
     <Content Include="Areas\Admin\Views\Users\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Details.cshtml" />
     <None Include="Scripts\jquery-3.6.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.1.js" />
     <Content Include="Scripts\jquery-3.6.1.min.js" />

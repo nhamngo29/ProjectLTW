@@ -144,11 +144,12 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="custom-control custom-checkbox">
-                                                        @*@Html.CheckBoxFor(x => x.IncludeVAT, new { @class = "custom-control-input", @checked = "checked" })
-                                                        @Html.LabelFor(t => t.IncludeVAT, "Đã bao gồm thuế ?", htmlAttributes: new { @class = "custom-control-label" })*@
+                                                        @Html.CheckBoxFor(x => x.Featured, new { @class = "custom-control-input", @checked = "checked" })
+                                                        @Html.LabelFor(t => t.Featured, "Nổi bật ?", htmlAttributes: new { @class = "custom-control-label" })
                                                     </div>
                                                 </div>
-                                            </div>
+                                  
+                                                </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
@@ -165,9 +166,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <!-- /.tab-pane -->
                                     <div class="tab-pane" id="timeline">
                                         <!-- The timeline -->
                                         <div class="col-md-12">
@@ -234,9 +232,8 @@
 
                                         </form>
                                     </div>
-                                    <!-- /.tab-pane -->
                                 </div>
-                            </div><!-- /.card-body -->
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-secondary">Thêm mới</button>
                             </div>
@@ -278,6 +275,9 @@
                 addIamgeProduct(fileUrl);
             };
             finder.popup();
+        }
+        function AddImgMain() {
+            
         }
         function addIamgeProduct(url) {
             var temp = $('#tCurrentId').val();

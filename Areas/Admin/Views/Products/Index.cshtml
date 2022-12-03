@@ -1,6 +1,4 @@
 ﻿@model PagedList.IPagedList<Project.Models.Product>
-@using PagedList.Mvc
-@using PagedList;
 @{
     ViewBag.Title = "Danh sách sản phẩm";
 }
@@ -62,7 +60,7 @@
                 </thead>
                 <tbody class="productTable">
                     <tr colspan="2">
-                            <td> <input type="submit" class="btn btn-primary" value="Lưu"></td>
+                        <td> <input type="submit" class="btn btn-primary" value="Lưu"></td>
                     </tr>
                 </tbody>
             </table>
@@ -104,6 +102,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
+                <a href="/admin/products/details" hidden></a>
             </div>
         </div>
     </div>
@@ -114,40 +113,21 @@
         function loadFinished() {
             $.ajax({
                 type: 'GET',
-                url: '/Api/Categories',
-                success: (responses) => {
-                    for (var i = 0; i < responses.length; i++) {
-                        const categoryRow = responses[i];
-                        const strHTML = `<tr id="trow-${categoryRow.Id}">
-                                                <td><input id="Categories_${i}__Id" name="Categories[${i}].Id" readonly="readonly" type="text" value="${categoryRow.Id}"></td>
-                                                <td><input class="form-control" id="Categories_${i}__Name" name="${categoryRow.Name}" type="text" value="${categoryRow.Name}"></<td>
-                                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="${categoryRow.Id}" onclick="GetId('${categoryRow.Name}',${categoryRow.Id})">Xóa</button></td>
-                                            </tr>`
-                        $('.productTable').append(strHTML);
-                    }
-                },
-                error: (err) => { console.log(err); }
-            });
-        }
-        window.onload = loadFinished;
-        function loadFinished() {
-            $.ajax({
-                type: 'GET',
                 url: '/Api/Products',
                 success: (responses) => {
-                    alert(123);
                     for (var i = 0; i < responses.length; i++) {
-                        const categoryRow = responses[i];
-                        const strHTML = `<tr id="trow-${categoryRow.Id}">
-                                                <td><input class="form-control disabled" id="Products_${i}__ProductId" name="Products[${i}].ProductId" readonly="readonly" type="text" value="${categoryRow.ProductId}"></td>
-                                                <td><input class="form-control" id="Categories_${i}__Name" name="Products[${i}].Name" type="text" value="${categoryRow.Name}"></<td>
-                                                <td><input class="form-control datetimepicker-input" id="Products_${i}__DateCreate" name="Products[${i}].DateCreate" placeholder="Ngày tạo sản phẩm"  value="" type="date""></td>
-                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Quantity" name="Products[${i}].Quantity" value="${categoryRow.Quantity}"></td>
-                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Price" name="Products[${i}].Price" value="${categoryRow.Price}"></td>
-                                                <td><input min="0" type="Number" class="form-control" id="Products_${i}__Promotion" max="100" name="Products[${i}].Promotion" value="${categoryRow.Promotion}"></td>
-                                                <td><button type="button" class="btn btn-danger"  data-id="SMID0105-01" onclick="GetId(${categoryRow.Name},)">Xóa</button></td>
-                                                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="SMID0105-01" onclick="GetId(${categoryRow.Name},${categoryRow.ProductId})"> Xóa</button></td>
-                                        </tr>`
+                        const Row = responses[i];
+                        const strHTML = `<tr id="trow-${Row.Id}">
+                                                    <td><input class="form-control disabled" id="Products_${i}__ProductId" name="Products[${i}].ProductId" readonly="readonly" type="text" value="${Row.ProductId}"></td>
+                                                    <td><input class="form-control" id="Categories_${i}__Name" name="Products[${i}].Name" type="text" value="${Row.Name}"></<td>
+                                                    <td><input class="form-control datetimepicker-input" id="Products_${i}__DateCreate" name="Products[${i}].DateCreate" placeholder="Ngày tạo sản phẩm"  value="${Row.DateCreate}" type="text"></td>
+                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Quantity" name="Products[${i}].Quantity" value="${Row.Quantity}"></td>
+                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Price" name="Products[${i}].Price" value="${Row.Price}"></td>
+                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Promotion" max="100" name="Products[${i}].Promotion" value="${Row.Promotion}"></td>
+                                                    <td><button type="button" class="btn btn-info" data-id="${Row.Id}"><a href="/admin/products/details">Chi tiết</a></button></td>
+                                                    <td><button type="button" class="btn btn-danger"  data-id="${Row.Id}" onclick="GetId(${Row.Name, Row.Id},)">Xóa</button></td>
+
+                                            </tr>`
                         $('.productTable').append(strHTML);
                     }
                 },

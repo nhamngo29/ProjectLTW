@@ -16,25 +16,13 @@ namespace Project.Areas.Admin.Controllers
     {
         // GET: Admin/Products
         private ShopDBContext DB = new ShopDBContext();
-        public ActionResult Index(int? Sort = 0, int page = 1)
+        public ActionResult Index()
         {
-            List<Product> products = DB.Products.ToList();
-            switch (Sort)
-            {
-                case 1:
-                    products = products.OrderBy(T => T.Price).ToList();
-                    break;
-                case 2:
-                    products = products.OrderByDescending(T => T.Price).ToList();
-                    break;
-            }
-            int NoOfrecordPerPage = 10;
-            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count) / Convert.ToDouble(NoOfrecordPerPage)));
-            int NoOfRecordToSkip = (page - 1) * NoOfrecordPerPage;
-            ViewBag.Page = page;
-            ViewBag.NoOfPages = NoOfPages;
-            products = products.Skip(NoOfRecordToSkip).Take(NoOfrecordPerPage).ToList();
-            return View(products); 
+            return View(); 
+        }
+        public ActionResult Details()
+        {
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -64,7 +52,8 @@ namespace Project.Areas.Admin.Controllers
 
         public ActionResult Create(Product product, HttpPostedFileBase uploadhinh)
         {
-            if (ModelState.IsValid)
+            Product temp=DB.Products.Find(product.ProductId);
+            if (ModelState.IsValid&&temp==null)
             {
                 if (uploadhinh != null && uploadhinh.ContentLength > 0)
                 {
@@ -74,6 +63,7 @@ namespace Project.Areas.Admin.Controllers
                     string _path = Path.Combine(Server.MapPath("~/assets/img/product"), _FileName);
                     uploadhinh.SaveAs(_path);
                     product.ImgeMain = _FileName;
+                    DB.Products.Add(product);
                     DB.SaveChanges();
                 }
                 return RedirectToAction("Index");

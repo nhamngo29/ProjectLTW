@@ -49,9 +49,15 @@
                         <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
                             Sản phẩm nổi bật
                         </button>
-                        <div class="dropdown-menu" style="width: 143px;">
-                            @Html.ActionLink("Giá: Tăng dần", "Index", new { Sort = 1, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("Giá: Tăng dần", "Index", new {Sort = 1, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
                             @Html.ActionLink("Giá: Giảm dần", "Index", new { Sort = 2, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Ngày đặt: Tăng dần", "Index", new { Sort = 3, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Ngày đặt: Giảm dần", "Index", new { Sort = 4, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Đơng hàng: chờ xác nhận", "Index", new { Sort = 5, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Đơng hàng: Chờ lấy hàng", "Index", new { Sort = 6, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Đơng hàng: Dang giao hàng", "Index", new { Sort = 7, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
+                            @Html.ActionLink("Đơng hàng: Đã huy", "Index", new { Sort = 8, controller = "Orders", area = "Admin" }, htmlAttributes: new { @class = "dropdown-item" })
                         </div>
                     </div>
                 </div>

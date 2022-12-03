@@ -129,8 +129,9 @@
             $('body').on('click', '.Ajax-delete', function (e) {
                 e.preventDefault();
                 var id = document.getElementById('id-Modal').innerHTML;
+                alert(id);
                 $.ajax({
-                    url: '/Categories/Remove',
+                    url: '/Admin/Categories/Remove',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
