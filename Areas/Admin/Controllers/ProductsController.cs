@@ -16,16 +16,25 @@ namespace Project.Areas.Admin.Controllers
     {
         // GET: Admin/Products
         private ShopDBContext DB = new ShopDBContext();
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? Sort = 0, int page = 1)
         {
-            if (page == null) page = 1;
-            int pageSize = 8;
-            int pageNumber = (page ?? 1);
-            ViewBag.PageSize = pageSize;
-            ViewBag.Brands=DB.Brands.ToList();
-            ViewBag.ProductTypes=DB.ProductTypes.ToList();
-            var Productss=DB.Products.OrderByDescending(t=>t.ProductId).ToList();
-            return View(Productss.ToPagedList(pageNumber,pageSize)); 
+            List<Product> products = DB.Products.ToList();
+            switch (Sort)
+            {
+                case 1:
+                    products = products.OrderBy(T => T.Price).ToList();
+                    break;
+                case 2:
+                    products = products.OrderByDescending(T => T.Price).ToList();
+                    break;
+            }
+            int NoOfrecordPerPage = 10;
+            int NoOfPages = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(products.Count) / Convert.ToDouble(NoOfrecordPerPage)));
+            int NoOfRecordToSkip = (page - 1) * NoOfrecordPerPage;
+            ViewBag.Page = page;
+            ViewBag.NoOfPages = NoOfPages;
+            products = products.Skip(NoOfRecordToSkip).Take(NoOfrecordPerPage).ToList();
+            return View(products); 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

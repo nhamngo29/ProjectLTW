@@ -14,12 +14,13 @@ namespace Project.ApiControllers
         // GET: Products
         public List<Product> Get()
         {
-            List<Product> Products = DB.Products.ToList();
+            List<Product> Products = DB.Products.ToList(); 
             return Products;
         }
         public Product GetProductByID(int id)
         {
             Product product = DB.Products.Find(id);
+
             return product;
         }
         public void Post(Product product)
