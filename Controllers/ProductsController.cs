@@ -64,6 +64,7 @@ namespace Project.Controllers
             return View(Products);
         }
         [OutputCache(Duration = 1000)]//Thời gian để chờ load lại trang
+
         public ActionResult Detail(string id)
         {
             Product product=DB.Products.Find(id);
@@ -84,9 +85,10 @@ namespace Project.Controllers
             ViewBag.Property = DB.Properties.Where(t=>t.ProductId==id).ToList();
             return View(product);
         }
-        //public ActionResult AddToCard()
-        //{
-
-        //}
+        [ChildActionOnly]
+        public ActionResult DisPlaySingleProduct(Product p)
+        {
+            return PartialView("Product",p);
+        }
     }
 }

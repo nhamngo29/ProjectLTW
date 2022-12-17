@@ -127,11 +127,10 @@
                 <div class="row row-product" id="products">
                     @foreach (var item in Model)
                     {
-                        
+
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             @{
-                                ViewBag.item = item;
-                                Html.RenderPartial("Product");
+                                Html.RenderAction("DisPlaySingleProduct", "Products", new { p = item });
                             }
                         </div>
                     }

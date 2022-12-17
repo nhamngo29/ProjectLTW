@@ -74,7 +74,7 @@
                                         @Html.TextBox("ProductTypes[" + i + "].Name", Model[i].Name, htmlAttributes: new { @class = "form-control" })
                                     </td>
                                     <td>
-                                        @Html.DropDownList("ProductTypes[" + i + "].CategoryID", new SelectList(ViewBag.Categories), Model[i].Category.Name.ToString(), htmlAttributes: new { @class = "form-control", Value = Model[i].CategoryID })
+                                        @Html.DropDownList("ProductTypes[" + i + "].CategoryID", new SelectList(ViewBag.Categories,"Id","Name",Model[i].CategoryID), htmlAttributes: new { @class = "form-control" })
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="@Model[i].Id" onclick="GetId(`@Model[i].Name`,@Model[i].Id)">
@@ -135,11 +135,12 @@
                 e.preventDefault();
                 var id = document.getElementById('id-Modal').innerHTML;
                 $.ajax({
-                    url: '/ProductTypes/IsActive',
+                    url: '/ProductTypes/Remove',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
                         if (rs.Success) {
+
                             $('#trow-' + id).remove();
                         }
                     }

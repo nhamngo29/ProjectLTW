@@ -10,6 +10,7 @@ namespace Project.Controllers
     {
         // GET: Home
         ShopDBContext DB=new ShopDBContext();
+        [OutputCache(Duration =100)]
         public ActionResult Index()
         {
             List<Slide> Slides=DB.Slides.Where(t=>t.Active==true).ToList();

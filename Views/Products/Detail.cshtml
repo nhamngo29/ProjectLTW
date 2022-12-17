@@ -186,8 +186,7 @@
                             <div class="carousel-item active">
                                 <div class="col-md-3">
                                     @{
-                                        ViewBag.item = item;
-                                        Html.RenderPartial("Product");
+                                        Html.RenderAction("DisPlaySingleProduct", "Products", new { p = item });
                                     }
                                 </div>
                             </div>
@@ -198,8 +197,7 @@
                             <div class="carousel-item">
                                 <div class="col-md-3">
                                     @{
-                                        ViewBag.item = item;
-                                        Html.RenderPartial("Product");
+                                        Html.RenderAction("DisPlaySingleProduct", "Products", new { p = item });
                                     }
                                 </div>
                             </div>

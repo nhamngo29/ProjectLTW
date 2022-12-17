@@ -48,6 +48,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
+                        <th>Hình ảnh</th>
                         <th>ID sản phẩm</th>
                         <th>Tên sản phẩm</th>
                         <th>Ngày tạo</th>
@@ -64,6 +65,7 @@
                     </tr>
                 </tbody>
             </table>
+
         </div>
         <div class="card-footer">
             Footer
@@ -102,12 +104,30 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary Ajax-delete" data-bs-dismiss="modal">Xóa</button>
-                <a href="/admin/products/details" hidden></a>
+                <a href="/admin/products/details" hidden style="height:auto;line-height:100px"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ảnh đại điên</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" alt="Alternate Text" id="imgMain" width="770px"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 @section Ajax{
+   
     <script>
         window.onload = loadFinished;
         function loadFinished() {
@@ -117,22 +137,40 @@
                 success: (responses) => {
                     for (var i = 0; i < responses.length; i++) {
                         const Row = responses[i];
-                        const strHTML = `<tr id="trow-${Row.Id}">
-                                                    <td><input class="form-control disabled" id="Products_${i}__ProductId" name="Products[${i}].ProductId" readonly="readonly" type="text" value="${Row.ProductId}"></td>
-                                                    <td><input class="form-control" id="Categories_${i}__Name" name="Products[${i}].Name" type="text" value="${Row.Name}"></<td>
-                                                    <td><input class="form-control datetimepicker-input" id="Products_${i}__DateCreate" name="Products[${i}].DateCreate" placeholder="Ngày tạo sản phẩm"  value="${Row.DateCreate}" type="text"></td>
-                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Quantity" name="Products[${i}].Quantity" value="${Row.Quantity}"></td>
-                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Price" name="Products[${i}].Price" value="${Row.Price}"></td>
-                                                    <td><input min="0" type="Number" class="form-control" id="Products_${i}__Promotion" max="100" name="Products[${i}].Promotion" value="${Row.Promotion}"></td>
-                                                    <td><button type="button" class="btn btn-info" data-id="${Row.Id}"><a href="/admin/products/details">Chi tiết</a></button></td>
-                                                    <td><button type="button" class="btn btn-danger"  data-id="${Row.Id}" onclick="GetId(${Row.Name, Row.Id},)">Xóa</button></td>
-
-                                            </tr>`
+                        const strHTML = `<tr id="trow-${Row.ProductId}">
+                                                        <td data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="showImgeMain('${Row.ImgeMain}')"><img src="/assets/img/product/${Row.ImgeMain}" alt="${Row.Name}" class="img-thumbnail rounded" width="100px"/></td>
+                                                        <td><input class="form-control disabled" id="Products_${i}__ProductId" name="Products[${i}].ProductId" readonly="readonly" type="text" value="${Row.ProductId}"></td>
+                                                        <td><input class="form-control" id="Categories_${i}__Name" name="Products[${i}].Name" type="text" value="${Row.Name}"></<td>
+                                                        <td><input class="form-control datetimepicker-input" id="Products_${i}__DateCreate" name="Products[${i}].DateCreate" placeholder="Ngày tạo sản phẩm"  value="${Row.DateCreate}" type="text"></td>
+                                                        <td><input min="0" type="Number" class="form-control" id="Products_${i}__Quantity" name="Products[${i}].Quantity" value="${Row.Quantity}"></td>
+                                                        <td><input min="0" type="Number" class="form-control" id="Products_${i}__Price" name="Products[${i}].Price" value="${Row.Price}"></td>
+                                                        <td><input min="0" type="Number" class="form-control" id="Products_${i}__Promotion" max="100" name="Products[${i}].Promotion" value="${Row.Promotion}"></td>
+                                                        <td><button type="button" class="btn btn-info" data-id="${Row.ProductId}"><a href="/admin/products/details/${Row.ProductId}">Chi tiết</a></button></td>
+                                                        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"  data-id="${Row.ProductId}" onclick="GetId('${Row.Name}','${Row.ProductId}')">Xóa</button></td>
+                                                </tr>`
                         $('.productTable').append(strHTML);
                     }
                 },
                 error: (err) => { console.log(err); }
             });
+        }
+        $(document).on('click', '.Ajax-delete', () => {
+            const id = document.getElementById('id-Modal').innerHTML;
+            $.ajax(
+                {
+                    type: 'Delete',
+                    url: `/api/Products/Delete?id=${id}`,
+                    success: function (rs) {
+                        if (rs.Success) {
+                            $('#trow-'+id).remove();
+                        }
+                    },
+                    error: (err) => { console.log(err) }
+                })
+        })
+        function showImgeMain(img) {
+            img = '/assets/img/product/' + img;
+            document.getElementById('imgMain').setAttribute('src', img);
         }
     </script>
 }

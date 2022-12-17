@@ -82,10 +82,10 @@
                             for (int i = 0; i < Model.Count(); i++)
                             {
                                 Html.AntiForgeryToken();
-                                @Html.TextBox("Orders[" + i + "].IdUser", "#" + Model[i].IdUser, new { @readonly = "readonly", @class = "form-control", @type="Hidden"})
+                                @Html.TextBox("Orders[" + i + "].IdUser", Model[i].IdUser, new { @readonly = "readonly", @class = "form-control", @type="Hidden"})
                                 <tr id="trow-@Model[i].Id">
                                     <td>
-                                        @Html.TextBox("Orders[" + i + "].Id", "#" + Model[i].Id, new { @readonly = "readonly", @class = "form-control" })
+                                        @Html.TextBox("Orders[" + i + "].Id",  Model[i].Id, new { @readonly = "readonly", @class = "form-control" })
                                     </td>
                                     <td>
                                         @Html.TextBox("Orders[" + i + "].DateBooking", Model[i].DateBooking.Value.ToString("dd/MM/yyyy"), htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
@@ -96,13 +96,14 @@
                                     <td>
 
                                         @{
-                                            string temp;
+                                            string temp="";
                                             switch (Model[i].Status)
                                             {
-
+                                                case 0:
+                                                    temp = "Đang xác nhận";
+                                                    break;
                                                 case 1:
                                                     temp = "Chờ lấy hàng";
-
                                                     break;
                                                 case 2:
                                                     temp = "Đang giao hàng";
@@ -110,18 +111,18 @@
                                                 case 3:
                                                     temp = "Hủy đơn hàng";
                                                     break;
-                                                default:
-                                                    temp = "Đang xác nhận";
-                                                    break;
+
                                             }
+                                            List<SelectListItem> a = new List<SelectListItem>()
+                                            {
+                                                new SelectListItem() { Text = "Đang xác nhận", Value = "0"},
+                                                new SelectListItem() { Text = "Chờ Lấy hàng", Value = "1" },
+                                                new SelectListItem() { Text = "Đang giao hàng", Value = "2" },
+                                                new SelectListItem() { Text = "Hủy đơn hàng", Value = "3", }
+                                            };
                                         }
-                                        @Html.DropDownList("Orders["+i+"].Status", new List<SelectListItem>()
-                                        {
-                                        new SelectListItem() { Text = "Đang xác nhận", Value = "0"},
-                                        new SelectListItem() { Text = "Chờ Lấy hàng", Value = "1" },
-                                        new SelectListItem() { Text = "Đang giao hàng", Value = "2" },
-                                        new SelectListItem() { Text = "Hủy đơn hàng", Value = "3" }
-                                        }, temp, htmlAttributes: new { @class = "form-control" })
+
+                                        @Html.DropDownList("Orders["+i+"].Status",new SelectList(a,"Value","Text", Model[i].Status),htmlAttributes: new { @class = "form-control" ,@value=temp})
                                     </td>
                                     <td>
                                         @Html.ActionLink("Chi tiết", "Detail", "Orders", new { id = Model[i].Id }, htmlAttributes: new { @class = "btn btn-success", id = Model[i].Id })

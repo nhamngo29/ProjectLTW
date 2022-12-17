@@ -12,17 +12,21 @@ using Project.Models;
 using Project.Filters;
 namespace Project.Controllers
 {
+    [MyAuthenFilter]
     public class AccountController : Controller
     {
         // GET: Account
         Project.Identity.AppDBContext db = new AppDBContext();
         ShopDBContext DB = new ShopDBContext();
-
+        [OverrideAuthentication]
+        [OverrideExceptionFilters]
         public ActionResult Regisster()
         {
             return View();
         }
         [HttpPost]
+        [OverrideAuthentication]
+        [OverrideExceptionFilters]
         public ActionResult Regisster(RegisterVM vm)
         {
             if (ModelState.IsValid)
@@ -47,9 +51,8 @@ namespace Project.Controllers
                 if (identityResult.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Customer");
-                    var authenManager = HttpContext.GetOwinContext().Authentication;
-                    var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+                    this.LoginUser(userManager, user);
+                    
                 }
                 return RedirectToAction("Login");
             }
@@ -60,10 +63,21 @@ namespace Project.Controllers
             }
 
         }
+        [NonAction]
+        public void LoginUser(AppUserManager userManager,AppUser user)
+        {
+            var authenManager = HttpContext.GetOwinContext().Authentication;
+            var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+        }
+        [OverrideAuthentication]
+        [OverrideExceptionFilters]
         public ActionResult LogIn()
         {
             return View();
         }
+        [OverrideAuthentication]
+        [OverrideExceptionFilters]
         [HttpPost]
         public ActionResult LogIn(LoginVm vm)
         {
@@ -73,10 +87,17 @@ namespace Project.Controllers
             var user = userManager.Find(vm.UserName, vm.Password);
             if (user != null)
             {
-                var authenManager = HttpContext.GetOwinContext().Authentication;
-                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenManager.SignIn(new AuthenticationProperties(), userIdentity);
-                return RedirectToAction("Index", "Home");
+                if(user.IsActive)
+                {
+                    this.LoginUser(userManager, user);
+                    if (userManager.IsInRole(user.Id,"Admin"))
+                    {
+                        return RedirectToAction("Index", "Home",new {area="Admin"});
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("myError", "Tài khoản của bạn đã bị khoa vui long liên hệ AD để biết thêm chi tiết");
+                return View();
             }
             else
             {
@@ -105,12 +126,13 @@ namespace Project.Controllers
         public ActionResult Edit(AppUser appUser)
         {
             AppUser User = db.Users.Where(t=>t.Id==appUser.Id).FirstOrDefault();
-            User.UserName = appUser.UserName;
+            User.FullName = appUser.FullName;
             User.Address = appUser.Address;
             User.City=appUser.City;
             User.PhoneNumber=appUser.PhoneNumber;
             User.BirthDay=appUser.BirthDay;
             User.Email=appUser.Email;
+            User.Gender=appUser.Gender;
             db.SaveChanges();
             return RedirectToAction("Profile","Account");
         }
@@ -151,7 +173,6 @@ namespace Project.Controllers
             return View(products);
         }
         [HttpPost]
-        [MyAuthenFilter]
         public ActionResult AddToCart(string id, int Quantity,float price)
         {
             string curentUserID = User.Identity.GetUserId();
@@ -182,7 +203,6 @@ namespace Project.Controllers
             return PartialView();
         }    
         [HttpPost]
-        [MyAuthenFilter]
         public ActionResult Delete(string id)
         {
             string curentUserID = User.Identity.GetUserId();
@@ -201,6 +221,15 @@ namespace Project.Controllers
             }
             return Json(code);
         }
+        public ActionResult ChangePasWord(string password)
+        {
+            var passwdHash = Crypto.HashPassword(password);
+            string curentUserID = User.Identity.GetUserId();
+            AppUser appUser = db.Users.Find(curentUserID);
+            appUser.PasswordHash = passwdHash;
+            DB.SaveChanges();
+            return Json(appUser);
+        }    
         
     }
 }

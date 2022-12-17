@@ -44,50 +44,69 @@
             <div class="bs-stepper-content">
                 @using (Html.BeginForm("Edit", "Users", FormMethod.Post, new { }))
                 {
-                    @Html.TextBoxFor(t=>t.Id,htmlAttributes:new {@type="Hidden",@value=Model.Id})
+                    @Html.TextBoxFor(t => t.Id, htmlAttributes: new { @type = "Hidden", @value = Model.Id })
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.AntiForgeryToken()
-                <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.UserName)
-                        @Html.TextBoxFor(t => t.UserName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm", @readonly = "readonly" })
+                    <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.UserName)
+                            @Html.TextBoxFor(t => t.UserName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm", @readonly = "readonly" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.FullName)
+                            @Html.TextBoxFor(t => t.FullName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.Email)
+                            @Html.TextBoxFor(t => t.Email, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên Email" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.Address)
+                            @Html.TextBoxFor(t => t.Address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.City)
+                            @Html.TextBoxFor(t => t.City, htmlAttributes: new { @class = "form-control", placeholder = "Địa chỉ" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(t => t.PhoneNumber)
+                            @Html.TextBoxFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Số điện thoại", @type = "number" })
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.Gender)
+                                    @Html.DropDownListFor(t => t.Gender, new SelectList(new List<Object> { new { value="Male",text="Nam" },
+                                                                                                          new {value="Female",text="Nữ" }
+                                                                                                         }, "value",
+                                                                                                          "text",
+                                                                                                           Model.Gender), htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.BirthDay)
+                                    @Html.TextBoxFor(t => t.BirthDay, htmlAttributes: new { @class = "form-control", placeholder = "Sinh nhật", @type = "Date" })
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(t => t.IsActive)
+                                    @if (Model.IsActive)
+                                    {
+                                        <h5 class="text-secondary">Đang hoạt động</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5 class="text-danger">Tạm ngưng</h5>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger" href="/admin/Users" onclick="stepper.previous()">Quay lại</a>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.FullName)
-                        @Html.TextBoxFor(t => t.FullName, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.Email)
-                        @Html.TextBoxFor(t => t.Email, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên Email" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.Address)
-                        @Html.TextBoxFor(t => t.Address, htmlAttributes: new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.City)
-                        @Html.TextBoxFor(t => t.City, htmlAttributes: new { @class = "form-control", placeholder = "Địa chỉ" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.BirthDay)
-                        @Html.TextBoxFor(t => t.BirthDay, htmlAttributes: new { @class = "form-control", placeholder = "Sinh nhật", @type = "Date" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.PhoneNumber)
-                        @Html.TextBoxFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Số điện thoại", @type = "number" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.PhoneNumber)
-                        @Html.TextBoxFor(t => t.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Số điện thoại" })
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(t => t.IsActive)
-                        @Html.CheckBoxFor(t => t.IsActive, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = Model.IsActive })
-                    </div>
-                    
-                    <a class="btn btn-danger" href="/admin/Users" onclick="stepper.previous()">Quay lại</a>
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
                 }
             </div>
         </div>

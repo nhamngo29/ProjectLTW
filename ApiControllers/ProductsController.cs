@@ -14,6 +14,7 @@ namespace Project.ApiControllers
         // GET: Products
         public List<Product> Get()
         {
+
             List<Product> Products = DB.Products.ToList(); 
             return Products;
         }
@@ -28,5 +29,18 @@ namespace Project.ApiControllers
             DB.Products.Add(product);
             DB.SaveChanges();
         }
+        public object Delete(string id)
+        {
+            Product db=DB.Products.Find(id);
+            
+            var code = new { Success = false, msg = "", code = -1, count = 0 };
+            if (db != null)
+            {
+                DB.Products.Remove(db);
+                DB.SaveChanges();
+                code = new { Success = true, msg = "", code = 1, count = DB.Categories.Count() };
+            }
+            return Json(code);
+        }    
     }
 }

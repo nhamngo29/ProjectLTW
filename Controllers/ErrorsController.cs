@@ -9,7 +9,7 @@ namespace Project.Controllers
     public class ErrorsController : Controller
     {
         // GET: Errors
-        public ActionResult Index()
+        public ActionResult Error404()
         {
             return View();
         }

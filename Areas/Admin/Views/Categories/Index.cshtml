@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-@{
-    ViewBag.Title = "Index";
-}
 @section naviheader{
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -129,7 +126,6 @@
             $('body').on('click', '.Ajax-delete', function (e) {
                 e.preventDefault();
                 var id = document.getElementById('id-Modal').innerHTML;
-                alert(id);
                 $.ajax({
                     url: '/Admin/Categories/Remove',
                     type: 'POST',

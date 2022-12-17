@@ -146,16 +146,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\UserDB.mdf" />
-    <Content Include="App_Data\UserDB_log.ldf">
-      <DependentUpon>UserDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Data\Edit.js" />
     <Content Include="assets\base.css" />
     <Content Include="assets\css\account.css" />
     <Content Include="assets\css\base.css" />
     <Content Include="assets\css\cart.css" />
     <Content Include="assets\css\Error.css" />
+    <Content Include="assets\css\ImageDetails.css" />
     <Content Include="assets\css\login.css" />
     <Content Include="assets\css\main.css" />
     <Content Include="assets\css\news.css" />
@@ -2404,12 +2401,8 @@
     <Content Include="assets\img\product\vaymidi4.jpg" />
     <Content Include="assets\img\product\áo-ngực-thun-gân-medium-support-3-sọc-believe-this.jpg" />
     <Content Include="assets\img\slideshow\1.jpg" />
-    <Content Include="assets\img\slideshow\1.png" />
     <Content Include="assets\img\slideshow\2.jpg" />
     <Content Include="assets\img\slideshow\3.jpg" />
-    <Content Include="assets\img\slideshow\Header_M21.png" />
-    <Content Include="assets\img\slideshow\M-06-RUN-PUMA.jpg" />
-    <Content Include="assets\img\slideshow\Unbenannt-1.jpg" />
     <Content Include="assets\js\Cart.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\modal.js" />
@@ -5365,6 +5358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\ProductsController.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
@@ -5385,6 +5379,7 @@
     <Compile Include="Filters\AdminAuthorrization.cs" />
     <Compile Include="Filters\MyActionFilters.cs" />
     <Compile Include="Filters\MyAuthenFilter.cs" />
+    <Compile Include="Filters\MyExeptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5664,8 +5659,6 @@
     <Content Include="assets\icon\uicons-regular-rounded\webfonts\uicons-regular-rounded.eot" />
     <Content Include="assets\icon\uicons-regular-rounded\webfonts\uicons-regular-rounded.woff" />
     <Content Include="assets\icon\uicons-regular-rounded\webfonts\uicons-regular-rounded.woff2" />
-    <Content Include="assets\img\product\bao_cao_do_an.docx" />
-    <Content Include="assets\img\slideshow\YEEZY BOOST 700 BRIGHT BLUE.zip" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
@@ -5689,6 +5682,8 @@
     <Content Include="Views\Orders\OrderSucces.cshtml" />
     <Content Include="Views\Orders\OrderDetail.cshtml" />
     <Content Include="Views\Categories\Category.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Errors\Error404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5697,9 +5692,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Category\" />
-    <Folder Include="Views\Errors\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="identityMigration\202211210700449_init.resx">

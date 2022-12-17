@@ -11,6 +11,7 @@ namespace Project.Areas.Admin.Controllers
     {
         // GET: Admin/User
         AppDBContext DB=new AppDBContext();
+
         public ActionResult Index(int? page)
         {
             if (page == null) page = 1;
@@ -18,6 +19,7 @@ namespace Project.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
             ViewBag.PageSize = pageSize;
             var Users=DB.Users.OrderByDescending(x => x.UserName).ToList();
+          
             return View(Users.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Detail(string Id)
@@ -30,9 +32,40 @@ namespace Project.Areas.Admin.Controllers
         public ActionResult Edit(AppUser app)
         {
             AppUser User = DB.Users.Where(t=>t.Id==app.Id).FirstOrDefault();
-            User = app;
+            User.FullName=app.FullName;
+            User.Email=app.Email;
+            User.IsActive=app.IsActive;
             DB.SaveChanges();
             return RedirectToAction("Index", "Users");
+        }
+        [HttpPost]
+        public ActionResult IsActive(string id)
+        {
+            var item = DB.Users.Find(id);
+            if (item != null)
+            {
+                item.IsActive = !item.IsActive;
+                DB.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                DB.SaveChanges();
+                return Json(new { success = true, isAcive = item.IsActive });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public ActionResult Remove(string id)
+        {
+            var item = DB.Users.Find(id);
+            if (item!=null)
+            {
+                DB.Users.Remove(item);
+                DB.SaveChanges();
+                return Json(new { success = true }) ;
+            }
+            return Json(new { success = false });
+        }
+        public ActionResult Add()
+        {
+            return View();
         }
     }
 }

@@ -53,7 +53,9 @@
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Active</th>
+
                         <th>Chức năng</th>
+
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -61,15 +63,17 @@
                     {
                         foreach (var item in Model)
                         {
+                            var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
                             <tr id="trow-@item.Id">
                                 <td>@item.FullName</td>
                                 <td>@item.UserName</td>
                                 <td>@item.Email</td>
-                                <td>@Html.CheckBox("item.IsActive", item.IsActive, htmlAttributes: new { @id = "flexSwitchCheckDefault", @type = "checkbox", @class = "form-check-input", Value = item.IsActive })</td>
+                                <td> <a href='#' data-id="@item.Id" class="btnActive text-center">@Html.Raw(strCheck)</a></td>
                                 <td>
                                     <a href="/admin/users/Detail/@item.Id" class="btn btn-primary">Detail</a> |
-                                    <button class="btn btn-danger">Delete</button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetId(`@item.FullName`,`@item.Id`)">Delete</button>
                                 </td>
+
                             </tr>
                         }
                     }
@@ -79,6 +83,7 @@
                             <td colspan="4"> Không có bản ghi nào</td>
                         </tr>
                     }
+
                 </tbody>
             </table>
             <div class="row">
@@ -98,7 +103,7 @@
 
 </section>
 <!-- /.content -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,7 +111,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Bạn có chắc chắn xóa loại sản phẩm này không <span id="Name-Modal" class="text-bold"></span>
+                Bạn có chắc chắn xóa tài khoản này không <span id="Name-Modal" class="text-bold"></span>
                 <a id="id-Modal" hidden></a>
             </div>
             <div class="modal-footer">
@@ -116,6 +121,7 @@
         </div>
     </div>
 </div>
+
 @section Ajax{
     <script>
 
@@ -124,7 +130,7 @@
                 e.preventDefault();
                 var id = document.getElementById('id-Modal').innerHTML;
                 $.ajax({
-                    url: '/ProductTypes/IsActive',
+                    url: '/admin/Users/Remove',
                     type: 'POST',
                     data: { id: id },
                     success: function (rs) {
@@ -134,6 +140,29 @@
                     }
                 });
             });
+            $('body').on('click', '.btnActive', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                alert(id);
+                $.ajax({
+                    url: '/admin/Users/IsActive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            alert(id);
+                            if (rs.isAcive) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            }
+                            else {
+                                btn.html("<i class='fas fa-times text-danger'></i>");
+                            }
+                        }
+                    }
+                });
+            });
         });
     </script>
+
 }

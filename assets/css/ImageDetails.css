@@ -1,0 +1,62 @@
+﻿#myCarousel {
+    img
+
+{
+    height: 50%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+}
+
+#thumbSlider {
+    .carousel-inner
+
+{
+    padding-left: 3rem;
+    padding-right: 3rem;
+    .row
+
+{
+    overflow: hidden;
+}
+
+.thumb {
+    &:hover
+
+{
+    cursor: pointer;
+}
+
+&.active img {
+    opacity: 1;
+}
+
+}
+
+img {
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    opacity: 0.5;
+    &:hover
+
+{
+    opacity: 1;
+}
+
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='%23000'%20viewBox='0%200%208%208'%3E%3Cpath%20d='M5.25%200l-4%204%204%204%201.5-1.5-2.5-2.5%202.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='%23000'%20viewBox='0%200%208%208'%3E%3Cpath%20d='M2.75%200l-1.5%201.5%202.5%202.5-2.5%202.5%201.5%201.5%204-4-4-4z'/%3E%3C/svg%3E");
+}
+
+}
+}

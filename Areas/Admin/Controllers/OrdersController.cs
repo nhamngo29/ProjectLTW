@@ -67,10 +67,13 @@ namespace Project.Areas.Admin.Controllers
         {
             foreach (var item in orders)
             {
-                Order s = AppDB.Orders.Where(t => t.Id == item.Id).Where(t => t.IdUser == item.IdUser).FirstOrDefault();
-                s.Status=item.Status;
+                if (item.Status!=null)
+                {
+                    Order s = AppDB.Orders.Where(t => t.Id == item.Id).Where(t=>t.IdUser==item.IdUser).FirstOrDefault();
+                    s.Status = (int)item.Status;
+                }
             }
-            DB.SaveChanges();
+             AppDB.SaveChanges();
             return RedirectToAction("Index","Orders");
         }
     }

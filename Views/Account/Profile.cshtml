@@ -1,4 +1,5 @@
 ﻿@model Project.Identity.AppUser
+@using Project.ViewModel
 @{
     ViewBag.Title = "Profile";
 }
@@ -37,7 +38,7 @@
             <div class="col-lg-10 col-12">
                 <div class="menu-detail">
                     <div class="detial__my-profile item-detail active">
-                        @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form"}))
                         {
                             <div class="heading-edit-account">
                                 <h2>Hồ sơ của tôi</h2>
@@ -59,26 +60,26 @@
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group">
                                             @Html.LabelFor(t => t.BirthDay, "Ngày sinh", htmlAttributes: new { @class = "form-label" })
-                                            @Html.TextBoxFor(t => t.BirthDay.Value,Model.BirthDay.Value.ToString("yyyy-mm-"), new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "birthDay", type = "Date"})
+                                            @Html.TextBoxFor(t => t.BirthDay, Model.BirthDay.Value.ToString("dd/mm/yyyy"), new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "birthDay", type = "Date" })
                                             <span class="form-message"></span>
                                         </div>
                                         <div class="form-group">
                                             @Html.LabelFor(t => t.PhoneNumber, "Số điện thoại", htmlAttributes: new { @class = "form-label" })
-                                            @Html.TextBoxFor(t => t.PhoneNumber, Model.PhoneNumber,new { placeholder = "VD: 0336669999", @class = "form-control", @id = "mobile" })
+                                            @Html.TextBoxFor(t => t.PhoneNumber, Model.PhoneNumber, new { placeholder = "VD: 0336669999", @class = "form-control", @id = "mobile" })
                                             <span class="form-message"></span>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group">
                                             @Html.LabelFor(t => t.Address, "Địa chỉ", htmlAttributes: new { @class = "form-label" })
-                                            @Html.TextBoxFor(t => t.Address,Model.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "address" })
+                                            @Html.TextBoxFor(t => t.Address, Model.Address, new { placeholder = "VD: 140 Lê Trong Tấn", @class = "form-control", @id = "address" })
                                             <span class="form-message"></span>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group ">
                                             @Html.LabelFor(t => t.City, "Thành phố", htmlAttributes: new { @class = "form-label" })
-                                            @Html.TextBoxFor(t => t.City,Model.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "city" })
+                                            @Html.TextBoxFor(t => t.City, Model.City, new { placeholder = "VD: Thành phố Kon Tum", @class = "form-control", @id = "city" })
                                             <span class="form-message"></span>
                                         </div>
                                     </div>
@@ -90,7 +91,7 @@
                                                     @Html.RadioButtonFor(m => m.Gender, "Male")
                                                 </div>
                                                 <div class="col-6">
-                                                    @Html.LabelFor(t => t.Gender, "Nữ", htmlAttributes: new { @class = "form-label"})
+                                                    @Html.LabelFor(t => t.Gender, "Nữ", htmlAttributes: new { @class = "form-label" })
                                                     @Html.RadioButtonFor(m => m.Gender, "Female")
                                                 </div>
                                             </div>
@@ -102,38 +103,35 @@
                             </div>
                         }
                     </div>
-                    <div class="detail__confirm-password item-detail">
-                        <div class="heading-edit-password">
-                            <h2>Đổi lại mật khẩu</h2>
-                        </div>
-                        <div class="form-group form-group-old-password">
-                            <div style="display:flex;justify-content: space-between;">
-                                <label for="password" class="form-label">Mật khẩu cũ</label>
+                    
+                        <div class="detail__confirm-password item-detail">
+                            <div class="heading-edit-password">
+                                <h2>Đổi lại mật khẩu</h2>
+                            </div>
+
+                            <div class="form-group matkhau">
+                                <label class="form-label" for="Password">Mật khẩu đăng nhập</label>
+                                <input class="form-control" id="password" name="Password" placeholder="Nhập mật khẩu" type="password" value="">
                                 <span class="show-hide"><i class="fas fa-eye"></i></span>
+                                <span class="form-message"></span>
                             </div>
-                            <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" class="form-control">
-                            <span class="form-message"></span>
-                        </div>
-                        <div class="form-group form-group-new-password">
-                            <div style="display:flex;justify-content: space-between;">
-                                <label for="password-new" class="form-label">Mật khẩu mới</label>
+
+                            <div class="form-group matkhau">
+                                <label class="form-label" for="Password">Mật khẩu đăng nhập</label>
+                                <input class="form-control" id="password" name="Password" placeholder="Nhập mật khẩu" type="password" value="">
+                                <span class="show-hide"><i class="fas fa-eye"></i></span>
+                                <span class="form-message"></span>
+                            </div>
+
+                            <div class="form-group matkhau">
+                                <label class="form-label" for="ConfirmPassword">Nhập lại mật khẩu</label>
+                                <input class="form-control" id="password_confirmation" name="ConfirmPassword" placeholder="Nhập lại mật khẩu" type="password" value="">
                                 <span class="show-hide-two"><i class="fas fa-eye fa-eye-2"></i></span>
+                                <span class="form-message"></span>
                             </div>
-                            <input id="password-new" name="password-new" type="password" placeholder="Nhập mật khẩu"
-                                   class="form-control">
-                            <span class="form-message"></span>
+                            <button class="form-submit">Lưu</button>
                         </div>
-                        <div class="form-group form-group-confirm-password">
-                            <div style="display:flex;justify-content: space-between;">
-                                <label for="password-confirm" class="form-label">Mật khẩu mới</label>
-                                <span class="show-hide-three"><i class="fas fa-eye fa-eye-3"></i></span>
-                            </div>
-                            <input id="password-confirm" name="password-confirm" type="password" placeholder="Nhập mật khẩu"
-                                   class="form-control">
-                            <span class="form-message"></span>
-                        </div>
-                        <button class="form-submit">Lưu</button>
-                    </div>
+                    
                     <div class="detail__my-order item-detail">
                         <div class="heading-edit-password">
                             <h2>Đơn hàng của bạn</h2>
@@ -186,26 +184,30 @@
     </div>
 </div>
 @section script{
-    @*<script>
-        $(document).ready(function () {
-            $('body').on('click', '.save-profile', function (e) {
-                e.preventDefault();
-                var id = document.getElementById('id-profile').value;
-                var fullName = document.getElementById('fullname').innerHTML;
-                var birthDay = document.getElementById('fullname').innerHTML;
-                $.ajax({
-                    url: '/Account/Edit',
-                    type: 'POST',
-                    data: { id: id ,},
-                    success: function (rs) {
-                        if (rs.Success) {
-                            alert("Cập nhật thành công");
-                        }
-                    }
-                });
-            });
+    <script src="~/assets/js/validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-1',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.Mobile('#Mobile', 'Trường này phải là số điện thoại'),
+                Validator.UserName('#UserName', 'Vui lòng nhập tên đăng nhập'),
+                Validator.isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.minLength('#password', 6),
+                Validator.isRequired('#password_confirmation'),
+                Validator.isConfirmed('#password_confirmation', function () {
+                    return document.querySelector('#form-1 #password').value;
+                }, 'Mật khẩu nhập lại không chính xác')
+            ],
+            onSubmit: function (data) {
+                // call api
+                console.log(data);
+            }
         });
-    </script>*@
+    </script>
     <script>
         const pass_field = document.querySelector('#password');
         const show_btn = document.querySelector('.fa-eye')
@@ -220,7 +222,7 @@
         });
     </script>
     <script>
-        const pass_field2 = document.querySelector('#password-new');
+        const pass_field2 = document.querySelector('#password_confirmation');
         const show_btn2 = document.querySelector('.fa-eye-2')
         show_btn2.addEventListener("click", function () {
             if (pass_field2.type === "password") {
@@ -229,19 +231,6 @@
             } else {
                 pass_field2.type = "password";
                 show_btn2.classList.remove("hide");
-            }
-        });
-    </script>
-    <script>
-        const pass_field3 = document.querySelector('#password-confirm');
-        const show_btn3 = document.querySelector('.fa-eye-3')
-        show_btn3.addEventListener("click", function () {
-            if (pass_field3.type === "password") {
-                pass_field3.type = "text";
-                show_btn3.classList.add("hide");
-            } else {
-                pass_field3.type = "password";
-                show_btn3.classList.remove("hide");
             }
         });
     </script>
