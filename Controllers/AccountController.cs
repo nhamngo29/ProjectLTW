@@ -96,11 +96,13 @@ namespace Project.Controllers
                     }
                     return RedirectToAction("Index", "Home");
                 }
+                ViewBag.Error = "Tài khoản của bạn đã bị khoa vui long liên hệ AD để biết thêm chi tiết";
                 ModelState.AddModelError("myError", "Tài khoản của bạn đã bị khoa vui long liên hệ AD để biết thêm chi tiết");
                 return View();
             }
             else
             {
+                ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
                 ModelState.AddModelError("myError", "Invalid username and password");
                 return View();
             }

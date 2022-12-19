@@ -11,6 +11,7 @@
                 {
                     <h3 class="heading">ĐĂNG NHẬP</h3>
                     <a href="" class="form__forgot-password">Bạn quên mật khẩu?</a>
+                    <p class="text-danger">@ViewBag.Error</p>
                     <div class="form-group">
                         @Html.LabelFor(t => t.UserName, htmlAttributes: new { @class = "form-label" })
                         @Html.TextBoxFor(t => t.UserName, new { placeholder = "VD: nhamngoo.29", @class = "form-control", @id = "UserName" })
