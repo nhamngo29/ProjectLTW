@@ -63,18 +63,20 @@
                     {
                         foreach (var item in Model)
                         {
-                            var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
-                            <tr id="trow-@item.Id">
-                                <td>@item.FullName</td>
-                                <td>@item.UserName</td>
-                                <td>@item.Email</td>
-                                <td> <a href='#' data-id="@item.Id" class="btnActive text-center">@Html.Raw(strCheck)</a></td>
-                                <td>
-                                    <a href="/admin/users/Detail/@item.Id" class="btn btn-primary">Detail</a> |
-                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="GetId(`@item.FullName`,`@item.Id`)">Delete</button>
-                                </td>
-
-                            </tr>
+                            if (item.Id != "05d7cad2-3e02-4b91-b5dc-ff0e85860788")
+                            {
+                                var strCheck = item.IsActive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                                <tr id="trow-@item.Id">
+                                    <td>@item.FullName</td>
+                                    <td>@item.UserName</td>
+                                    <td>@item.Email</td>
+                                    <td> <a href='#' data-id="@item.Id" class="btnActive text-center">@Html.Raw(strCheck)</a></td>
+                                    <td>
+                                        <a href="/admin/users/Detail/@item.Id" class="btn btn-primary">Detail</a>
+                                        
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
                     else
@@ -135,7 +137,7 @@
                     data: { id: id },
                     success: function (rs) {
                         if (rs.Success) {
-                            $('#trow-' + id).remove();
+                            $('#trow-'+id).remove();
                         }
                     }
                 });

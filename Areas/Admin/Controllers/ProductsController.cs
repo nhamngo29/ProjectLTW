@@ -18,14 +18,14 @@ namespace Project.Areas.Admin.Controllers
         private ShopDBContext DB = new ShopDBContext();
         public ActionResult Index()
         {
-            return View(); 
+            return View();
         }
         public ActionResult Details(string id)
         {
-            Product product=DB.Products.Find(id);
-            List<ImgeProduct> imgeProducts = DB.Imges.Where(t=>t.ProductId==id).ToList();
-            ViewBag.ProductTypes=DB.ProductTypes.ToList();
-            ViewBag.Brands=DB.Brands.ToList();
+            Product product = DB.Products.Find(id);
+            List<ImgeProduct> imgeProducts = DB.Imges.Where(t => t.ProductId == id).ToList();
+            ViewBag.ProductTypes = DB.ProductTypes.ToList();
+            ViewBag.Brands = DB.Brands.ToList();
             ViewBag.ImageProducts = DB.Imges.Where(t => t.ProductId == id).ToList();
             return View(product);
         }
@@ -43,7 +43,7 @@ namespace Project.Areas.Admin.Controllers
         //            oldProduct.ProductId = item.ProductId;
         //        }
         //        DB.SaveChanges();
-                
+
         //    }
         //    return RedirectToAction("Index", "Producttypes");
         //}
@@ -51,55 +51,58 @@ namespace Project.Areas.Admin.Controllers
         public ActionResult Edit(Product product, List<HttpPostedFileBase> uploadhinh)
         {
             Product temp = DB.Products.Find(product.ProductId);
-            temp.BrandID=product.BrandID;
-            temp.Name=product.Name;
-            temp.Detail=product.Detail;
-            temp.Description = product.Description;
-            temp.Price=product.Price;
-            temp.Quantity=product.Quantity;
-            temp.Promotion=product.Promotion;
-            temp.Evaluate=product.Evaluate;
-            temp.TotalSold=product.TotalSold;
-            temp.DateCreate=product.DateCreate;
-            temp.IsHot=product.IsHot;
-            temp.IsActive=product.IsActive;
-            temp.ProductTypeID=product.ProductTypeID;
-            temp.BrandID=temp.BrandID;
-            temp.Featured=product.Featured;
-            ImgeProduct imgPro=DB.Imges.Where(t=>t.ProductId==product.ProductId).FirstOrDefault();
             if (ModelState.IsValid && temp != null)
             {
-                foreach (var item in uploadhinh)
+                temp.BrandID = product.BrandID;
+                temp.Name = product.Name;
+                temp.Detail = product.Detail;
+                temp.Description = product.Description;
+                temp.Price = product.Price;
+                temp.Quantity = product.Quantity;
+                temp.Promotion = product.Promotion;
+                temp.Evaluate = product.Evaluate;
+                temp.TotalSold = product.TotalSold;
+                temp.DateCreate = product.DateCreate;
+                temp.IsHot = product.IsHot;
+                temp.IsActive = product.IsActive;
+                temp.ProductTypeID = product.ProductTypeID;
+                temp.BrandID = temp.BrandID;
+                temp.Featured = product.Featured;
+                if (uploadhinh != null)
                 {
-                    if (item != null && item.ContentLength > 0)
+                    foreach (var item in uploadhinh)
                     {
+
                         string _FileName = "";
                         int index = item.FileName.IndexOf('.');
                         _FileName = product.ProductId.ToString() + "." + item.FileName.Substring(index + 1);
                         string _path = Path.Combine(Server.MapPath("~/assets/img/product"), _FileName);
                         item.SaveAs(_path);
-                        product.ImgeMain = _FileName;
-                        DB.SaveChanges();
+
                     }
                 }
+                DB.SaveChanges();
                 return RedirectToAction("Index");
+
             }
+
+
             return View(product);
-        }    
+        }
         public ActionResult Create()
         {
             ViewBag.ProductTypes = DB.ProductTypes.ToList();
-            ViewBag.Brands=DB.Brands.ToList();
+            ViewBag.Brands = DB.Brands.ToList();
             return View();
-        }    
+        }
         [HttpPost]
 
         public ActionResult Create(Product product, List<HttpPostedFileBase> uploadhinh)
         {
-            Product temp=DB.Products.Find(product.ProductId);
-            if (ModelState.IsValid&&temp==null)
+            Product temp = DB.Products.Find(product.ProductId);
+            if (ModelState.IsValid && temp == null)
             {
-                
+
                 int n = 1;
                 foreach (var item in uploadhinh)
                 {
@@ -107,10 +110,10 @@ namespace Project.Areas.Admin.Controllers
                     {
                         string _FileName = "";
                         int index = item.FileName.IndexOf('.');
-                        _FileName = product.ProductId.ToString() + "-0"+n+"." + item.FileName.Substring(index + 1);
+                        _FileName = product.ProductId.ToString() + "-0" + n + "." + item.FileName.Substring(index + 1);
                         string _path = Path.Combine(Server.MapPath("~/assets/img/product"), _FileName);
                         item.SaveAs(_path);
-                        if (n==1)
+                        if (n == 1)
                         {
                             product.ImgeMain = _FileName;
                             DB.Products.Add(product);
@@ -121,6 +124,7 @@ namespace Project.Areas.Admin.Controllers
                             imgeProduct.ProductId = product.ProductId;
                             imgeProduct.Path = _FileName;
                             DB.Imges.Add(imgeProduct);
+                            DB.SaveChanges();
                         }
                         n++;
                         DB.SaveChanges();
@@ -128,7 +132,7 @@ namespace Project.Areas.Admin.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            
+
             return View(product);
         }
         [HttpPost]

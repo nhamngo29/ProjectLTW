@@ -12,17 +12,9 @@ namespace Project.ApiControllers
     {
         ShopDBContext DB = new ShopDBContext();
         // GET: Products
-        public List<Product> Get()
+        public IEnumerable<Product> Get()
         {
-
-            List<Product> Products = DB.Products.ToList(); 
-            return Products;
-        }
-        public Product GetProductByID(int id)
-        {
-            Product product = DB.Products.Find(id);
-
-            return product;
+            return DB.Products.ToList();
         }
         public void Post(Product product)
         {

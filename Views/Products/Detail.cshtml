@@ -77,8 +77,9 @@
                 <div class="infor-oder">
                     Loại sản phẩm: <b>@Model.ProductType.Name</b>
                 </div>
+
                 <div class="product__price">
-                    <h2>@string.Format("{0:0,0 đ}", ViewBag.Price)</h2>
+                    <h2>@string.Format("{0:0,0 đ}", (Model.Price - (Model.Price * (Model.Promotion / 100))))</h2>
                     <a id="price-pr" hidden>@ViewBag.Price</a>
                 </div>
 

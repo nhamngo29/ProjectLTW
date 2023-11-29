@@ -135,8 +135,12 @@ namespace Project.Controllers
             User.BirthDay=appUser.BirthDay;
             User.Email=appUser.Email;
             User.Gender=appUser.Gender;
-            db.SaveChanges();
-            return RedirectToAction("Profile","Account");
+            if (ModelState.IsValid)
+            {
+                db.SaveChanges();
+                return RedirectToAction("Profile", "Account");
+            }
+            return View(appUser);
         }
         [MyAuthenFilter]
         public ActionResult ShowCount()
@@ -175,6 +179,7 @@ namespace Project.Controllers
             return View(products);
         }
         [HttpPost]
+        [MyAuthenFilter]
         public ActionResult AddToCart(string id, int Quantity,float price)
         {
             string curentUserID = User.Identity.GetUserId();

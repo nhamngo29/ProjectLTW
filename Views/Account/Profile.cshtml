@@ -60,7 +60,7 @@
                                     <div class="col-sm-12 col-lg-6">
                                         <div class="form-group">
                                             @Html.LabelFor(t => t.BirthDay, "Ngày sinh", htmlAttributes: new { @class = "form-label" })
-                                            @Html.TextBoxFor(t => t.BirthDay, Model.BirthDay.Value.ToString("dd/mm/yyyy"), new { placeholder = "VD: 02/09/2002", @class = "form-control", @id = "birthDay", type = "Date" })
+                                            @Html.TextBoxFor(t => t.BirthDay, Model.BirthDay.Value.ToString("dd-MMM-yyyy"), new { placeholder = "VD: 02/09/2002", @class = "form-control", type = "Date" })
                                             <span class="form-message"></span>
                                         </div>
                                         <div class="form-group">

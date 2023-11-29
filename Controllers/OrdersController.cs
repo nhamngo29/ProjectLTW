@@ -12,7 +12,6 @@ namespace Project.Controllers
         AppDBContext db=new AppDBContext();
         // GET: Order
         [HttpPost]
-        [ChildActionOnly]
         public ActionResult Order(float price)
         {
             Order Orderr = new Order();
@@ -54,7 +53,6 @@ namespace Project.Controllers
         {
             return View();
         }
-        [ChildActionOnly]
         public ActionResult OrderDetail(int id)
         {
             ViewBag.Order=db.Orders.Where(t=>t.Id==id).FirstOrDefault();
